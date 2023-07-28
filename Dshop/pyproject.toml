@@ -3,7 +3,7 @@ name = "dshop"
 version = "0.1.0"
 description = "Django E-shop project"
 authors = ["Akademia IT"]
-readme = "README.md"
+readme = "../README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
