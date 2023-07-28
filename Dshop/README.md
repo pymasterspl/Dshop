@@ -1,0 +1,1 @@
+Dshop developed by Akademia IT

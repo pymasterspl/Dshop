@@ -1,0 +1,38 @@
+# Enviroment .env  file template,, 
+# In django project install:   pip install python-decouple
+# ## Decouple import in settings.py   from decouple import config
+
+# Your Django app secret key without '' or " ", in Django  settings.py  should be as follow:
+# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY=secret-key
+
+# Debug state, in Django  settings.py  should be as follow:
+# DEBUG = config('DEBUG')
+DEBUG=True
+
+# Allowed Hosts in Django  settings.py  should be as follow:
+# ALLOWED_HOSTS = [config('ALLOWED_HOST_1'),config('ALLOWED_HOST_2'),config('ALLOWED_HOST_3')]
+ALLOWED_HOST_1=127.0.0.1
+ALLOWED_HOST_2=192.168.99.100
+ALLOWED_HOST_3=localhost
+
+##  Postgres enviroment settings
+# sample url # DATABASE_URL=postgres://user:pass@db:5432/postgres
+
+## In Django settings.py should be as follow: 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": config('POSTGRES_ENGINE'),
+#         "NAME": config('POSTGRES_DATABASE'),
+#         "USER": config('POSTGRES_USER'),
+#         "PASSWORD": config('POSTGRES_PASSWORD'),
+#         "HOST": config('POSTGRES_HOST'),
+#         "PORT": config('POSTGRES_PORT'),
+#     }
+# }
+POSTGRES_ENGINE=django.db.backends.postgresql
+POSTGRES_DATABASE=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=1234
+POSTGRES_HOST=db
+POSTGRES_PORT=5432

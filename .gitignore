@@ -55,11 +55,18 @@ cover/
 *.mo
 *.pot
 
+# archive's
+*.zip
+*.rar
+*.7z 
+
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
-db.sqlite3-journal
+
+# Database file's will be included
+#  db.sqlite3
+#  db.sqlite3-journal
 
 # Flask stuff:
 instance/
@@ -127,6 +134,22 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+##
+# Environments, added manually
+env
+..env
+.env
+.venv
+env/
+/env/*
+venv/*
+ENV/*
+env.bak/
+venv.bak/
+../env/*
+./env/*
+##
 
 # Spyder project settings
 .spyderproject
