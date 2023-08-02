@@ -16,3 +16,34 @@ Good reading on working with code changes and pull request is https://google.git
 5. At least one approval by other team member is required before pull request can be merged.
 6. After pull request is approved and code quality + tests are passed, pull request is merged by the author.
 7. It is author responsibility to watch over pull request, bump if there is no code review done, fix issues and merge pull request.
+
+#### How to Setup
+
+Clone repository to specyfic folder (ex. Dshop):
+```
+git clone https://github.com/akademiait/Dshop.git
+```
+You need to have installed Poetry package. If you don't have, please install using this command:
+```
+pip install poetry
+```
+Navigate to Dshop folder by command:
+```
+cd ./Dshop
+```
+Set poetry global option, to use project folder as place to hold Virtual enviroment (recomended)
+```
+poetry config virtualenvs.in-project true
+```
+Install virtual enviroment, using current dependencies
+```
+poetry install
+```
+Run Django server in Poetry virtual enviroment
+```
+poetry run python manage.py runserver
+```
+Open web browser and navigate to localhost adress:  http://127.0.0.1:8000/ 
+
+
+
