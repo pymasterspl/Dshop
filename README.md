@@ -39,6 +39,10 @@ Install virtual enviroment, using current dependencies
 ```
 poetry install
 ```
+Rename file env-template to .env file  using command
+```
+rename env-template .env
+```
 Run Django server in Poetry virtual enviroment
 ```
 poetry run python manage.py runserver
