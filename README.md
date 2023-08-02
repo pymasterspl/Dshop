@@ -44,6 +44,3 @@ Run Django server in Poetry virtual enviroment
 poetry run python manage.py runserver
 ```
 Open web browser and navigate to localhost adress:  http://127.0.0.1:8000/ 
-
-
-
