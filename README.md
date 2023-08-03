@@ -35,7 +35,7 @@ Set poetry global option, to use project folder as place to hold Virtual envirom
 ```
 poetry config virtualenvs.in-project true
 ```
-Install virtual enviroment, using current dependencies
+Install virtual enviroment, using current dependencies.
 ```
 poetry install
 ```
