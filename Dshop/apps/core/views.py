@@ -1,3 +1,3 @@
-from django.shortcuts import render
+# use classBasedViews
 
 # Create your views here.
