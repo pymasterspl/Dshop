@@ -1,7 +1,13 @@
 from django.contrib import admin
-from .models import CustomUser
+from .models import CustomUser, Country
 
-# Register your models here.
+
+@admin.register(Country)
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'code']
+    search_fields = ['code']
+
+
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('get_username', 'get_email')
     search_fields = ['user__username', 'user__email']
