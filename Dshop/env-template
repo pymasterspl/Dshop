@@ -11,10 +11,8 @@ SECRET_KEY=secret-key
 DEBUG=True
 
 # Allowed Hosts in Django  settings.py  should be as follow:
-# ALLOWED_HOSTS = [config('ALLOWED_HOST_1'),config('ALLOWED_HOST_2'),config('ALLOWED_HOST_3')]
-ALLOWED_HOST_1=127.0.0.1
-ALLOWED_HOST_2=192.168.99.100
-ALLOWED_HOST_3=localhost
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS')
+ALLOWED_HOSTS='["127.0.0.1", "192.168.99.100", "localhost"]'
 
 ##  Postgres enviroment settings
 # sample url # DATABASE_URL=postgres://user:pass@db:5432/postgres

@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config    
+from decouple import config
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,11 +33,7 @@ DEBUG = config('DEBUG')
 
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = [
-                config('ALLOWED_HOST_1'),
-                config('ALLOWED_HOST_2'),
-                config('ALLOWED_HOST_3') 
-]
+ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 
 # Application definition
 
