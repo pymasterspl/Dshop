@@ -39,12 +39,29 @@ Install virtual environment, using current dependencies:
 ```
 poetry install
 ```
-Rename file env-template to .env file using command:
+Copy file env-template to .env file using command:
 ```
-rename env-template .env
+# linux/mac
+cp env-template .env
+
+# windows
+copy env-template .env
 ```
-Run Django server in Poetry virtual environment:
+Start poetry virtual environment
 ```
-poetry run python manage.py runserver
+poetry shell
 ```
+
+Update local .env file as needed
+
+
+Run project:
+```
+# linux/mac
+./manage.py shell
+
+# windows
+python manage.py runserver
+```
+
 Open web browser and navigate to localhost address:  http://127.0.0.1:8000/ 
