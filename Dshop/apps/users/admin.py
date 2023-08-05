@@ -8,6 +8,7 @@ class CountryAdmin(admin.ModelAdmin):
     search_fields = ['code']
 
 
+@admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('get_username', 'get_email')
     search_fields = ['user__username', 'user__email']
@@ -22,5 +23,3 @@ class CustomUserAdmin(admin.ModelAdmin):
     get_email.short_description = 'Email'
     get_email.admin_order_field = 'user__email'
 
-# Register your models here.
-admin.site.register(CustomUser, CustomUserAdmin)
