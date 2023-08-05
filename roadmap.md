@@ -21,7 +21,7 @@ The ultimate goal is to equip community members with soft and hard skills to hel
 
 ## Project Roadmap
 
-The project will be developed incrementaly. We will make sure project is usable on milestones. The project will use well established frontend framework, like bootstrap, tailwind, foundation or any other (TBD)
+The project will be developed incrementaly. We will make sure project is usable on milestones. The project will use well established frontend framework: [Bootstrap](https://getbootstrap.com/)
 
 ### MVP #1.
 1. Initial setup of the project, including basic automation, basic user models (done).
