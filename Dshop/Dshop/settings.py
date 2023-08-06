@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     ## local apps
     'apps.core',
     'apps.users',
+    'apps.products_catalogue',
 ]
 
 MIDDLEWARE = [
