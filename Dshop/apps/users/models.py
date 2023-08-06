@@ -20,7 +20,7 @@ class CustomUser(models.Model):
     address = models.CharField(max_length=150)
     postal_code = models.CharField(max_length=7, blank=True, verbose_name='ZIP/Postal code')
     city = models.CharField(max_length=50)
-    country = models.ForeignKey(Country, on_delete=models.SET_NULL)
+    country = models.ForeignKey(Country, null=True, on_delete=models.SET_NULL)
     date_of_birth = models.DateField(null=True, blank=True)
     phone_number = models.CharField(max_length=15)
     date_joined = models.DateTimeField(auto_now_add=True) 
