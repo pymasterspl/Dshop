@@ -19,17 +19,9 @@ class CategoryBaseModel(models.Model):
 
 
 class Category(CategoryBaseModel):
+    parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
-
-
-class SubCategory(CategoryBaseModel):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = 'Subcategory'
-        verbose_name_plural = 'Subcategories'
-
 
