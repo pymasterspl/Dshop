@@ -5,10 +5,8 @@ class CategoryBaseModel(models.Model):
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     is_active = models.BooleanField(default=True)
-    sort = models.IntegerField(default=99)
 
     class Meta:
-        ordering = ('sort',)
         abstract = True
 
     def __str__(self):
