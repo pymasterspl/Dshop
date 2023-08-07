@@ -54,13 +54,33 @@ poetry shell
 
 Update local .env file as needed
 
+Create admin account to access admin site:
+
+```
+# linux/mac
+# to apply db changes
+./manage.py migrate 
+./manage.py createsuperuser
+
+# windows
+# to apply db changes
+python manage.py migrate
+python manage.py createsuperuser
+```
+
 
 Run project:
 ```
 # linux/mac
+# to apply db changes
+./manage.py migrate 
+# to start project
 ./manage.py shell
 
 # windows
+# to apply db changes
+python manage.py migrate
+# to start project
 python manage.py runserver
 ```
 
