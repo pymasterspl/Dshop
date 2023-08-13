@@ -75,7 +75,7 @@ Run project:
 # to apply db changes
 ./manage.py migrate 
 # to start project
-./manage.py shell
+./manage.py runserver
 
 # windows
 # to apply db changes
