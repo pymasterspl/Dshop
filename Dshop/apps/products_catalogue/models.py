@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils.text import slugify
 
-class CategoryBaseModel(models.Model):
-    name = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
+
+class CatalogueItemModel(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200)
     is_active = models.BooleanField(default=True)
 
     class Meta:
@@ -14,11 +15,17 @@ class CategoryBaseModel(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            base_slug = slugify(self.name)
+            new_slug = base_slug
+            counter = 1
+            while self.__class__.objects.filter(slug=new_slug).exists():
+                new_slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = new_slug
         return super().save(*args, **kwargs)
 
 
-class Category(CategoryBaseModel):
+class Category(CatalogueItemModel):
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta:
