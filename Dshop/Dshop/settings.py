@@ -36,6 +36,11 @@ DEBUG = config('DEBUG')
 ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 
 # Application definition
+PROJECT_APPS = [
+    'apps.core',
+    'apps.users',
+    'apps.products_catalogue',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -45,11 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    ## local apps
-    'apps.core',
-    'apps.users',
-    'apps.products_catalogue',
-]
+] + PROJECT_APPS
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
