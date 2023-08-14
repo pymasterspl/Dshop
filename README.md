@@ -1,4 +1,4 @@
-# Dshop developed by Akademia IT
+# Dshop developed by PyMasters
 
 ## Rules of engagement
 Good reading on working with code changes and pull request is https://google.github.io/eng-practices/. It contains both views - change author and reviewer.
