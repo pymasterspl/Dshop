@@ -19,7 +19,7 @@ def test_create_category_with_parent():
 
 
 @pytest.mark.django_db
-def test_create_duplicate_slug():
-    Category.objects.create(name='Main Category', is_active=True)
-    with pytest.raises(IntegrityError):
-        Category.objects.create(name='Main Category', is_active=True)
+def test_different_slugs_for_same_category_name():
+    category1 = Category.objects.create(name='Main Category', is_active=True)
+    category2 = Category.objects.create(name='Main Category', is_active=True)
+    assert category1.slug != category2.slug
