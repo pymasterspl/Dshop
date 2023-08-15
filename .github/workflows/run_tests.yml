@@ -68,11 +68,11 @@ jobs:
       - name: Check Migrations
         run: |
           cd Dshop
-          export $(cat ../.env | xargs)
+          export $(cat $GITHUB_WORKSPACE/.env | xargs)
           poetry run python manage.py makemigrations --check --dry-run
 
       - name: Run pytest
         run: |
           cd Dshop
-          export $(cat ../.env | xargs)
+          export $(cat $GITHUB_WORKSPACE/.env | xargs)
           poetry run pytest -n 4 -vv
