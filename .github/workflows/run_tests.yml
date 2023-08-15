@@ -70,7 +70,7 @@ jobs:
           cd Dshop
           source $HOME/.poetry/env
           export SECRET_KEY=$(cat ../.env | grep SECRET_KEY= | cut -d '=' -f 2)
-          poetry run ./manage.py makemigrations --check --dry-run
+          poetry run python manage.py makemigrations --check --dry-run
 
       - name: Run pytest
         run: |
