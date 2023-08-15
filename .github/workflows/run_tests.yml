@@ -36,6 +36,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
 
+      - name: Create .env file
+        run: |
+          echo "SECRET_KEY=mysecretkey" > $GITHUB_WORKSPACE/.env
+
       # Poetry still needs to be re-prepended to the PATH on each run, since
       # PATH does not persist between runs.
       - name: Add Poetry to $PATH
@@ -68,9 +72,11 @@ jobs:
       - name: Check Migrations
         run: |
           cd Dshop
+          export $(cat $GITHUB_WORKSPACE/.env | xargs)
           poetry run python manage.py makemigrations --check --dry-run
 
       - name: Run pytest
         run: |
           cd Dshop
+          export $(cat $GITHUB_WORKSPACE/.env | xargs)
           poetry run pytest -n 4 -vv
