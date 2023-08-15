@@ -61,6 +61,7 @@ jobs:
       - name: Install deps
         if: steps.cache-deps.cache-hit != 'true'
         run: |
+          cd Dshop
           poetry config virtualenvs.in-project true
           poetry install --no-interaction
 
