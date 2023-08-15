@@ -1,0 +1,83 @@
+name: Run tests
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, synchronize, reopened]
+
+jobs:
+  pytests:
+    runs-on: ubuntu-22.04
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Cancel Previous Runs
+        if: "!endsWith(github.ref, '/master') && !endsWith(github.ref, '/dev')"
+        uses: styfle/cancel-workflow-action@0.11.0
+        with:
+          access_token: ${{ github.token }}
+
+      - uses: actions/checkout@v3.2.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4.4.0
+        with:
+          python-version: "3.11"
+          architecture: "x64"
+
+      - name: Cache Poetry
+        id: cache-poetry
+        uses: actions/cache@v2.1.5
+        with:
+          path: ~/.poetry
+          key: ${{ matrix.os }}-poetry
+
+      # Only runs when key from caching step changes
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+
+      # Poetry still needs to be re-prepended to the PATH on each run, since
+      # PATH does not persist between runs.
+      - name: Add Poetry to $PATH
+        run: |
+          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+
+      - name: Get Poetry version
+        run: poetry --version
+
+      - name: Check pyproject.toml validity
+        run: |
+          cd Dshop
+          poetry check --no-interaction
+
+      - name: Cache dependencies
+        id: cache-deps
+        uses: actions/cache@v2.1.5
+        with:
+          path: ${{github.workspace}}/.venv
+          key: ${{ matrix.os }}-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ matrix.os }}-
+
+      - name: Install deps
+        if: steps.cache-deps.cache-hit != 'true'
+        run: |
+          cd Dshop
+          poetry config virtualenvs.in-project true
+          poetry install --no-interaction
+
+      - name: Create .env file
+        run: |
+          cd Dshop
+          echo "SECRET_KEY=default_secret_key" > .env
+          echo "DEBUG=False" >> .env
+          echo "ALLOWED_HOSTS=[]" >> .env
+
+      - name: Check Migrations
+        run: |
+          cd Dshop
+          poetry run python manage.py makemigrations --check --dry-run
+
+      - name: Run pytest
+        run: |
+          cd Dshop
+          poetry run pytest -vv
