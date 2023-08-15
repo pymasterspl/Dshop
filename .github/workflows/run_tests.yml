@@ -72,4 +72,6 @@ jobs:
 #          poetry run ./manage.py makemigrations --check --dry-run
 
       - name: Run pytest
-        run: poetry run pytest -n 4 -vv
+        run: |
+          cd Dshop
+          poetry run pytest -n 4 -vv
