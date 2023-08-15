@@ -68,8 +68,9 @@ jobs:
       - name: Check Migrations
         run: |
           cd Dshop
-          export SECRET_KEY=$(cat ../.env | grep SECRET_KEY= | cut -d '=' -f 2)
           poetry run python manage.py makemigrations --check --dry-run
+        env:
+          SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
 
       - name: Run pytest
         run: |
