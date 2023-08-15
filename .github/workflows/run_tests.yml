@@ -69,7 +69,7 @@ jobs:
         run: |
           cd Dshop
           echo "SECRET_KEY=default_secret_key" > .env
-          echo "DEBUG=True" >> .env
+          echo "DEBUG=False" >> .env
           echo "ALLOWED_HOSTS=[]" >> .env
 
       - name: Check Migrations
