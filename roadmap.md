@@ -13,6 +13,7 @@ Dshop is an educational project aimed at learning to work together using Github 
   * building a sense of individual responsibility for their work in a team
   * building a friendly and open work culture in the team
   * learning together and sharing knowledge through
+    * pair programming as a requirement. Use this as an opportunity to harden and share knowledge.
     * conversations on Discord
     * live meetings (recorded for those absent)
     * remote training sessions, organized as needed
