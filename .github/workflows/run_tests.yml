@@ -46,7 +46,9 @@ jobs:
         run: poetry --version
 
       - name: Check pyproject.toml validity
-        run: poetry check --no-interaction
+        run: |
+          cd Dshop
+          poetry check --no-interaction
 
       - name: Cache dependencies
         id: cache-deps
