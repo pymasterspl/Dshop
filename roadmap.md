@@ -27,17 +27,20 @@ The project will be developed incrementaly. We will make sure project is usable 
 ### MVP #1.
 1. Initial setup of the project, including basic automation, basic user models (done).
 2. Create products catalogue using vanilla Django templates. No variations, etc, just simple products catalogue with lightbox like products presentation - @Meise90 i @Knop-k i @Adam-Feliniak
-4. Implement sitemaps for the entire products catalogue, using Test Driven Development. https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview?hl=pl - @xtcprzemek i @yanazPL
-5. Implement xml file for Ceneo. This is another great piece of code allowing to work with TDD: https://www.ceneo.pl/poradniki/Instrukcja-tworzenia-pliku-XML
-6. User account. Registration, management, editing, login and log out of the site. This also requires basic template view sites with placeholder for privacy policy. 
-7. Persistent shopping cart, using database as backend. This will allow user to put item in the cart on mobile and finish purchase on computer.
-8. Delivery method implementation: https://inpost.pl/integracja-z-inpost or similar
-8. Payment method implementation. Probably stripe. There is a project we can take over: https://github.com/HealthByRo/aa-stripe.
-9. Integrate the whole Cart with products catalogue, payment and delivery so we can actually order something. 
+3. Implement sitemaps for the entire products catalogue, using Test Driven Development. https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview?hl=pl - @xtcprzemek i @yanazPL
+4. Implement xml file for Ceneo. This is another great piece of code allowing to work with TDD: https://www.ceneo.pl/poradniki/Instrukcja-tworzenia-pliku-XML - @Memorisanka + xtcPrzemek
+5. User account. Registration, management, editing, login and log out of the site. This also requires basic template view sites with placeholder for privacy policy. Do not implement reset password flow, yet. @sprzesmycki i @prezes.
+6. Persistent shopping cart, using database as backend. This will allow user to put item in the cart on mobile and finish purchase on computer. @kvothe + @xtcPrzemek
+7. Delivery method implementation: https://inpost.pl/integracja-z-inpost or similar @prezes + @memorisanka
+8. Payment method implementation. Probably stripe. There is a project we can take over: https://github.com/HealthByRo/aa-stripe. @sprzesmycki @Memorisanka
 
-### MVP #2.
+### MVP#2
+1. Integrate the whole Cart with products catalogue, payment and delivery so we can actually order something. 
+
+### MVP #3.
 1. Product variations, types, sizes, etc.
 2. REST API to access the service (DRF, great to test TDD skills)
 
-### MPV #3
+### MPV #4
+1. Product warehouse and amount of products
 TBD.
