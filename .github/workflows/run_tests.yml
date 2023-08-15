@@ -65,13 +65,12 @@ jobs:
           poetry config virtualenvs.in-project true
           poetry install --no-interaction
 
-#      - name: Check Migrations
-#        run: |
-#          cd Dshop
-#          poetry run python manage.py makemigrations --check --dry-run
-#        env:
-#          SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
+      - name: Check Migrations
+        run: |
+          cd Dshop
+          poetry run python manage.py makemigrations --check --dry-run
 
       - name: Run pytest
-        run:
+        run: |
+          cd Dshop
           poetry run pytest -n 4 -vv
