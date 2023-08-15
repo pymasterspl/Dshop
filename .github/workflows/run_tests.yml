@@ -70,6 +70,7 @@ jobs:
           cd Dshop
           echo "SECRET_KEY=default_secret_key" > .env
           echo "DEBUG=True" >> .env
+          echo "ALLOWED_HOSTS=["127.0.0.1", "192.168.99.100", "localhost"]" >> .env
           poetry run python manage.py makemigrations --check --dry-run
 
       - name: Run pytest
