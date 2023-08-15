@@ -68,7 +68,8 @@ jobs:
       - name: Check Migrations
         run: |
           cd Dshop
-          python ./manage.py makemigrations --check --dry-run
+          source $HOME/.poetry/env 
+          poetry run python ./manage.py makemigrations --check --dry-run
 
       - name: Run pytest
         run: poetry run pytest -n 4 -vv
