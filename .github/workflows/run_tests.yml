@@ -73,6 +73,5 @@ jobs:
 #          SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
 
       - name: Run pytest
-        run: |
-          cd Dshop
+        run:
           poetry run pytest -n 4 -vv
