@@ -66,7 +66,9 @@ jobs:
           poetry install --no-interaction
 
       - name: Check Migrations
-        run: ./manage.py makemigrations --check --dry-run
+        run: |
+          cd Dshop
+          manage.py makemigrations --check --dry-run
 
       - name: Run pytest
         run: poetry run pytest -n 4 -vv
