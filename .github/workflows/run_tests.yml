@@ -68,7 +68,9 @@ jobs:
       - name: Create .env file
         run: |
           cd Dshop
-          cp ./env-template ./env
+          echo "SECRET_KEY=default_secret_key" > .env
+          echo "DEBUG=True" >> .env
+          echo "ALLOWED_HOSTS=[]" >> .env
 
       - name: Check Migrations
         run: |
