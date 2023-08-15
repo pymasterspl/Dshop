@@ -65,12 +65,16 @@ jobs:
           poetry config virtualenvs.in-project true
           poetry install --no-interaction
 
-      - name: Check Migrations
+      - name: Create .env file
         run: |
           cd Dshop
           echo "SECRET_KEY=default_secret_key" > .env
           echo "DEBUG=True" >> .env
           echo "ALLOWED_HOSTS=[]" >> .env
+
+      - name: Check Migrations
+        run: |
+          cd Dshop
           poetry run python manage.py makemigrations --check --dry-run
 
       - name: Run pytest
