@@ -11,11 +11,12 @@ Good reading on working with code changes and pull request is https://google.git
       ![image](https://github.com/akademiait/Dshop/assets/989256/a5886335-b537-4a23-8655-1bcaba5c67ae)
    - One of the team members (or multiple) will perform code review and approve the pull request or requst changes.
    - If changes are requested, all comments have to be in constructive and friendly manner, as shown in https://google.github.io/eng-practices/review/reviewer/comments.html
-   - It's a good thing to comment on the good parts of code with "Nice work" or something similar. 
-3. Code quality and automated tests will be run and required to pass before pull request can be merged. 
-4. At least one approval by other team member is required before pull request can be merged.
-5. After pull request is approved and code quality + tests are passed, pull request is merged by the author.
-6. It is author responsibility to watch over pull request, bump if there is no code review done, fix issues and merge pull request.
+   - It's a good thing to comment on the good parts of code with "Nice work" or something similar.
+4. As this is a learning project, pair programming is most welcome. Jump on Zoom or google meet and work together: https://www.youtube.com/watch?v=wu6BOT-eMgc&t=105s&ab_channel=devmentor.pl
+5. Code quality and automated tests will be run and required to pass before pull request can be merged. 
+6. At least one approval by other team member is required before pull request can be merged.
+7. After pull request is approved and code quality + tests are passed, pull request is merged by the author.
+8. It is author responsibility to watch over pull request, bump if there is no code review done, fix issues and merge pull request.
 
 #### How to Set up
 
