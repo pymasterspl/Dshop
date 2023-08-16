@@ -4,7 +4,7 @@ from django.utils.text import slugify
 
 class CatalogueItemModel(models.Model):
     name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200)
+    slug = models.SlugField(max_length=200, editable=False)
     is_active = models.BooleanField(default=True)
 
     class Meta:
@@ -14,14 +14,9 @@ class CatalogueItemModel(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            base_slug = slugify(self.name)
-            new_slug = base_slug
-            counter = 1
-            while self.__class__.objects.filter(slug=new_slug).exists():
-                new_slug = f"{base_slug}-{counter}"
-                counter += 1
-            self.slug = new_slug
+        # for creating urls use {% url "url-name" item.slug item.pk %}
+        # path('<slug:slug>-<int:pk>/', NoteDetailView.as_view(), name='note_details'),
+        self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
 
 
