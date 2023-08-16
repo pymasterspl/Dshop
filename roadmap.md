@@ -26,7 +26,7 @@ The project will be developed incrementaly. We will make sure project is usable 
 
 ### MVP #1.
 1. Initial setup of the project, including basic automation, basic user models (done).
-2. Create products catalogue using vanilla Django templates. No variations, etc, just simple products catalogue with lightbox like products presentation - @Meise90 i @Knop-k i @Adam-Feliniak
+2. Create products catalogue using vanilla Django templates. No variations, etc, just simple products catalogue with lightbox like products presentation - @Meise90, @Knop-k, @Adam-Feliniak, @VoitecP
 3. Implement sitemaps for the entire products catalogue, using Test Driven Development. https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview?hl=pl - @xtcprzemek i @yanazPL
 4. Implement xml file for Ceneo. This is another great piece of code allowing to work with TDD: https://www.ceneo.pl/poradniki/Instrukcja-tworzenia-pliku-XML - @Memorisanka + xtcPrzemek
 5. User account. Registration, management, editing, login and log out of the site. This also requires basic template view sites with placeholder for privacy policy. Do not implement reset password flow, yet. @sprzesmycki i @prezes.
