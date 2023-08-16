@@ -4,6 +4,6 @@ from .models import Category
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'is_active')
+    list_display = ('name', 'is_active')
     list_editable = ('is_active',)
-    prepopulated_fields = {'slug': ('name',)}
+    readonly_fields = ('slug',)
