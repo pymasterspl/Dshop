@@ -1,10 +1,11 @@
 from django.db import models
 from django.utils.text import slugify
+from django.utils import timezone
 
 
 class CatalogueItemModel(models.Model):
     name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, editable=False)
+    slug = models.SlugField(max_length=200, editable=False, blank=True)
     is_active = models.BooleanField(default=True)
 
     class Meta:
@@ -28,13 +29,18 @@ class Category(CatalogueItemModel):
         verbose_name_plural = 'Categories'
 
 
-class Product(models.Model):
-    name = models.CharField(max_length=255)
+class Product(CatalogueItemModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     price_last_30_days = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     short_description = models.TextField()
     full_description = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now, editable=False)
+    updated_at = models.DateTimeField(default=timezone.now)
+
+    def save(self, *args, **kwargs):
+        self.updated_at = timezone.now()
+        return super().save(*args, **kwargs)
 
 
 class ProductImage(models.Model):
