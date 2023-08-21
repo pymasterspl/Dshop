@@ -14,10 +14,8 @@ class ProductImageInLine(admin.TabularInline):
     extra = 1
 
 
+@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'price_last_30_days')
     search_fields = ('name',)
     inlines = [ProductImageInLine]
-
-
-admin.site.register(Product, ProductAdmin)
