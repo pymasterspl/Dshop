@@ -32,15 +32,11 @@ class Category(CatalogueItemModel):
 class Product(CatalogueItemModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    price_last_30_days = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    lowest_price_last_30_days = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     short_description = models.TextField()
     full_description = models.TextField()
-    created_at = models.DateTimeField(default=timezone.now, editable=False)
-    updated_at = models.DateTimeField(default=timezone.now)
-
-    def save(self, *args, **kwargs):
-        self.updated_at = timezone.now()
-        return super().save(*args, **kwargs)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class ProductImage(models.Model):
