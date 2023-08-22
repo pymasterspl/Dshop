@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.text import slugify
-from django.utils import timezone
 
 
 class CatalogueItemModel(models.Model):
