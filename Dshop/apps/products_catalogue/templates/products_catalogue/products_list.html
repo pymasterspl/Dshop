@@ -4,20 +4,20 @@
 <div class="container">
     <h1 class="mt-5">DShop collection</h1>
     <div class="row mt-4">
-        {% for product in all_products %}
+        {% for object in object_list %}
 
         <div class="col-md-3 mb-4">
             <div class="card">
                 <div class="card-body">
 
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">Opis: {{ product.short_description }}</p>
-                    <p class="card-text">Cena: {{ product.price }} PLN</p>
-                    <small>Cena z ostatnich 30 dni: {{ product.lowest_price_last_30_days }} PLN</small>
+                    <h5 class="card-title">{{ object.name }}</h5>
+                    <p class="card-text">Opis: {{ object.short_description }}</p>
+                    <p class="card-text">Cena: {{ object.price }} PLN</p>
+                    <small>Cena z ostatnich 30 dni: {{ object.lowest_price_last_30_days }} PLN</small>
                     <hr>
-                    {% for pic in product.images.all %}
+                    {% for pic in object.images.all %}
                     {% if pic.is_featured %}
-                    <img src="{{ pic.image.url }}" alt="{{ product.name }}"/>
+                    <img src="{{ pic.image.url }}" alt="{{ object.name }}"/>
 
                     {% endif %}
                     {% endfor %}

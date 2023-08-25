@@ -1,15 +1,17 @@
-from django.shortcuts import render
-from django.views import View
+from django.views.generic import View, TemplateView
+from django.views.generic import ListView
 from .models import Product
+import datetime
+
 
 # Create your views here.
-class ProductListView(View):
-    template_name = 'products_catalogue/products_list.html'
-    model = Product
-    def get(self, request):
-        all_products = Product.objects.all()
+class ProductListView(ListView):
 
-        return render(request, self.template_name, {'all_products': all_products, })
+    model = Product
+    template_name = 'products_catalogue/products_list.html'
+
+    def get_queryset(self):
+        return Product.objects.filter(is_active=True)
 
 
 
