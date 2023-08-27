@@ -1,13 +1,17 @@
+from django.views import View
 from lxml import etree
 
 from django.http import HttpResponse
-from django.views.generic import ListView
 
 from .models import Product
 
 
-class ProductListView(ListView):
+class ProductListView(View):
     model = Product
+
+    def get_queryset(self):
+        queryset = self.model.objects.filter(is_active=True)
+        return queryset
 
     def generate_xml_file_for_ceneo(self, products):
         root = etree.Element('offers', xmlns_xsi="http://www.w3.org/2001/XMLSchema-instance", version="1")
@@ -39,7 +43,7 @@ class ProductListView(ListView):
         return response
 
     def get(self, request, *args, **kwargs):
-        products = Product.objects.all()
+        products = self.get_queryset()
 
         xml_response = self.generate_xml_file_for_ceneo(products)
         return xml_response
