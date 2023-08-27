@@ -1,9 +1,9 @@
 import pytest
-from apps.products_catalogue.models import Category
+from django.test import RequestFactory
 from django.urls import reverse
 from lxml import etree
-from django.test import RequestFactory
-from apps.products_catalogue.models import Product
+
+from apps.products_catalogue.models import Category, Product
 from apps.products_catalogue.views import ProductListView
 
 
@@ -25,11 +25,12 @@ def test_create_category_with_parent():
 # tests for creating XML file for Ceneo
 @pytest.fixture
 def products():
+    category = Category.objects.create(name='Test Category', is_active=True)
     return [
         Product.objects.create(name='Telewizor SAMSUNG QE65Q77B 65" QLED 4K 120HZ Tizen TV ', price=3999.00,
-                               full_description='Description 1'),
+                               full_description='Description 1', category=category),
         Product.objects.create(name='Zegarek sportowy GARMIN Venu 2 Plus Biały', price=1739.00,
-                               full_description='Description 2'),
+                               full_description='Description 2', category=category),
     ]
 
 
