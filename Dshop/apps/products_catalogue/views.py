@@ -23,7 +23,9 @@ class ProductListView(ListView):
             name_element.text = etree.CDATA(product.name)
 
             imgs_element = etree.SubElement(o_element, 'imgs')
-            main_element = etree.SubElement(imgs_element, 'main', url=str(product.images))  # TODO: get correct url
+            main_element = etree.SubElement(imgs_element, 'main')
+
+            main_element.set('url', str(product.images)) # TODO: get correct url
 
             desc_element = etree.SubElement(o_element, 'desc')
             desc_element.text = etree.CDATA(product.full_description)
