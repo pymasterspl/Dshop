@@ -1,7 +1,5 @@
-from django.views.generic import View, TemplateView
 from django.views.generic import ListView
 from .models import Product
-import datetime
 
 
 # Create your views here.
