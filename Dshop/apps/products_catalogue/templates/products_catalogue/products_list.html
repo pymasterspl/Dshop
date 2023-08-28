@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-5">DShop collection</h1>
+    <div class="row mt-4">
+        {% for object in object_list %}
+
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <h5 class="card-title">{{ object.name }}</h5>
+                    <p class="card-text">Opis: {{ object.short_description }}</p>
+                    <p class="card-text">Cena: {{ object.price }} PLN</p>
+                    <small>Cena z ostatnich 30 dni: {{ object.lowest_price_last_30_days }} PLN</small>
+                    <hr>
+                    {% for pic in object.images.all %}
+                    {% if pic.is_featured %}
+                    <img src="{{ pic.image.url }}" alt="{{ object.name }}"/>
+
+                    {% endif %}
+                    {% endfor %}
+                    <hr>
+                    <a href="#" class="btn btn-primary">Dodaj do koszyka</a>
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:"4" %}
+        <div class="clearfix"></div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+
