@@ -49,9 +49,8 @@ class ProductListView(View):
         xml_response = self.generate_xml_file_for_ceneo(products)
         return xml_response
 
-def GetCeneoCategories(request):
+def getCeneoCategories(request):
     
-    # Pobierz XML
     url = 'https://developers.ceneo.pl/api/v3/kategorie'
     response = requests.get(url)
     xml_data = response.content
@@ -83,11 +82,10 @@ def GetCeneoCategories(request):
         x['Id']=int(x['Id'])
 
     categories.sort(key = lambda x: x['Id'])
-
-    for category in categories:
-        cc = CeneoCategory(id=category['Id'], name=category['name'])
-        cc = CeneoCategory(id=category['Id'], name=category['name'])
-        cc.save()
+    bulk_list =[CeneoCategory(id=category['Id'], name=category['name']) for category in categories ]
+    bulk_msg =CeneoCategory.objects.bulk_create(bulk_list, ignore_conflicts=True, update_conflicts=False)
+    print(bulk_msg)
+    
 
     return HttpResponse('OK')
 

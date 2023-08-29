@@ -32,7 +32,7 @@ class CeneoCategory(models.Model):
 
 class Category(CatalogueItemModel):
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
-    ceneo_category_id = models.ForeignKey(CeneoCategory, blank=True, null=True, on_delete=models.CASCADE)
+    ceneo_category_id = models.ForeignKey(CeneoCategory, blank=True, null=True, on_delete=models.SET_NULL)
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
