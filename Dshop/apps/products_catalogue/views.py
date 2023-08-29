@@ -82,10 +82,9 @@ def getCeneoCategories(request):
         x['Id']=int(x['Id'])
 
     categories.sort(key = lambda x: x['Id'])
-    bulk_list =[CeneoCategory(id=category['Id'], name=category['name']) for category in categories ]
-    bulk_msg =CeneoCategory.objects.bulk_create(bulk_list, ignore_conflicts=True, update_conflicts=False)
-    print(bulk_msg)
+    bulk_list = [CeneoCategory(id=category['Id'], name=category['name']) for category in categories ]
+    bulk_msg = CeneoCategory.objects.bulk_create(bulk_list, ignore_conflicts=True, update_conflicts=False)
     
-
+    
     return HttpResponse('OK')
 
