@@ -20,9 +20,19 @@ class CatalogueItemModel(models.Model):
         return super().save(*args, **kwargs)
 
 
+class CeneoCategory(models.Model):
+    name = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name = 'CeneoCategory'
+        verbose_name_plural = 'CeneoCategories'
+    
+    def __str__(self):
+        return self.name
+
 class Category(CatalogueItemModel):
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
-
+    ceneo_category_id = models.ForeignKey(CeneoCategory, blank=True, null=True, on_delete=models.CASCADE)
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'

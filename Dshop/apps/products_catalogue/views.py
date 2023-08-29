@@ -1,9 +1,10 @@
 from django.views import View
 from lxml import etree
-
+import xml.etree.ElementTree as ET
+import requests
 from django.http import HttpResponse
 
-from .models import Product
+from .models import Product, CeneoCategory
 
 
 class ProductListView(View):
@@ -47,3 +48,46 @@ class ProductListView(View):
 
         xml_response = self.generate_xml_file_for_ceneo(products)
         return xml_response
+
+def GetCeneoCategories(request):
+    
+    # Pobierz XML
+    url = 'https://developers.ceneo.pl/api/v3/kategorie'
+    response = requests.get(url)
+    xml_data = response.content
+    
+    root  = ET.fromstring(xml_data)
+    
+
+    def parse_category(category_elem):
+        category = {
+            'Id': category_elem.find('Id').text,
+            'name': category_elem.find('Name').text,         
+        }
+        return category
+
+    def parse_categories(category_elem):
+        categories = []
+        for elem in category_elem:
+            category = parse_category(elem)
+            subcategories_elem = elem.find('Subcategories')
+            if subcategories_elem is not None:
+                categories.extend(parse_categories(subcategories_elem))
+            categories.append(category)
+        return categories
+    
+
+    categories = parse_categories(root)
+
+    for x in categories:
+        x['Id']=int(x['Id'])
+
+    categories.sort(key = lambda x: x['Id'])
+
+    for category in categories:
+        cc = CeneoCategory(id=category['Id'], name=category['name'])
+        cc = CeneoCategory(id=category['Id'], name=category['name'])
+        cc.save()
+
+    return HttpResponse('OK')
+
