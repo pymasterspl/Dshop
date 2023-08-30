@@ -1,8 +1,7 @@
-from django.views import View
-from lxml import etree
-import xml.etree.ElementTree as ET
 import requests
 from django.http import HttpResponse
+from django.views import View
+from lxml import etree
 
 from .models import Product, CeneoCategory
 
@@ -14,7 +13,8 @@ class CeneoProductListView(View):
         queryset = self.model.objects.filter(is_active=True)
         return queryset
 
-    def generate_xml_file_for_ceneo(self, products):
+    @staticmethod
+    def generate_xml_file_for_ceneo(products):
         root = etree.Element('offers', xmlns_xsi="http://www.w3.org/2001/XMLSchema-instance", version="1")
 
         for product in products:
@@ -30,7 +30,7 @@ class CeneoProductListView(View):
             imgs_element = etree.SubElement(o_element, 'imgs')
             main_element = etree.SubElement(imgs_element, 'main')
 
-            main_element.set('url', str(product.images)) # TODO: get correct url
+            main_element.set('url', str(product.images))  # TODO: get correct url
 
             desc_element = etree.SubElement(o_element, 'desc')
             desc_element.text = etree.CDATA(product.full_description)
@@ -39,52 +39,96 @@ class CeneoProductListView(View):
             attrs_element.text = etree.CDATA('')
 
         xml_string = etree.tostring(root, pretty_print=True, encoding='utf-8', xml_declaration=True)
-        response = HttpResponse(xml_string, content_type='application/xml')
-        response['Content-Disposition'] = 'attachment; filename="ceneo.xml"'
-        return response
+        return xml_string
 
     def get(self, request, *args, **kwargs):
         products = self.get_queryset()
 
-        xml_response = self.generate_xml_file_for_ceneo(products)
-        return xml_response
+        xml_string = self.generate_xml_file_for_ceneo(products)
 
-def getCeneoCategories(request):
-    
-    url = 'https://developers.ceneo.pl/api/v3/kategorie'
-    response = requests.get(url)
-    xml_data = response.content
-    
-    root  = ET.fromstring(xml_data)
-    
+        response = HttpResponse(xml_string, content_type='application/xml')
+        return response
 
-    def parse_category(category_elem):
-        category = {
-            'Id': category_elem.find('Id').text,
-            'name': category_elem.find('Name').text,         
-        }
-        return category
 
-    def parse_categories(category_elem):
+class CeneoCategoriesView(View):
+
+    @staticmethod
+    def fetch_ceneo_data():
+        url = 'https://developers.ceneo.pl/api/v3/kategorie'
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            return response.content
+        except requests.RequestException as e:
+            raise CeneoAPIException(f"Failed to fetch data from Ceneo API: {e}")
+
+    def parse_categories(self, category_elem):
         categories = []
         for elem in category_elem:
-            category = parse_category(elem)
+            category = {
+                'Id': int(elem.findtext('Id')),
+                'name': elem.findtext('Name'),
+            }
             subcategories_elem = elem.find('Subcategories')
             if subcategories_elem is not None:
-                categories.extend(parse_categories(subcategories_elem))
+                categories.extend(self.parse_categories(subcategories_elem))
             categories.append(category)
         return categories
-    
 
-    categories = parse_categories(root)
+    @staticmethod
+    def import_ceneo_categories(categories):
+        bulk_list = [CeneoCategory(id=category['Id'], name=category['name']) for category in categories]
+        CeneoCategory.objects.bulk_create(bulk_list, ignore_conflicts=True, update_conflicts=False)
 
-    for x in categories:
-        x['Id']=int(x['Id'])
+    def get(self, request, *args, **kwargs):
+        xml_data = self.fetch_ceneo_data()
+        root = etree.fromstring(xml_data)
+        categories = self.parse_categories(root)
+        for category in categories:
+            category['Id'] = int(category['Id'])
+        categories.sort(key=lambda x: x['Id'])
+        self.import_ceneo_categories(categories)
+        return HttpResponse('Ceneo categories data imported successfully.', 200)
 
-    categories.sort(key = lambda x: x['Id'])
-    bulk_list = [CeneoCategory(id=category['Id'], name=category['name']) for category in categories ]
-    bulk_msg = CeneoCategory.objects.bulk_create(bulk_list, ignore_conflicts=True, update_conflicts=False)
-    
-    
-    return HttpResponse('OK')
 
+class CeneoAPIException(Exception):
+    pass
+
+# def getCeneoCategories(request):
+#
+#     url = 'https://developers.ceneo.pl/api/v3/kategorie'
+#     response = requests.get(url)
+#     xml_data = response.content
+#
+#     root  = ET.fromstring(xml_data)
+#
+#
+#     def parse_category(category_elem):
+#         category = {
+#             'Id': category_elem.find('Id').text,
+#             'name': category_elem.find('Name').text,
+#         }
+#         return category
+#
+#     def parse_categories(category_elem):
+#         categories = []
+#         for elem in category_elem:
+#             category = parse_category(elem)
+#             subcategories_elem = elem.find('Subcategories')
+#             if subcategories_elem is not None:
+#                 categories.extend(parse_categories(subcategories_elem))
+#             categories.append(category)
+#         return categories
+#
+#
+#     categories = parse_categories(root)
+#
+#     for x in categories:
+#         x['Id']=int(x['Id'])
+#
+#     categories.sort(key = lambda x: x['Id'])
+#     bulk_list = [CeneoCategory(id=category['Id'], name=category['name']) for category in categories ]
+#     bulk_msg = CeneoCategory.objects.bulk_create(bulk_list, ignore_conflicts=True, update_conflicts=False)
+#
+#
+#     return HttpResponse('OK')
