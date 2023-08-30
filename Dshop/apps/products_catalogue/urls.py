@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import ProductListView, getCeneoCategories
+from .views import CeneoProductListView, CeneoCategoriesView
 
 
 urlpatterns = [
-    path('ceneo/', ProductListView.as_view(), name='product-list'),
-    path('get_ceneo_categories/', getCeneoCategories, name='get-ceneo-categories'),
+    path('ceneo/', CeneoProductListView.as_view(), name='product-list'),
+    path('ceneo_categories/', CeneoCategoriesView.as_view, name='ceneo-categories'),
 ]
