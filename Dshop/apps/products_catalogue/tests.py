@@ -1,5 +1,5 @@
 import pytest
-from django.test import RequestFactory
+from django.test import Client
 from django.urls import reverse
 from lxml import etree
 
@@ -36,11 +36,8 @@ def products():
 
 @pytest.mark.django_db
 def test_generate_xml_file_for_ceneo(products):
-    request_factory = RequestFactory()
-    request = request_factory.get(reverse('product-list'))
-
-    view = ProductListView.as_view()
-    response = view(request)
+    client = Client()
+    response = client.get(reverse('product-list'))
 
     assert response.status_code == 200
     assert response['Content-Type'] == 'application/xml'
