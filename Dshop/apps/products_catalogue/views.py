@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from .models import Product, CeneoCategory
 
 
-class ProductListView(View):
+class CeneoProductListView(View):
     model = Product
 
     def get_queryset(self):
