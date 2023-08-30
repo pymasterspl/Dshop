@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
 
 
 class CatalogueItemModel(models.Model):
@@ -36,6 +37,12 @@ class Product(CatalogueItemModel):
     full_description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse("products-detail", args = [self.slug, self.pk])
+
+    def __str__(self):
+        return self.name
 
 
 class ProductImage(models.Model):

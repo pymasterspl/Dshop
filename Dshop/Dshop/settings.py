@@ -35,11 +35,16 @@ DEBUG = config('DEBUG')
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 
+# Id for sitemap
+SITE_ID =1
+
 # Application definition
 PROJECT_APPS = [
     'apps.core',
     'apps.users',
     'apps.products_catalogue',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 INSTALLED_APPS = [

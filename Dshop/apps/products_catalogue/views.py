@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Product
 
 
@@ -12,4 +12,7 @@ class ProductListView(ListView):
         return Product.objects.filter(is_active=True)
 
 
+class ProductsDetailView(DetailView):
+    model = Product
+    template_name = 'products_catalogue/product_detail.html'
 
