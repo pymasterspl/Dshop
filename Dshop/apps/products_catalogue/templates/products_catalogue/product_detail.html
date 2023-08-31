@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images p-3">
+                            {% for pic in product.images.all %}
+                                {% if pic.is_featured %}
+                                    <div class="text-center p-4"> <img id="main-image" src="{{ pic.image.url }}" width="250" /> </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <a href="{% url 'products-list' %}"><div class="d-flex align-items-center btn btn-primary"><span class="ml-1">Back</span></div></a>
+
+                            </div>
+                            <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">{{ product.category.name }}</span>
+                                <h5 class="text-uppercase">{{ product.name }}</h5>
+                                <div class="price d-flex flex-row align-items-center"> <span class="act-price">Cena: {{ product.price }} PLN</span></div>
+                                <div class="ml-2"> <small class="dis-price">Cena z ostatnich 30 dni: {{ product.lowest_price_last_30_days }} PLN</small> <span></span> </div>
+
+                            </div>
+                            <p class="about">{{ product.full_description }}</p>
+                            <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Dodaj do koszyka</button> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
