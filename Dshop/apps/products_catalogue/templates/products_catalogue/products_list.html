@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h5 class="card-title">{{ object.name }}</h5>
+                    <h5 class="card-title"><a href="{% url 'product-detail' object.slug %}">{{ object.name }}</a></h5>
                     <p class="card-text">Opis: {{ object.short_description }}</p>
                     <p class="card-text">Cena: {{ object.price }} PLN</p>
                     <small>Cena z ostatnich 30 dni: {{ object.lowest_price_last_30_days }} PLN</small>
