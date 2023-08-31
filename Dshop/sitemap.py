@@ -7,7 +7,7 @@ class ProductSitemap(Sitemap):
     changefreq = 'daily'
     priority =0.9
     def items(self):
-        return Product.objects.all()
+        return Product.objects.order_by("-id")
 
     def lastmod(self, obj):
         return obj.updated_at
