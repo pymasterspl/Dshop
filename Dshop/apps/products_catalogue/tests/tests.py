@@ -4,7 +4,6 @@ from django.urls import reverse
 from lxml import etree
 
 from apps.products_catalogue.models import Category, Product
-from apps.products_catalogue.views import ProductListView
 
 
 @pytest.mark.django_db
