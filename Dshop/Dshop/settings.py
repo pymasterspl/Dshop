@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 
 ] + PROJECT_APPS
 
@@ -96,7 +97,7 @@ DATABASES = {
     }
 }
 
-## Postgrerss config 
+## Postgrerss config
 
 # DATABASES = {
 #     "default": {
