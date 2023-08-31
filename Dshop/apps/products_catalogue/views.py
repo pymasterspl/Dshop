@@ -1,9 +1,19 @@
 import requests
 from django.http import HttpResponse
 from django.views import View
+from django.views.generic import ListView
 from lxml import etree
 
 from .models import Product, CeneoCategory
+
+
+class ProductListView(ListView):
+
+    model = Product
+    template_name = 'products_catalogue/products_list.html'
+
+    def get_queryset(self):
+        return Product.objects.filter(is_active=True)
 
 
 class CeneoProductListView(View):
@@ -132,3 +142,6 @@ class CeneoAPIException(Exception):
 #
 #
 #     return HttpResponse('OK')
+
+
+
