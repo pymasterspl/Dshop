@@ -35,7 +35,10 @@ class CeneoProductListView(View):
 
         for product in products:
             o_element = etree.SubElement(root, 'o', id=str(product.pk), url=str(), price=str(product.price),
-                                         avail=str())  # TODO: url and available items
+                                         avail=str(),   # TODO: url and available items
+                                         weight=str(),
+                                         stock=str(),
+                                         basket=str())  
 
             cat_element = etree.SubElement(o_element, 'cat')
             cat_element.text = etree.CDATA(product.category.name)
@@ -46,8 +49,8 @@ class CeneoProductListView(View):
             imgs_element = etree.SubElement(o_element, 'imgs')
             main_element = etree.SubElement(imgs_element, 'main')
 
-            main_element.set('url', str(product.images))  # TODO: get correct url
-
+            main_element.set('url', str(product.images))  # TODO: get correct url to featured image
+            # TODO : to add additional images in loop
             desc_element = etree.SubElement(o_element, 'desc')
             desc_element.text = etree.CDATA(product.full_description)
 
@@ -77,7 +80,7 @@ class CeneoCategoriesView(View):
             return response.content
         except requests.RequestException as e:
             raise CeneoAPIException(f"Failed to fetch data from Ceneo API: {e}")
-
+    # TODO: to add parent category to the model and add functionality to write it to database
     def parse_categories(self, category_elem):
         categories = []
         for elem in category_elem:

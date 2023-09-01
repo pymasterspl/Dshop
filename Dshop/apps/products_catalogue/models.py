@@ -19,7 +19,7 @@ class CatalogueItemModel(models.Model):
         self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
 
-
+# TODO : CeneoCategory class must have self FK as it is in Category class
 class CeneoCategory(models.Model):
     name = models.CharField(max_length=200)
 
@@ -39,6 +39,13 @@ class Category(CatalogueItemModel):
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
+    def __str__(self):                           
+        full_path = [self.name]                  
+        k = self.parent
+        while k is not None:
+            full_path.append(k.name)
+            k = k.parent
+        return ' -> '.join(full_path[::-1])  
 
 class Product(CatalogueItemModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
