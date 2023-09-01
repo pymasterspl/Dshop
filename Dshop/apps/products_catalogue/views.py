@@ -15,10 +15,5 @@ class ProductDetailView(DetailView):
     
     model = Product
     template_name = 'products_catalogue/product_detail.html'
-
-    def get_object(self):
-        slug = self.kwargs.get('slug')
-        product = Product.objects.get(slug=slug)
-        return product
-
-
+    context_object_name = 'product'
+    queryset = Product.objects.filter(is_active=True)
