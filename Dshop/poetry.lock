@@ -201,6 +201,17 @@ files = [
 ]
 
 [[package]]
+name = "sorl-thumbnail"
+version = "12.9.0"
+description = "Thumbnails for Django"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "sorl-thumbnail-12.9.0.tar.gz", hash = "sha256:0cbc2f52152e7f2266e3c2cb4ae5d83afd2e96fd5e1c42e5667362baaa3d2db3"},
+    {file = "sorl_thumbnail-12.9.0-py3-none-any.whl", hash = "sha256:ec586724bea7dc8c53561ce18335ea641fcd0e560d6387b2353a2afdd06705a4"},
+]
+
+[[package]]
 name = "sqlparse"
 version = "0.4.4"
 description = "A non-validating SQL parser."
@@ -230,4 +241,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "1685d747567bdc154822c321055245b5f2b2821b935677a7b87712c84cacb468"
+content-hash = "c24bfaa589109672cb97dbf96aca67ef681c7bf3b0f30f9498f54a316ce1ac54"
