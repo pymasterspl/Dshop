@@ -414,6 +414,17 @@ files = [
 ]
 
 [[package]]
+name = "sorl-thumbnail"
+version = "12.9.0"
+description = "Thumbnails for Django"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "sorl-thumbnail-12.9.0.tar.gz", hash = "sha256:0cbc2f52152e7f2266e3c2cb4ae5d83afd2e96fd5e1c42e5667362baaa3d2db3"},
+    {file = "sorl_thumbnail-12.9.0-py3-none-any.whl", hash = "sha256:ec586724bea7dc8c53561ce18335ea641fcd0e560d6387b2353a2afdd06705a4"},
+]
+
+[[package]]
 name = "requests"
 version = "2.31.0"
 description = "Python HTTP for Humans."
@@ -481,4 +492,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "e8c61690522b3668a52229fd1db3650f08fad1d2a6332b59b70cf546163872e5"
+content-hash = "1685d747567bdc154822c321055245b5f2b2821b935677a7b87712c84cacb468"

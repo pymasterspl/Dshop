@@ -12,6 +12,7 @@ python-decouple = "^3.8"
 pillow = "^10.0.0"
 lxml = "^4.6"
 requests = "^2.31.0"
+sorl-thumbnail = "^12.9.0"
 
 
 [tool.poetry.group.dev.dependencies]

@@ -1,7 +1,7 @@
 import requests
 from django.http import HttpResponse
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from lxml import etree
 
 from .models import Product, CeneoCategory
@@ -14,6 +14,14 @@ class ProductListView(ListView):
 
     def get_queryset(self):
         return Product.objects.filter(is_active=True)
+
+
+class ProductDetailView(DetailView):
+
+    model = Product
+    template_name = 'products_catalogue/product_detail.html'
+    context_object_name = 'product'
+    queryset = Product.objects.filter(is_active=True)
 
 
 class CeneoProductListView(View):
