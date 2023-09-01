@@ -16,6 +16,7 @@ def xml_contains_texts(element, *texts):
     print(f"{dict_.values()}")
     return all(dict_.values())
 
+
 def test_xml_contains_text_1():
     xml = """
     <tag>
@@ -27,6 +28,7 @@ def test_xml_contains_text_1():
     </tag>"""
     root = ET.fromstring(xml)
     assert xml_contains_texts(root, 'one', 'two', 'three', 'four', 'five') is True
+
 
 def test_xml_contains_text_2():
     xml = """
@@ -40,6 +42,7 @@ def test_xml_contains_text_2():
     root = ET.fromstring(xml)
     assert xml_contains_texts(root, 'xxx') is False
 
+
 def test_xml_contains_text_3():
     xml = """
     <tag>
@@ -52,6 +55,7 @@ def test_xml_contains_text_3():
     root = ET.fromstring(xml)
     assert xml_contains_texts(root, 'one', 'three', 'five') is True
 
+
 def test_xml_contains_text_4():
     xml = """
     <tag>
@@ -63,6 +67,7 @@ def test_xml_contains_text_4():
     </tag>"""
     root = ET.fromstring(xml)
     assert xml_contains_texts(root, 'one', 'xxx') is False
+
 
 def test_xml_contains_text_5():
     xml = """
@@ -90,7 +95,6 @@ def test_xml_contains_text_6():
     assert xml_contains_texts(root, 'one') is True
 
 
-
 @pytest.mark.django_db
 def test_is_xml(client):
     url = reverse("django.contrib.sitemaps.views.sitemap")
@@ -112,7 +116,7 @@ def test_product_in_xml(client):
         short_description="Tanie dobre buty",
         full_description="Tanie dobre buty. Bardzo tanie. Są czarne. Wytrzymałe"
     )
-    product_url = product_1.get_absolute_url()
+    product_url = CURRENT_DOMAIN + product_1.get_absolute_url()
 
     print(f"{product_url=}")
 
@@ -122,12 +126,7 @@ def test_product_in_xml(client):
     xml = response.content
     root = ET.fromstring(xml.decode())
 
-    isfound = False
-    for text in root.itertext():
-        print(f"{text=} {product_url=}")
-        if text == CURRENT_DOMAIN + product_url:
-            isfound = True
-    assert isfound is True
+    assert xml_contains_texts(root, product_url) is True
 
 
 
@@ -155,10 +154,9 @@ def test_three_products_in_xml(client):
         short_description="Tanie dobre adidast",
         full_description="Tanie dobre adidast. Bardzo tanie. Są czarne. Wytrzymałe"
     )
-    product_1_url = product_1.get_absolute_url()
-    product_2_url = product_2.get_absolute_url()
-    product_3_url = product_3.get_absolute_url()
-    product_1_isfound = product_2_isfound = product_3_isfound = False
+    product_1_url = CURRENT_DOMAIN + product_1.get_absolute_url()
+    product_2_url = CURRENT_DOMAIN + product_2.get_absolute_url()
+    product_3_url = CURRENT_DOMAIN + product_3.get_absolute_url()
 
     url = reverse("django.contrib.sitemaps.views.sitemap")
     response = client.get(url)
@@ -166,15 +164,6 @@ def test_three_products_in_xml(client):
     xml = response.content
     root = ET.fromstring(xml.decode())
 
-    isfound = False
-    for text in root.itertext():
-        if text == CURRENT_DOMAIN + product_1_url:
-            product_1_isfound = True
-        if text == CURRENT_DOMAIN + product_2_url:
-            product_2_isfound = True
-        if text == CURRENT_DOMAIN + product_3_url:
-            product_3_isfound = True
-
-    assert product_1_isfound is True and product_2_isfound is True and product_3_isfound is True
+    assert xml_contains_texts(root, product_1_url, product_2_url, product_3_url) is True
 
 
