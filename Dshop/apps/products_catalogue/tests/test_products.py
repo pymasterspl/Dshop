@@ -25,7 +25,7 @@ def test_single_product_view(client):
         short_description="short desc",
         full_description="full_description"
     )
-    url = reverse("product-detail", kwargs={'slug': 'first-one'})
+    url = reverse("product-detail", kwargs={'slug': 'first-one', 'id': product.id})
     # When
     response = client.get(url)
     # Then
