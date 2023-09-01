@@ -5,7 +5,7 @@ from .views import ProductListView, ProductDetailView
 
 urlpatterns = [
     path('products_list/', ProductListView.as_view(), name='products-list'),
-    path("products/<slug>", ProductDetailView.as_view(), name='product-detail'),
+    path("products/<slug>-<int:id>", ProductDetailView.as_view(), name='product-detail'),
 ]
 
 if settings.DEBUG:
