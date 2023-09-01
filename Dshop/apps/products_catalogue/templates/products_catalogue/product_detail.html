@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load thumbnail %}
+
 {% block content %}
 
 <div class="container mt-5 mb-5">
@@ -11,7 +13,11 @@
                         <div class="images p-3">
                             {% for pic in product.images.all %}
                                 {% if pic.is_featured %}
-                                    <div class="text-center p-4"> <img id="main-image" src="{{ pic.image.url }}" width="250" /> </div>
+                                <div class="text-center p-4">
+                                    {% thumbnail pic.image "300x300" crop="center" as im %}
+                                        <img id="main-image" src="{{ pic.image.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                    {% endthumbnail %}
+                                </div>
                                 {% endif %}
                             {% endfor %}
                         </div>
