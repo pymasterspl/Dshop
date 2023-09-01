@@ -8,6 +8,89 @@ from decimal import Decimal
 CURRENT_DOMAIN = "http://example.com"
 
 
+def xml_contains_texts(element, *texts):
+    dict_ = {text: False for text in texts}
+    for xml_text in element.itertext():
+        if xml_text in dict_:
+            dict_[xml_text] = True
+    print(f"{dict_.values()}")
+    return all(dict_.values())
+
+def test_xml_contains_text_1():
+    xml = """
+    <tag>
+        <el>one</el>
+        <el>two</el>
+        <el>three</el>
+        <el>four</el>
+        <el>five</el>
+    </tag>"""
+    root = ET.fromstring(xml)
+    assert xml_contains_texts(root, 'one', 'two', 'three', 'four', 'five') is True
+
+def test_xml_contains_text_2():
+    xml = """
+    <tag>
+        <el>one</el>
+        <el>two</el>
+        <el>three</el>
+        <el>four</el>
+        <el>five</el>
+    </tag>"""
+    root = ET.fromstring(xml)
+    assert xml_contains_texts(root, 'xxx') is False
+
+def test_xml_contains_text_3():
+    xml = """
+    <tag>
+        <el>one</el>
+        <el>two</el>
+        <el>three</el>
+        <el>four</el>
+        <el>five</el>
+    </tag>"""
+    root = ET.fromstring(xml)
+    assert xml_contains_texts(root, 'one', 'three', 'five') is True
+
+def test_xml_contains_text_4():
+    xml = """
+    <tag>
+        <el>one</el>
+        <el>two</el>
+        <el>three</el>
+        <el>four</el>
+        <el>five</el>
+    </tag>"""
+    root = ET.fromstring(xml)
+    assert xml_contains_texts(root, 'one', 'xxx') is False
+
+def test_xml_contains_text_5():
+    xml = """
+    <tag>
+        <el>one</el>
+        <el>two</el>
+        <el>three</el>
+        <el>four</el>
+        <el>five</el>
+    </tag>"""
+    root = ET.fromstring(xml)
+    assert xml_contains_texts(root, 'one', 'two', 'three', 'four', 'five', 'six') is False
+
+
+def test_xml_contains_text_6():
+    xml = """
+    <tag>
+        <el>one</el>
+        <el>two</el>
+        <el>three</el>
+        <el>four</el>
+        <el>five</el>
+    </tag>"""
+    root = ET.fromstring(xml)
+    assert xml_contains_texts(root, 'one') is True
+
+
+
 @pytest.mark.django_db
 def test_is_xml(client):
     url = reverse("django.contrib.sitemaps.views.sitemap")
@@ -93,3 +176,5 @@ def test_three_products_in_xml(client):
             product_3_isfound = True
 
     assert product_1_isfound is True and product_2_isfound is True and product_3_isfound is True
+
+
