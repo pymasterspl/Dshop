@@ -1,6 +1,8 @@
 import pytest
-from apps.products_catalogue.models import Category, Product
 from django.urls import reverse
+from lxml import etree
+
+from apps.products_catalogue.models import Category, Product
 
 
 def assert_object_response(response, product, category):
@@ -20,9 +22,9 @@ def assert_object_response(response, product, category):
 def test_single_product_view(client):
     # Given
     category = Category.objects.create(name='Test Category', is_active=True)
-    product =Product.objects.create(
-        name = "first one",
-        category = category,
+    product = Product.objects.create(
+        name="first one",
+        category=category,
         price=11,
         short_description="short desc",
         full_description="full_description"
@@ -32,10 +34,6 @@ def test_single_product_view(client):
     response = client.get(url)
     # Then
     assert_object_response(response, product, category)
-from django.urls import reverse
-from lxml import etree
-
-from apps.products_catalogue.models import Category, Product
 
 
 @pytest.mark.django_db

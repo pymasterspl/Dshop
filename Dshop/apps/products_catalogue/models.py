@@ -26,7 +26,7 @@ class CeneoCategory(models.Model):
     class Meta:
         verbose_name = 'CeneoCategory'
         verbose_name_plural = 'CeneoCategories'
-    
+
     def __str__(self):
         return self.name
 
