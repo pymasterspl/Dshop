@@ -56,6 +56,10 @@ class Product(CatalogueItemModel):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def featured_photos(self):
+        return ProductImage.objects.filter(product=self, is_featured=True)
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
