@@ -38,11 +38,17 @@ class Product(CatalogueItemModel):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
     def get_absolute_url(self):
-        return reverse("products-detail", args = [self.slug, self.pk])
+        return reverse("product-detail", args = [self.slug, self.id])
 
     def __str__(self):
         return self.name
+
+    @property
+    def featured_photos(self):
+        return ProductImage.objects.filter(product=self, is_featured=True)
+
 
 
 class ProductImage(models.Model):

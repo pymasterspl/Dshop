@@ -12,7 +12,9 @@ class ProductListView(ListView):
         return Product.objects.filter(is_active=True)
 
 
-class ProductsDetailView(DetailView):
+class ProductDetailView(DetailView):
+
     model = Product
     template_name = 'products_catalogue/product_detail.html'
-
+    context_object_name = 'product'
+    queryset = Product.objects.filter(is_active=True)

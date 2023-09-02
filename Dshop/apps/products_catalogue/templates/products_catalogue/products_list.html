@@ -10,17 +10,20 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h5 class="card-title">{{ object.name }}</h5>
+                    <h5 class="card-title"><a href="{% url 'product-detail' object.slug object.pk %}">{{ object.name }}</a></h5>
                     <p class="card-text">Opis: {{ object.short_description }}</p>
                     <p class="card-text">Cena: {{ object.price }} PLN</p>
                     <small>Cena z ostatnich 30 dni: {{ object.lowest_price_last_30_days }} PLN</small>
                     <hr>
-                    {% for pic in object.images.all %}
-                    {% if pic.is_featured %}
-                    <img src="{{ pic.image.url }}" alt="{{ object.name }}"/>
-
+                    {% if not object.images.all %}
+                    <p>Brak zdjęć</p>
+                    {% else %}
+                        {% for pic in object.featured_photos %}
+                        <img src="{{ pic.image.url }}" alt="{{ object.name }}"/>
+                        {% empty %}
+                        <img src="{{ object.images.first.image.url }}" alt="{{ object.name }}"/>
+                        {% endfor %}
                     {% endif %}
-                    {% endfor %}
                     <hr>
                     <a href="#" class="btn btn-primary">Dodaj do koszyka</a>
                 </div>
