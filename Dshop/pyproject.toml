@@ -10,6 +10,8 @@ python = "^3.11"
 django = "^4.2.3"
 python-decouple = "^3.8"
 pillow = "^10.0.0"
+lxml = "^4.6"
+requests = "^2.31.0"
 sorl-thumbnail = "^12.9.0"
 
 

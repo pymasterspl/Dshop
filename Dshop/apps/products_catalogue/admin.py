@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, ProductImage
+from .models import Category, Product, ProductImage, CeneoCategory
 
 
 @admin.register(Category)
@@ -19,3 +19,11 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'lowest_price_last_30_days')
     search_fields = ('name',)
     inlines = [ProductImageInLine]
+    readonly_fields = ('id','slug',)
+
+@admin.register(CeneoCategory)
+class CeneoCategoryAdmin(admin.ModelAdmin):
+    list_display = ('id','name')
+    search_fields = ('name',)
+    ordering = ('name',)
+    
