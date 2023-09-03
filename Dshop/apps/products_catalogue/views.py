@@ -4,7 +4,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView
 from lxml import etree
 
-from .models import Product, CeneoCategory
+from .models import Product, CeneoCategory, Category
 
 
 class ProductListView(ListView):
@@ -112,3 +112,19 @@ class CeneoCategoriesView(View):
 
 class CeneoAPIException(Exception):
     pass
+
+
+class CategoryListView(ListView):
+    model = Category
+    context_object_name = 'categories'
+    template_name = 'products_catalogue/categories_list.html'
+
+    def get_queryset(self):
+        return Category.objects.filter(is_active=True)
+
+
+class CategoryDetailView(DetailView):
+    model = Category
+    template_name = 'products_catalogue/category_detail.html'
+    context_object_name = 'category'
+    queryset = Category.objects.filter(is_active=True)

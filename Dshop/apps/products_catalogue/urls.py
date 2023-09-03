@@ -2,13 +2,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from .views import CeneoCategoriesView, CeneoProductListView, ProductListView, ProductDetailView
+from .views import CeneoCategoriesView, CeneoProductListView, ProductListView, ProductDetailView, \
+    CategoryListView, CategoryDetailView
 
 urlpatterns = [
     path('products_list/', ProductListView.as_view(), name='products-list'),
     path('ceneo/', CeneoProductListView.as_view(), name='product-list'),
     path('ceneo_categories/', CeneoCategoriesView.as_view(), name='ceneo-categories'),
     path("products/<slug>-<int:id>", ProductDetailView.as_view(), name='product-detail'),
+    path('categories/', CategoryListView.as_view(), name='category-list'),
+    path('category/<slug>-<int:id>', CategoryDetailView.as_view(), name='category-detail'),
+
 ]
 
 if settings.DEBUG:
