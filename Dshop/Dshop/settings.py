@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    ## local apps
+    # local apps
     'apps.core',
     'apps.users',
 ]
@@ -94,7 +94,7 @@ DATABASES = {
     }
 }
 
-## Postgrerss config 
+# Postgrerss config
 
 # DATABASES = {
 #     "default": {
@@ -106,8 +106,6 @@ DATABASES = {
 #         "PORT": config('POSTGRES_PORT'),
 #     }
 # }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -151,7 +149,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-## Settings added manually ##
+# Settings added manually
 
 # Uncomment for authentication
 # AUTH_USER_MODEL = 'core.User'
