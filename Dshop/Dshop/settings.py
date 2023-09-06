@@ -40,6 +40,7 @@ PROJECT_APPS = [
     'apps.core',
     'apps.users',
     'apps.products_catalogue',
+    'apps.payments.apps.PaymentsConfig',
 ]
 
 INSTALLED_APPS = [
