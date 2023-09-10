@@ -14,7 +14,8 @@
                             {% for pic in product.images.all %}
                                 <div class="text-center p-4">
                                     {% thumbnail pic.image "300x300" crop="center" as im %}
-                                        <img id="main-image" src="{{ pic.image.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                            <a href="{{ pic.image.url }}" width="{{ im.width }}" height="{{ im.height }}" data-lightbox="image-1">
+                                                <img id="main-image" src="{{ pic.image.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
                                     {% endthumbnail %}
                                 </div>
                             {% endfor %}
