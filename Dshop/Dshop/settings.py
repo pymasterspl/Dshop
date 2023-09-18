@@ -40,6 +40,7 @@ PROJECT_APPS = [
     'apps.core',
     'apps.users',
     'apps.products_catalogue',
+    'apps.payments.apps.PaymentsConfig',
 ]
 
 INSTALLED_APPS = [
@@ -97,7 +98,7 @@ DATABASES = {
     }
 }
 
-## Postgrerss config 
+# Postgrerss config
 
 # DATABASES = {
 #     "default": {
@@ -109,8 +110,6 @@ DATABASES = {
 #         "PORT": config('POSTGRES_PORT'),
 #     }
 # }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -146,7 +145,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -154,7 +154,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-## Settings added manually ##
+# Settings added manually
 
 # Uncomment for authentication
 # AUTH_USER_MODEL = 'core.User'
+
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
