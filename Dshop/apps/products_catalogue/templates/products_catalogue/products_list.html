@@ -19,9 +19,9 @@
                     <p>Brak zdjęć</p>
                     {% else %}
                         {% for pic in object.featured_photos %}
-                        <img src="{{ pic.image.url }}" alt="{{ object.name }}"/>
+                        <a href="{% url 'product-detail' object.slug object.pk %}"><img src="{{ pic.image.url }}" alt="{{ object.name }}"/></a>
                         {% empty %}
-                        <img src="{{ object.images.first.image.url }}" alt="{{ object.name }}"/>
+                        <a href="{% url 'product-detail' object.slug object.pk %}"><img src="{{ object.images.first.image.url }}" alt="{{ object.name }}"/></a>
                         {% endfor %}
                     {% endif %}
                     <hr>
