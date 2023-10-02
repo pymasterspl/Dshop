@@ -1,4 +1,11 @@
 # from django.shortcuts import render
 # use class based views.
+from django.shortcuts import render
 
-# Create your views here.
+from .forms import CustomUserForm
+
+
+
+
+
+
