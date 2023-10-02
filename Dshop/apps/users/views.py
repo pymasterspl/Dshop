@@ -1,10 +1,9 @@
 # from django.shortcuts import render
 # use class based views.
-from django.shortcuts import render
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
 
-from .forms import CustomUserForm
-
-
+from .forms import CustomUserForm, LoginUserForm
 
 
 
