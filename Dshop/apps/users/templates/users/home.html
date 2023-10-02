@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<nav>
-    {%  if request.user.is_authenticated %}
-        <a href="{%  url 'logout'  %}">Logout</a>
-        {% else %}
-            <a href="{%  url 'login'  %}">Login</a>
-    {%  endif %}
-</nav>
-  HOME
-</body>
-</html>
+{%  extends 'base.html' %}
+
+{% block stripe %}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'main.js' %}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v6.4.0/js/all.js"></script>
+{% endblock %}
+
+{% block content %}
+    <nav>
+        {%  if request.user.is_authenticated %}
+            <a href="{%  url 'logout'  %}">Logout</a>
+            {% else %}
+                <a href="{%  url 'login'  %}">Login</a>
+        {%  endif %}
+    </nav>
+{% endblock content %}
