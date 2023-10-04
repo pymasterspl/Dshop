@@ -23,13 +23,13 @@
                         {% for pic in object.featured_photos %}
                             {% thumbnail pic.image "200x200" crop="center" as im %}
                                 <a href="{% url 'product-detail' object.slug object.pk %}">
-                                    <img src="{{ pic.image.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                                 </a>
                             {% endthumbnail %}
                         {% empty %}
                             {% thumbnail object.images.first.image "200x200" crop="center" as thumb %}
                                 <a href="{% url 'product-detail' object.slug object.pk %}">
-                                    <img src="{{ object.images.first.image.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}">
+                                    <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}">
                                 </a>
                             {% endthumbnail %}
                         {% endfor %}
