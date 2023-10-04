@@ -23,17 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-# SECRET_KEY = 'django-secret-key-hash'
-SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'django-insecure-znipk%z09a@y4#z6&j49cukk8c+4n2hdni(fwp5vo)pqn+^412'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = True
-DEBUG = config('DEBUG')
+DEBUG = True
+# DEBUG = config('DEBUG')
 
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 
 # Application definition
 PROJECT_APPS = [
@@ -152,12 +152,13 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+LOGIN_URL = 'login'
 
 # Settings added manually
 
 # Uncomment for authentication
 # AUTH_USER_MODEL = 'core.User'
 
-STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
-STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+# STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+# STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+# STRIPE_PUBLISHABLE_KEY =

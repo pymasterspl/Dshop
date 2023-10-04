@@ -1,12 +1,65 @@
 {%  extends 'base.html' %}
-
+{%  load static %}
 {% block stripe %}
-<script src="https://js.stripe.com/v3/"></script>
-<script src="{% static 'main.js' %}"></script>
-<script defer src="https://use.fontawesome.com/releases/v6.4.0/js/all.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'main.js' %}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v6.4.0/js/all.js"></script>
 {% endblock %}
 
 {% block content %}
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="mx-auto col-10 col-md-8 col-lg-6 vh-100 mt-lg-3">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">{{ form_s.username.name.capitalize}}</label>
+                        {{form_s.username}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">Email</label>
+                        {{form_s.email}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">First name</label>
+                        {{form.first_name}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">Last name</label>
+                        {{form.last_name}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">Address</label>
+                        {{form.address}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">ZIP/Postal code</label>
+                        {{form.postal_code}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">City</label>
+                        {{form.city}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">Country</label>
+                        {{form.country}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">Date of birth</label>
+                        {{form.date_of_birth}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">Phone number</label>
+                        {{form.phone_number}}
+                    </div>
+                    <div class="align-items-center">
+                        <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
       <form method="POST">
           {% csrf_token %}
           {{ form_s.as_p }}

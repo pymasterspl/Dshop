@@ -5,6 +5,7 @@ from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
@@ -13,7 +14,8 @@ from django.urls import reverse_lazy
 
 from django.views.generic import CreateView, View, TemplateView, RedirectView
 
-from .forms import CustomUserForm, UpdateUserForm, UpdateCustomUserForm
+from .forms import CustomUserForm, UpdateUserForm, UpdateCustomUserForm, \
+    LoginUserForm
 from .models import CustomUser
 
 
@@ -42,12 +44,14 @@ class LoginUserView(LoginView):
     redirect_authenticated_user = True
     template_name = 'users/login.html'
 
-    def get_success_url(self):
-        return reverse_lazy('home')
 
-    def form_invalid(self, form):
-        messages.error(self.request, 'Invalid username or password !')
-        return self.render_to_response(self.get_context_data(form=form))
+    def form_valid(self, form):
+        valid = super(LoginUserView, self).form_valid(form)
+        username, password = form.cleaned_data.get(
+            'username'), form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=password)
+        login(self.request, user)
+        return valid
 
 
 class LogoutView(LoginRequiredMixin, RedirectView):

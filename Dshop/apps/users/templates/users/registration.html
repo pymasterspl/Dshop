@@ -1,5 +1,5 @@
-{%  extends 'base.html' %}
-
+{% extends 'base.html' %}
+{% load static %}
 {% block stripe %}
     <script src="https://js.stripe.com/v3/"></script>
     <script src="{% static 'main.js' %}"></script>
@@ -7,9 +7,33 @@
 {% endblock %}
 
 {% block content %}
-  <form method="POST">
-      {% csrf_token %}
-      {{form.as_p}}
-      <input type="submit" value="submit">
-  </form>
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="mx-auto col-10 col-md-8 col-lg-6 vh-100 mt-lg-3">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">{{ form.username.name.capitalize}}</label>
+                        {{form.username}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">Password</label>
+                        {{form.password1}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">Confirm Password</label>
+                        {{form.password2}}
+                    </div>
+                    <div class="form-group mb-3 col-lg-7">
+                        <label for="username" class="mb-2">Email</label>
+                        {{form.email}}
+                    </div>
+                    <div class="align-items-center">
+                        <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 {%  endblock content %}
