@@ -21,6 +21,7 @@ def create_checkout_session(request):
     if request.method == 'GET':
         domain_url = 'http://localhost:8000/'
         stripe.api_key = settings.STRIPE_SECRET_KEY
+        product_price = 99.99
         try:
             # Create new Checkout Session for the order
             # Other optional params include:
@@ -37,12 +38,16 @@ def create_checkout_session(request):
                 payment_method_types=['card'],
                 mode='payment',
                 line_items=[
-                    # {
-                    #     'name': 'T-shirt',
-                    #     'quantity': 1,
-                    #     'currency': 'usd',
-                    #     'price': '2000',
-                    # }
+                    {
+                        'quantity': 1,
+                        'price_data': {
+                            'currency': 'pln',
+                            'unit_amount': int(product_price * 100),
+                            'product_data': {
+                                'name': 'T-shirt',
+                            },
+                        },
+                    }
                 ]
             )
             return JsonResponse({'sessionId': checkout_session['id']})
