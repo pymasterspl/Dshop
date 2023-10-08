@@ -33,8 +33,8 @@ def create_checkout_session(request):
 
             # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
             checkout_session = stripe.checkout.Session.create(
-                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=domain_url + 'cancelled/',
+                success_url=domain_url + 'payments/success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=domain_url + 'payments/cancelled/',
                 payment_method_types=['card'],
                 mode='payment',
                 line_items=[
@@ -53,3 +53,11 @@ def create_checkout_session(request):
             return JsonResponse({'sessionId': checkout_session['id']})
         except Exception as e:
             return JsonResponse({'error': str(e)})
+
+
+class SuccessView(TemplateView):
+    template_name = 'payments/success.html'
+
+
+class CancelledView(TemplateView):
+    template_name = 'payments/cancelled.html'
