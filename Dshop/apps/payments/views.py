@@ -29,7 +29,7 @@ def create_checkout_session(request):
                 cancel_url=domain_url + 'cancelled/',
                 payment_method_types=['card'],
                 mode='payment',
-                # TODO: implementacja produktu z bazy danych
+                # TODO: Product implementation
                 line_items=[
                     {
                         'quantity': 1,
