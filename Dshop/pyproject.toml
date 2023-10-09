@@ -15,6 +15,7 @@ requests = "^2.31.0"
 sorl-thumbnail = "^12.9.0"
 stripe = "^6.4.0"
 requests_mock = "^1.11.0"
+charset_normalizer = "^3.3.0"
 
 
 [tool.poetry.group.dev.dependencies]
