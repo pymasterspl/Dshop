@@ -16,5 +16,5 @@ class PaymentTestCase(TestCase):
             self.client.login(username='testuser', password='testpassword')
             response = self.client.get(reverse('create_checkout_session'))
 
-            self.assertEqual(response.status_code, 200)
-            self.assertIn('sessionId', response.json())
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('sessionId', response.json())
