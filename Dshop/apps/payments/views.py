@@ -1,5 +1,6 @@
 import stripe
 from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
 from django.http.response import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
@@ -19,14 +20,16 @@ def stripe_config(request):
 @csrf_exempt
 def create_checkout_session(request):
     if request.method == 'GET':
-        domain_url = 'http://localhost:8000/payments/'
         stripe.api_key = settings.STRIPE_SECRET_KEY
         product_price = 99.99
         try:
+            current_site = get_current_site(request)
+            domain = current_site.domain
+            protocol = 'https' if request.is_secure() else 'http'
             checkout_session = stripe.checkout.Session.create(
                 client_reference_id=request.user.id if request.user.is_authenticated else None,
-                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=domain_url + 'cancelled/',
+                success_url=f'{protocol}://{domain}/payments/success/',
+                cancel_url=f'{protocol}://{domain}/payments/cancelled/',
                 payment_method_types=['card'],
                 mode='payment',
                 # TODO: Product implementation
