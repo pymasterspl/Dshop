@@ -46,6 +46,7 @@ def create_checkout_session(request):
             return JsonResponse({'sessionId': checkout_session['id']})
         except Exception as e:
             return JsonResponse({'error': str(e)})
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
 @csrf_exempt
