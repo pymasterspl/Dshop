@@ -64,9 +64,7 @@ def stripe_webhook(request):
         event = stripe.Webhook.construct_event(
             payload, sig_header, endpoint_secret
         )
-    except ValueError:
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError:
+    except (stripe.error.SignatureVerificationError, ValueError):
         return HttpResponse(status=400)
 
     if event['type'] == 'checkout.session.completed':
