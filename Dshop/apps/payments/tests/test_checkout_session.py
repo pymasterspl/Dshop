@@ -15,7 +15,7 @@ class PaymentTestCase(TestCase):
         with Mocker(json_encoder=DjangoJSONEncoder) as mocker:
             mocker.register_uri('POST', 'https://api.stripe.com/v1/checkout/sessions', json={'id': 'mocked_session_id'})
 
-        response = self.client.get(reverse('create_checkout_session'))
+            response = self.client.get(reverse('create_checkout_session'))
 
         self.assertEqual(response.status_code, 200)
         self.assertIn('sessionId', response.json())
