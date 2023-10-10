@@ -87,3 +87,8 @@ python manage.py runserver
 
 Open web browser and navigate to localhost address:  http://127.0.0.1:8000/ 
 
+---
+
+### In case of problems with starting the project:
+1. Check the env-template file and update the local .env file if necessary
+2. Run `poetry update`
