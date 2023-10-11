@@ -1,0 +1,2487 @@
+[{
+        "model": "products_catalogue.product",
+        "pk": 1,
+        "fields": {
+            "name": "Kappa Sneakersy Raven Nc 242782 Biały",
+            "slug": "kappa-sneakersy-raven-nc-242782-biay",
+            "is_active": true,
+            "category": 1,
+            "price": "179.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Białe buty sportowe damskie Skóra ekologiczna, Płaskie",
+            "full_description": "Damskie buty sportowe Kappa Rave NC 242782-1010. Obuwie sportowe w kolorze białym wykonane z ekologicznej skóry. Damskie buty posiadają tekstylną wyściółkę i wkładkę, które zapewnią stopom maksymalny komfort. Gruba podeszwa z profilem antypoślizgowym zapewni maksymalny komfort użytkowania. Buty będą idealnym uzupełnieniem codziennych stylizacji. Świetnie podkreślą Twój styl.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:11.919Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 2,
+        "fields": {
+            "name": "Sneakersy Calvin Klein Jeans",
+            "slug": "sneakersy-calvin-klein-jeans",
+            "is_active": true,
+            "category": 1,
+            "price": "329.62",
+            "lowest_price_last_30_days": null,
+            "short_description": "Białe buty sportowe damskie Skóra naturalna, Płaskie",
+            "full_description": "buty sportowe ze sznurowadłami, kontrastowe detale, nadruk, logo, 50% poliester z recyklingu",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:11.947Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 3,
+        "fields": {
+            "name": "Sneakersy TOMMY JEANS - Tommy Jeans Retro Basket Wmn EN0EN01723 White YBR",
+            "slug": "sneakersy-tommy-jeans-tommy-jeans-retro-basket-wmn-en0en01723-white-ybr",
+            "is_active": true,
+            "category": 1,
+            "price": "326.52",
+            "lowest_price_last_30_days": null,
+            "short_description": "Białe buty sportowe damskie Skóra naturalna, Skóra licowa",
+            "full_description": "Nowy model marki Tommy Jeans. Buty posiadają miękką wkładkę z wytrzymałego, a ponadto odpornego na ścieranie materiału. Ciesz się nadzwyczajnym komfortem podczas codziennych aktywności.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:11.974Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 4,
+        "fields": {
+            "name": "Sneakersy Calvin Klein",
+            "slug": "sneakersy-calvin-klein",
+            "is_active": true,
+            "category": 1,
+            "price": "462.67",
+            "lowest_price_last_30_days": null,
+            "short_description": "Beżowe buty sportowe damskie Skóra naturalna, Płaskie",
+            "full_description": "but sportowy ze sznurowadłami, kontrastowymi detalami, logo",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.000Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 5,
+        "fields": {
+            "name": "Skórzane czarne buty sportowe na platformie Shelovet",
+            "slug": "skorzane-czarne-buty-sportowe-na-platformie-shelovet",
+            "is_active": true,
+            "category": 1,
+            "price": "179.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Czarne buty sportowe damskie Skóra naturalna, Na platformie",
+            "full_description": "Skórzane czarne buty sportowe na platformie Shelovet",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.026Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 6,
+        "fields": {
+            "name": "Buty damskie New Balance GW500V2 black",
+            "slug": "buty-damskie-new-balance-gw500v2-black",
+            "is_active": true,
+            "category": 1,
+            "price": "339.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Czarne buty sportowe damskie, Płaskie",
+            "full_description": "Buty New Balance GW500V2 | Rozmiar: 37 EU | Kolor: Czarny | Taniej o | Zakup na Raty, Gwarancja 24mies. Sportano, profesjonalny sklep sportowy.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.052Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 7,
+        "fields": {
+            "name": "BOTKI JOSEF SEIBEL FERGEY 86 TITAN BEAR 59686 MI869 150",
+            "slug": "botki-josef-seibel-fergey-86-titan-bear-59686-mi869-150",
+            "is_active": true,
+            "category": 1,
+            "price": "335.20",
+            "lowest_price_last_30_days": null,
+            "short_description": "",
+            "full_description": "",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.079Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 8,
+        "fields": {
+            "name": "DAMSKIE BUTY SPORTOWE US POLO NAJLEPSZE CENY NIEBIESKIE",
+            "slug": "damskie-buty-sportowe-us-polo-najlepsze-ceny-niebieskie",
+            "is_active": true,
+            "category": 1,
+            "price": "193.83",
+            "lowest_price_last_30_days": null,
+            "short_description": "Niebieskie buty sportowe damskie Nylon",
+            "full_description": "but sportowy ze sznurowadłami, kontrastowymi detalami, logo",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.105Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 9,
+        "fields": {
+            "name": "Buty sportowe Sneakersy NEWS 21SP26-3925 różowe",
+            "slug": "buty-sportowe-sneakersy-news-21sp26-3925-rozowe",
+            "is_active": true,
+            "category": 1,
+            "price": "109.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Różowe buty sportowe damskie Skóra ekologiczna",
+            "full_description": "Buty sportowe SNEAKERSY Evento. Kolor różowy. Sznurowane buty damskie, wysoka jakość wykonania. Na grubej, wulkanizowanej podeszwie co zapewnia komfort chodzenia. Bardzo wygodne - grube i miękkie.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.131Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 10,
+        "fields": {
+            "name": "Nike Buty Damskie Legend Essential 2 Cq9545-001",
+            "slug": "nike-buty-damskie-legend-essential-2-cq9545-001",
+            "is_active": true,
+            "category": 1,
+            "price": "229.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Czarne buty sportowe damskie Tkanina",
+            "full_description": "Buty Nike Legend Essential 2 | Rozmiar: 40.5 (9 US) | Kolor: Czarny | Taniej o 11% | Zakup na Raty, Gwarancja 24mies. Sportano, profesjonalny sklep sportowy.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.157Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 11,
+        "fields": {
+            "name": "Botki damskie M. Daszyński SA62-87 bordo",
+            "slug": "botki-damskie-m-daszynski-sa62-87-bordo",
+            "is_active": true,
+            "category": 1,
+            "price": "111.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Czerwone Botki Skóra ekologiczna",
+            "full_description": "Trzewiki damskie marki M. Daszyński. Obuwie wykonane jest z wysokiej jakości skóry ekologicznej. Sznurówka sprawia ,że but staje się elegancki a zarazem łatwo dopasowuje się do stopy. Model ten jest lekko ocieplany. Świetnie komponują się z jesienno-zimowymi stylizacjami.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.182Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 12,
+        "fields": {
+            "name": "Buty damskie New Balance WL373OB2 – beżowe",
+            "slug": "buty-damskie-new-balance-wl373ob2-bezowe",
+            "is_active": true,
+            "category": 1,
+            "price": "239.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Codzienne buty damskie zainspirowane sylwetką 'starszego brata' – modelu z serii M363.",
+            "full_description": "Cholewkę wykonano ze skóry zamszowej, oraz materiałów syntetycznych oraz oddychającej siateczki. Podeszwa środkowa z miękkiej pianki EVA zapewnia bardzo dobrą amortyzacje podczas użytkowania na twardych nawierzchniach. Mocna i wytrzymała gumowa podeszwa zewnętrzna z klasycznym bieżnikiem gwarantuje optymalną przyczepność do podłoża. Codzienne buty damskie z serii 373 to będą doskonałym wyborem do lekkich wiatrówek i przejściowych kurtek sportowych.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.208Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 13,
+        "fields": {
+            "name": "Salewa Mtn Trainer Mid Gtx Women Atlantic Deep Ombre Blue",
+            "slug": "salewa-mtn-trainer-mid-gtx-women-atlantic-deep-ombre-blue",
+            "is_active": true,
+            "category": 1,
+            "price": "821.69",
+            "lowest_price_last_30_days": null,
+            "short_description": "Buty trekkingowe SALEWA Damskie Wysokie, rozmiar: 36, 40, 41, 36,5, 39,5, sezon: Wiosna/Lato, Materiał - Zamsz",
+            "full_description": "Warto zadbać o wygodę naszych stóp, zwłaszcza jeśli planujemy przez cały dzień przemierzać górskie szlaki. Odpowiednio dobrane obuwie to gwarancja komfortu oraz bezpieczeństwa. Buty trekkingowe pochodzące z serii MTN Trainer uwielbiają nie tylko turyści, ale nosi je także wielu ratowników oraz przewodników górskich. Buty MTN Trainer Mid GTX Women to model stworzony specjalnie dla pań będących miłośniczkami trekkingu, gdyż uwzględnia on anatomię damskich stóp. To ceniony przez wiele turystek model, który sprawdzi się zarówno podczas pokonywania łatwiejszych szlaków, jak i tych technicznych, skalnych czy na via ferratach.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.236Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 14,
+        "fields": {
+            "name": "Scarpa Buty Zodiac Women",
+            "slug": "scarpa-buty-zodiac-women",
+            "is_active": true,
+            "category": 1,
+            "price": "699.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Buty trekkingowe Scarpa Damskie, rozmiar: 37, 38, 40, 41, sezon: Wiosna/Lato, Materiał - Zamsz",
+            "full_description": "Buty Scarpa Zodiac Women to damskie podejściówki, w których sprawnie pokonasz techniczne szlaki lub długie podejścia pod drogi wspinaczkowe. Są to solidne i wygodne buty wykonane z wysokiej jakości materiałów oraz przy zastosowaniu świetnych rozwiązań technologicznych.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.262Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 15,
+        "fields": {
+            "name": "Teva Buty Damskie Trekkingowe Sanborn Mia Women'S Maple Sugar",
+            "slug": "teva-buty-damskie-trekkingowe-sanborn-mia-womens-maple-sugar",
+            "is_active": true,
+            "category": 1,
+            "price": "239.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Buty trekkingowe Teva Damskie Sandały, rozmiar: 36, 37, 38, 40, 41, sezon: Wiosna/Lato, Materiał - Guma",
+            "full_description": "To jest automatyczne tłumaczenie wygenerowane przez software:Damskie sandały z paskami, które pasują jak ulał i chwytają jak marzenie, Sanborn Mia oferują sylwetkę, którą można nosić wszędzie, tak samo swobodnie na krawężniku, jak i na kempingu. Lekki jak piórko i wyposażony w wiele punktów regulacji, ten wszechstronny styl jest wykonany z szybkoschnących pasków wykonanych z plastiku pochodzącego z recyklingu. Cechy Szybkoschnąca taśma wykonana z tworzywa sztucznego pochodzącego z recyklingu z wykorzystaniem identyfikowalnej, weryfikowalnej przędzy poliestrowej REPREVE firmy Unifi wspiera stopę Wiele punktów regulacji pozwala wybrać absolutnie idealne dopasowanie",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.288Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 16,
+        "fields": {
+            "name": "Campagnolo Rige Mid Wp Asphalt Syrah 3Q12947 62Bn",
+            "slug": "campagnolo-rige-mid-wp-asphalt-syrah-3q12947-62bn",
+            "is_active": true,
+            "category": 2,
+            "price": "449.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Buty trekkingowe Campagnolo Męskie Wysokie, rozmiar: 44, sezon: Jesień/Zima, Materiał - Tkanina",
+            "full_description": "Wodoodporny but trekkingowy CMP z kolorowymi detalami, które wyróżniają się i przyciągają wzrok i utrzymujący sportowy design. Podeszwa oparta o technologię CMP FullOn GRIP, sprawia że but bardzo dobrze trzyma się na różnych rodzajach podłoża.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.313Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 17,
+        "fields": {
+            "name": "HUGO BOSS męskie sneakersy buty BLACK 2023",
+            "slug": "hugo-boss-meskie-sneakersy-buty-black-2023",
+            "is_active": true,
+            "category": 2,
+            "price": "799.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Czarne Buty sportowe",
+            "full_description": "Efektowne męskie buty. Bardzo lekkie i wygodne. Wykonane w połączeniu materiału oraz skóry ekologicznej Antypoślizgowa podeszwa. Sygnowane firmowym logo na cholewce oraz podeszwie. Zapakowane w oryginalny kartonik. Perfekcyjnie dopracowana w każdym szczególe.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.340Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 18,
+        "fields": {
+            "name": "DSQUARED2 luksusowe włoskie sneakersy buty BIANCO",
+            "slug": "dsquared2-luksusowe-woskie-sneakersy-buty-bianco",
+            "is_active": true,
+            "category": 2,
+            "price": "1599.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Białe Buty sportowe.",
+            "full_description": "Skórzane męskie buty luksusowej włoskiej marki. Kolor biały sygnowany firmowymi napisami oraz logo marki. Podeszwa w kolorze białym. wkładki skórzane, profilowane z firmowym napisem.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.369Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 19,
+        "fields": {
+            "name": "adidas Terrex AX3 BC0524",
+            "slug": "adidas-terrex-ax3-bc0524",
+            "is_active": true,
+            "category": 2,
+            "price": "399.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Czarne Buty sportowe Tkanina",
+            "full_description": "Standardowy krój. Model sznurowany. Cholewka z siateczki i materiałów syntetycznych; formowana osłona palców z TPU. Tekstylna wyściółka; podeszwa zewnętrzna z gumy Continental™ jest wyjątkowo przyczepna nawet na mokrych nawierzchniach.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.393Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 20,
+        "fields": {
+            "name": "HUGO BOSS męskie sneakersy buty NOWOŚĆ RED",
+            "slug": "hugo-boss-meskie-sneakersy-buty-nowosc-red",
+            "is_active": true,
+            "category": 2,
+            "price": "599.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Czerwone Buty sportowe",
+            "full_description": "Efektowne połączenie materiału ,oddychającej siateczki ze skórą naturalną. Bardzo modny fason - z efektownym firmowym napisem.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.420Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 21,
+        "fields": {
+            "name": "Grisport 14527S2G Niebieskie",
+            "slug": "grisport-14527s2g-niebieskie",
+            "is_active": true,
+            "category": 2,
+            "price": "260.40",
+            "lowest_price_last_30_days": null,
+            "short_description": "Buty trekkingowe Grisport Męskie",
+            "full_description": "Grisport 14527S2G - męski model butów trekingowych z niską cholewką. Zapewnia doskonałą ochronę i bardzo dobrą przyczepność. Buty są bardzo wygodne. Idealne do trekkingu w każdych warunkach pogodowych.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.450Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 22,
+        "fields": {
+            "name": "Sneakersy Tommy Hilfiger",
+            "slug": "sneakersy-tommy-hilfiger",
+            "is_active": true,
+            "category": 2,
+            "price": "360.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Białe Buty sportowe Skóra naturalna, Skóra licowa.",
+            "full_description": "but sportowy ze sznurowadłami, kontrastowymi detalami, logo",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.476Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 23,
+        "fields": {
+            "name": "JUST CAVALLI skórzane sneakersy WHITE 2023",
+            "slug": "just-cavalli-skorzane-sneakersy-white-2023",
+            "is_active": true,
+            "category": 2,
+            "price": "799.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "",
+            "full_description": "",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.503Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 24,
+        "fields": {
+            "name": "JUST CAVALLI skórzane sneakersy WHITE 2023",
+            "slug": "just-cavalli-skorzane-sneakersy-white-2023",
+            "is_active": true,
+            "category": 2,
+            "price": "799.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Białe Buty sportowe Skóra naturalna",
+            "full_description": "Designerskie sneakersy włoskiego projektanta.Model 74QB3SB3 FONDO MINIMAL / 2023. Efektowne i komfortowe buty renomowanej , włoskiej marki. Kolor biały , sygnowane firmowym logo JUST CAVALLI.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.531Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 25,
+        "fields": {
+            "name": "Columbia Breaksider Czarne 2027191010",
+            "slug": "columbia-breaksider-czarne-2027191010",
+            "is_active": true,
+            "category": 2,
+            "price": "174.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Buty trekkingowe Columbia Męskie Sandały",
+            "full_description": "Te męskie sandały od marki Columnia to połączenie funkcjonalnoci i stylu. Model posiada regulowane paski z taśmy, komfortową podeszwę środkową EVA i przyczepną gumową podeszwę. Regulowane paski z taśmy Komfortowa podeszwa środkowa EVA Przyczepna gumowa podeszwa",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.557Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 26,
+        "fields": {
+            "name": "Teva 1017419 Winsted Zielony",
+            "slug": "teva-1017419-winsted-zielony",
+            "is_active": true,
+            "category": 2,
+            "price": "189.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Buty trekkingowe Teva Męskie Sandały",
+            "full_description": "To jest automatyczne tłumaczenie wygenerowane przez software:Dzięki klasycznemu wzornictwu paska inspirowanemu marką Universal i modnym akcentom kolorystycznym, Winstead to wygodny, stylowy element codziennej przygody. Wykończony przyjaznymi dla ziemi paskami z poliestru pochodzącego z recyklingu Unifi, które wytrzymują nadużycia, jednocześnie chroniąc odpady z tworzyw sztucznych przed wysypiskami. Cechy Szybkoschnąca taśma wykonana z plastiku pochodzącego z recyklingu przy użyciu identyfikowalnej, weryfikowalnej przędzy poliestrowej REPREVE firmy Unifi wspiera stopę i jest odporna na nadużycia Łatwe zapięcie na rzep szybko się zakłada i zdejmuje, zapewniając idealne dopasowanie",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.583Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 27,
+        "fields": {
+            "name": "Cmp Elettra Low Zielone 38Q4617",
+            "slug": "cmp-elettra-low-zielone-38q4617",
+            "is_active": true,
+            "category": 2,
+            "price": "399.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Buty trekkingowe CMP Męskie Niskie",
+            "full_description": "Męskie buty hikingowe firmy CMP model: ELETTRA LOW HIKING SHOES WP kod produktu: 38Q4617 kolor: 12EM militare/agave Męskie buty hikingowe CMP ELETTRA LOW świetnie sprawdzą się podczas długich wędrówek jak i miejskich spacerów. Wyposażone są w szereg technicznych elementów, takich jak: podeszwa VIBRAM, gumowa ochrona nosków i pięt oraz wodoodporność CLIMA PROTECT membrana.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.610Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 28,
+        "fields": {
+            "name": "Tommy Hilfiger Sneakersy Modern Vulc Corporate Leather FM0FM04351 Czarny",
+            "slug": "tommy-hilfiger-sneakersy-modern-vulc-corporate-leather-fm0fm04351-czarny",
+            "is_active": true,
+            "category": 2,
+            "price": "393.55",
+            "lowest_price_last_30_days": null,
+            "short_description": "Czarne Buty sportowe Skóra naturalna, Skóra licowa",
+            "full_description": "buty sportowe ze sznurowadłami, kontrastowe detale, logo, 50% poliester z recyklingu",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.637Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 29,
+        "fields": {
+            "name": "Salomon Quest 4 Gtx Magnet Black Quarry",
+            "slug": "salomon-quest-4-gtx-magnet-black-quarry",
+            "is_active": true,
+            "category": 2,
+            "price": "787.49",
+            "lowest_price_last_30_days": null,
+            "short_description": "Buty trekkingowe Salomon Męskie Wysokie",
+            "full_description": "Wybierając buty przeznaczone do trekkingu w trudnym terenie, należy zwrócić uwagę na ich podeszwę zewnętrzną. W tym modelu zastosowano specjalnie ukształtowany bieżnik, a także wytrzymałą mieszankę gumową. Amortyzacja ma za zadanie tłumić wstrząsy i pozwalać na sprężysty, lekki krok na szlaku. Zastosowane w podeszwie środkowej specjalnie opracowane materiały, a także konstrukcja buta, ułatwiają stawianie kroków, dbając o wysoki komfort na twardych nawierzchniach.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.665Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 30,
+        "fields": {
+            "name": "Skechers Summits 52811 BBK 41 Czarne",
+            "slug": "skechers-summits-52811-bbk-41-czarne",
+            "is_active": true,
+            "category": 2,
+            "price": "279.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Czarne Buty sportowe Tkanina",
+            "full_description": "Model obuwia sportowego. Uniwersalność modelu sprawia, że sprawdzą się także podczas ogólnej aktywności fizycznej oraz rekreacji. Cholewka butów wykonana w jednolitym kolorze z przewiewnej siateczki, która zapewnia odpowiednią wymianę powietrza. Podeszwa środkowa wykonana jest z miękkiej pianki EVA, dzięki czemu buty są lekkie i zapewniają maksymalną wygodę oraz odpowiednią amortyzację a podeszwa zewnętrzna jest gwarancją stabilności.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.691Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 31,
+        "fields": {
+            "name": "Telewizor LG OLED55G33LA",
+            "slug": "telewizor-lg-oled55g33la",
+            "is_active": true,
+            "category": 3,
+            "price": "9499.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Telewizor LG OLED 55 cali 4K UHD 100 Hz o rozdzielczości 3840x2160",
+            "full_description": "Telewizor LG OLED 55 cali 4K UHD 100 Hz o rozdzielczości 3840x2160. Z wbudowanym tunerem DVB-C. Dostępne łącza bezprzewodowe: Bluetooth, Wi-Fi, USB. Zastosowana funkcja Smart TV: WebOS. Rodzaj ekranu: Prosty",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.716Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 32,
+        "fields": {
+            "name": "Sony WH-1000XM5 Czarny",
+            "slug": "sony-wh-1000xm5-czarny",
+            "is_active": true,
+            "category": 3,
+            "price": "1414.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Słuchawki Wokółuszne, Bezprzewodowe ",
+            "full_description": "Słuchawki Wokółuszne, Bezprzewodowe Sony. Dodatkowe funkcje: Etui ochronne, Mikrofon, Aktywna redukcja szumów, Google Assistant",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.742Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 33,
+        "fields": {
+            "name": "Apple AirPods Pro 2. gen biały (MQD83ZM/A)",
+            "slug": "apple-airpods-pro-2-gen-biay-mqd83zma",
+            "is_active": true,
+            "category": 3,
+            "price": "1199.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "AirPods Pro (2. generacji) spisują się jeszcze lepiej niż ich pierwowzór.",
+            "full_description": "Słuchawki Dokanałowe, True Wireless Apple. Dodatkowe funkcje: Odporne na pot, Wymienne wkładki do uszu, Mikrofon, Aktywna redukcja szumów, Przyciski sterowania, Etui ładujące, Ładowanie bezprzewodowe, Asystent głosowy",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.771Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 34,
+        "fields": {
+            "name": "Telewizor Samsung UE43CU7172",
+            "slug": "telewizor-samsung-ue43cu7172",
+            "is_active": true,
+            "category": 3,
+            "price": "1398.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Telewizor Crystal UHD CU7172 - Precyzyjnie odwzorowane kolory",
+            "full_description": "Telewizor Samsung LED 43 cale 4K UHD 60 Hz o rozdzielczości 3840x2160. Z wbudowanym tunerem DVB-C, DVB-T2, DVB-S2. Dostępne łącza bezprzewodowe: Bluetooth, Wi-Fi, LAN. Zastosowana funkcja Smart TV: Tizen. Rodzaj ekranu: Prosty",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.798Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 35,
+        "fields": {
+            "name": "Google Chromecast 4.0 4k Biały",
+            "slug": "google-chromecast-40-4k-biay",
+            "is_active": true,
+            "category": 3,
+            "price": "312.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Odtwarzacz multimedialny Google Chromecast 4.0",
+            "full_description": "Google Chromecast 4.0 z Google TV to niewielkie urządzenie wyposażone w złącze HDMI, które oferuje strumieniowe odtwarzanie wideo w rozdzielczości 4K i 60 klatkach na sekundę na kompatybilnych wyświetlaczach. Ponadto, Chromecast 4.0 oferuje obsługę HDR w kilku formatach. Łączność bezprzewodową zapewniają moduły WiFi 5 oraz Bluetooth.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.825Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 36,
+        "fields": {
+            "name": "Samsung Galaxy Buds2 Pro SM-R510 Czarny",
+            "slug": "samsung-galaxy-buds2-pro-sm-r510-czarny",
+            "is_active": true,
+            "category": 3,
+            "price": "788.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Słuchawki Dokanałowe",
+            "full_description": "Słuchawki Dokanałowe, True Wireless Samsung. Dodatkowe funkcje: Regulacja głośności, Odporne na deszcz, Odporne na pot, Aktywna redukcja szumów, Etui ładujące",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.849Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 37,
+        "fields": {
+            "name": "Xiaomi Mi TV Stick",
+            "slug": "xiaomi-mi-tv-stick",
+            "is_active": true,
+            "category": 3,
+            "price": "169.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Przenośny odtwarzacz multimediów wyposażony w system Android TV",
+            "full_description": "Przy wadze mniejszej niż 30g Mi TV Stick jest lżejszy niż pomidor wiśniowy i jest wystarczająco kompaktowy, aby z łatwością zmieścić się w kieszeni. Zapomnij o kablach, podłącz Mi TV Stick do dowolnego telewizora, monitora lub projektora z portem HDMI, aby ten stał się inteligentnym telewizorem!",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.876Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 38,
+        "fields": {
+            "name": "Samsung HW-Q990C Czarny",
+            "slug": "samsung-hw-q990c-czarny",
+            "is_active": true,
+            "category": 3,
+            "price": "3899.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Soundbar HW-Q990C - wciągający kinowy dźwięk z efektem WOW",
+            "full_description": "Soundbar + Subwoofer + Głośniki Samsung. Subwoofer: Bezprzewodowy. Liczba kanałów: 11.1.4, komunikacja przez: Bluetooth, Wi-Fi, HDMI 2.1, USB. Dekodery dźwięku: Dolby TrueHD, DTS X, Dolby Atmos, Dolby Digital Plus",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.904Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 39,
+        "fields": {
+            "name": "Telewizor Samsung QE65Q77B",
+            "slug": "telewizor-samsung-qe65q77b",
+            "is_active": true,
+            "category": 3,
+            "price": "3940.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Telewizor Samsung QLED 65 cali 4K UHD 120 Hz",
+            "full_description": "Telewizor Samsung QLED 65 cali 4K UHD 120 Hz o rozdzielczości 3840x2160. Z wbudowanym tunerem DVB-C, DVB-T2, DVB-S2. Dostępne łącza bezprzewodowe: Bluetooth, Wi-Fi, DLNA, LAN, AirPlay, HDMI 2.1. Zastosowana funkcja Smart TV: Tizen. Rodzaj ekranu: Prosty",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.928Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 40,
+        "fields": {
+            "name": "Shanling M9 Plus (Czarny)",
+            "slug": "shanling-m9-plus-czarny",
+            "is_active": true,
+            "category": 3,
+            "price": "13999.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Przenośny Odtwarzacz Audio (DAP) Shanling M9 Plus",
+            "full_description": "Cyfrowy odtwarzacz muzyczny DAP 4x AK4499EX 2x AK4191 Bluetooth 5.0 aptX HD LDAC WiFi 32bit 768kHz DSD512 MQA Długo oczekiwana nowa wersja odtwarzacza Shanling M9, M9 Plus, jest już dostępna, przynosząc nie tylko zmodernizowaną platformę Android, ale przede wszystkim oznaczając powrót przetworników cyfrowo-analogowych AKM! Tym samym M9 Plus to pierwszy DAP tej marki, który integruje najnowszą generację przetworników cyfrowo-analogowych AKM z czterema chipami AK4499EX w unikalnej, symetrycznej architekturze. Konstrukcja wzmacniacza została dostosowana do tego projektu Quad-DAC, osiągając wyższą moc wyjściową.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.952Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 41,
+        "fields": {
+            "name": "EverSolo DMP-A6 (Czarny)",
+            "slug": "eversolo-dmp-a6-czarny",
+            "is_active": true,
+            "category": 3,
+            "price": "3999.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Odtwarzacz sieciowy EverSolo DMP-A6",
+            "full_description": "Solidna obudowa ze stopu aluminium, szczotkowany panel. Profesjonalny czterordzeniowy procesor ARM Cortex-A55. 6-calowy, duży, kolorowy ekran dotykowy LCD, łatwe sterowanie. Oparty na dobrze dostosowanym systemie Android 11. Pamięć 4GDDR+32GeMMC dla mnóstwa aplikacji. Obsługa dysku SSD M.2 NVME 3.0 (brak w zestawie), do 2 TB. 2 x ES9038Q2M DAC do niezależnego dekodowania stereo.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:12.976Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 42,
+        "fields": {
+            "name": "Savio TR-13 Czarny",
+            "slug": "savio-tr-13-czarny",
+            "is_active": true,
+            "category": 3,
+            "price": "45.08",
+            "lowest_price_last_30_days": null,
+            "short_description": "Transmiter AUX z funkcją zestawu głośnomówiącego SAVIO TR-13",
+            "full_description": "Transmiter AUX z funkcją zestawu głośnomówiącego SAVIO TR-13 to wielofunkcyjne urządzenie wyposażone w Bluetooth 5.1. Zastosowany chipset umożliwia bezprzewodowe odtwarzanie muzyki stereo w doskonałej jakości, a połączenie funkcji zestawu głośnomówiącego z wysokiej klasy mikrofonem gwarantuje najlepszą jakość podczas rozmów. Transmiter dodatkowo został wyposażany w funkcję Bass Boost, a także wsparcie dla usług Google Assistant oraz Siri. Savio TR-13 zwiększa możliwości urządzeń ze złączem AUX-in o technologię Bluetooth 5.1",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.001Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 43,
+        "fields": {
+            "name": "JBL Charge 5 Czarny",
+            "slug": "jbl-charge-5-czarny",
+            "is_active": true,
+            "category": 3,
+            "price": "597.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Głośnik przenośny JBL CHARGE 5",
+            "full_description": "Głośnik przenośny JBL o mocy 30 W posiadający złącza USB-C Bluetooth. Głośnik posiada zasilanie Akumulatorowe o maksymalnym czasie pracy do 20 h. Dodatkowe funkcje: Odporność na zachlapanie",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.025Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 44,
+        "fields": {
+            "name": "JBL PartyBox 310",
+            "slug": "jbl-partybox-310",
+            "is_active": true,
+            "category": 3,
+            "price": "2339.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Bezprzewodowy głośnik JBL PartyBox 310",
+            "full_description": "Wyróżnij się z tłumu dzięki JBL PartyBox 310. Jest to prawdziwie imprezowy głośnik bezprzewodowy, który pozwoli Ci się świetnie bawić nie tylko w domowym zaciszu. Stwórz niesamowity klimat i rozkręć każdą imprezę przy pomocy legendarnego dźwięku JBL o mocy 240 W, a także hipnotyzujących efektów świetlnych. Wbudowane kółka i wysuwany uchwyt sprawią, że głośnik będzie bardziej mobilny, a dzięki temu Ty będziesz mógł zabrać swoją imprezę dosłownie wszędzie. Dodatkowo, dzięki wbudowane wejście gitarowe i mikrofonowe umożliwią zabawę karaoke, a także mały koncert gitarowy.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.049Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 45,
+        "fields": {
+            "name": "Logit Transmiter FM BT06",
+            "slug": "logit-transmiter-fm-bt06",
+            "is_active": true,
+            "category": 3,
+            "price": "89.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "RADIOWY TRANSMITER BLUETOOTH",
+            "full_description": "Transmiter to idealne rozwiązanie dla samochodów z radiem, które nie posiadają wejścia USB ani funkcji Bluetooth. Dzięki niemu zapewnisz sobie wygodę i bezpieczeństwo podczas prowadzenia rozmów w czasie jazdy. Posiada on wbudowany czuły mikrofon dzięki któremu rozmowę będzie można usłyszeć w głośnikach Twojego samochodu. Transmiter wkłada się bezpośrednio do gniazda zapalniczki samochodu. Szeroki panel sterowania tworzy prawdziwą bazę dowodzenia w aucie, a kolorowe podświetlenie dodaje niepowtarzalnego klimatu!",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.073Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 46,
+        "fields": {
+            "name": "Electrolux Power Hygienic 800 EP81HB25WU",
+            "slug": "electrolux-power-hygienic-800-ep81hb25wu",
+            "is_active": true,
+            "category": 4,
+            "price": "2599.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Odkurzacz z technologią aktywnego mopowania",
+            "full_description": "Indukcyjny silnik wytwarza 5-krotnie* większą moc ssania zapewniającą dokładne odkurzanie dywanów i podłóg twardych. Odkurzacz wychwytuje aż do 99%** kurzu z odkurzanej powierzchni.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.097Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 47,
+        "fields": {
+            "name": "Ekspres Sencor SES 4040BK",
+            "slug": "ekspres-sencor-ses-4040bk",
+            "is_active": true,
+            "category": 4,
+            "price": "599.90",
+            "lowest_price_last_30_days": null,
+            "short_description": "Półautomatyczne urządzenie do espresso",
+            "full_description": "Ekspres ciśnieniowy Sencor 1450W wytwarzający ciśnienie o mocy 20 Bar. Posiada funkcje: Automatyczne wyłączanie. Możliwa regulacja: Ilość kawy",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.121Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 48,
+        "fields": {
+            "name": "Oral-B IO 4 Black",
+            "slug": "oral-b-io-4-black",
+            "is_active": true,
+            "category": 4,
+            "price": "420.03",
+            "lowest_price_last_30_days": null,
+            "short_description": "Elektryczna szczoteczka do zębów Oral-B",
+            "full_description": "Elektryczne szczoteczki Magnetyczne, posiadające zasilanie Akumulatorowe, wykonujące Ruch rotacyjny, Ruch soniczny",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.144Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 49,
+        "fields": {
+            "name": "Lodówka Bosch Serie 4 KGV33VLEA",
+            "slug": "lodowka-bosch-serie-4-kgv33vlea",
+            "is_active": true,
+            "category": 4,
+            "price": "2169.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Chłodziarko-zamrażarka",
+            "full_description": "Klasa energetyczna: E, Rodzaj: Z zamrażalnikiem dolnym, Szerokość: 60 cm, Dodatkowe wyposażenie: Komora VitaFresh, Oświetlenie LED, Szuflada Big Box",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.167Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 50,
+        "fields": {
+            "name": "Dreame L20 Ultra biały",
+            "slug": "dreame-l20-ultra-biay",
+            "is_active": true,
+            "category": 4,
+            "price": "5242.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Dreame L20 Ultra - dokładne czyszczenie",
+            "full_description": "Odkurzacz automatyczny Dreame z filtrem EPA, o pojemności 300 ml, o maxymalnym czasie pracy do 260min. Głośność pracy odkurzacza: do 63 dB. Roczne zużycie energii: Nie dotyczy. Opcje czyszczenia: Mopowanie, Odkurzanie. Odkurzacz posiada dodatkowo funkcje: Automatyczny powrót do bazy, Wirtualna ściana, Programator pracy, Automatyczne opróżnienie pojemnika, Automatyczne wyłączenie, Zdalne sterowanie, Harmonogram, Automatyczne dostosowanie do rodzaju sprzątanej powierzchni, Wi-Fi, Regulowanie prędkości przepływu wody",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.190Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 51,
+        "fields": {
+            "name": "SodaStream Terra Czarny",
+            "slug": "sodastream-terra-czarny",
+            "is_active": true,
+            "category": 4,
+            "price": "269.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "saturator do wody gazowanej",
+            "full_description": "saturator do wody gazowanej",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.214Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 52,
+        "fields": {
+            "name": "PHILIPS Azur 8000 DST8020/20",
+            "slug": "philips-azur-8000-dst802020",
+            "is_active": true,
+            "category": 4,
+            "price": "385.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Żelazko parowe Philips Azur Seria 8000",
+            "full_description": "Żelazko Parowe Philips o mocy 3000 W, wytwarzanie pary: 55 g/min. Posiada funkcje: Pionowy wyrzut pary, Automatyczne wyłączanie.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.235Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 53,
+        "fields": {
+            "name": "Xiaomi Robot Vacuum S10+",
+            "slug": "xiaomi-robot-vacuum-s10",
+            "is_active": true,
+            "category": 4,
+            "price": "1521.85",
+            "lowest_price_last_30_days": null,
+            "short_description": "Dwie nakładki i czyszczenie ciśnieniowe dla lepszego usuwania plam",
+            "full_description": "Odkurzacz automatyczny Xiaomi z filtrem HEPA, o pojemności 0,2 l, o maxymalnym czasie pracy do 120 min. Głośność pracy odkurzacza: od 50 do 65 dB. Roczne zużycie energii: Nie dotyczy. Opcje czyszczenia: Mopowanie. Odkurzacz posiada dodatkowo funkcje: Zdalne sterowanie",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.263Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 54,
+        "fields": {
+            "name": "Waga łazienkowa Xiaomi Mi Body Composition Scale 2",
+            "slug": "waga-azienkowa-xiaomi-mi-body-composition-scale-2",
+            "is_active": true,
+            "category": 4,
+            "price": "99.63",
+            "lowest_price_last_30_days": null,
+            "short_description": "Mi Body Composition Scale 2 - Kompleksowa analiza sylwetki, już przy pierwszym pomiarze",
+            "full_description": "Zaawansowany technologicznie sensor G potrafi określić wagę ciała z dokładnością do 50g, co czyni pomiary wagi Mi Body Composition Scale 2 jeszcze bardziej precyzyjnymi.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.293Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 55,
+        "fields": {
+            "name": "Bosch Serie 6 PIE631FB1E",
+            "slug": "bosch-serie-6-pie631fb1e",
+            "is_active": true,
+            "category": 4,
+            "price": "1599.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Płyta Indukcyjne o szerokości 60 cm. Sterowanie Dotykowe, 4 pola grzejne.",
+            "full_description": "Płyty indukcyjne wytwarzają ciepło tam, gdzie jest potrzebne – w podstawie naczynia. Co to oznacza dla Ciebie? WIększe bezpieczeństwo i wygodę! Niższa temperatura płyty chroni zarówno dorosłych, jak i dzieci. Co więcej, dzięki płycie indukcyjnej można zagotować 2 litry wody dwukrotnie szybciej niż na płycie szklano-ceramicznej, co pozwala także zaoszczędzić mnóstwo energii. ",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.321Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 56,
+        "fields": {
+            "name": "PHILIPS OneBlade Pro 360 Face + Body QP6541/15",
+            "slug": "philips-oneblade-pro-360-face-body-qp654115",
+            "is_active": true,
+            "category": 4,
+            "price": "259.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Trymer Philips, zasilanie Akumulatorowe",
+            "full_description": "Philips OneBlade to innowacyjna technologia, która została stworzona by służyć wszechstronnie. Dzięki temu jednemu urządzeniu możesz przycinać, golić i stylizować włosy o każdej długości, na twarzy i ciele. Golenie specjalnym ostrzem z podwójnym systemem ochrony nie odbywa się zbyt blisko skóry. Szybko poruszający się nożyk wykonuje 200 ruchów na sekundę (12 000 razy na minutę). Dzięki temu osiągniesz perfekcyjne rezultaty, nawet w przypadku dłuższego zarostu.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.349Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 57,
+        "fields": {
+            "name": "Sharp DF-A1E-W",
+            "slug": "sharp-df-a1e-w",
+            "is_active": true,
+            "category": 4,
+            "price": "159.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Aromatyzer o pojemności zbiornika 0,2 l. Tryby pracy: Aromaterapia",
+            "full_description": "Ultradźwiękowy aromatyzer SHARP to innowacyjny model o nowoczesnej, unikalnej konstrukcji, który rozprowadza w pomieszczeniu delikatną mgiełkę zapachu.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.375Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 58,
+        "fields": {
+            "name": "Ekspres PHILIPS DAILY COLLECTION HD7435/20",
+            "slug": "ekspres-philips-daily-collection-hd743520",
+            "is_active": true,
+            "category": 4,
+            "price": "183.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Ekspres do kawy Philips o mocy 700W. Posiada funkcje: Automatyczne wyłączanie",
+            "full_description": "Po prostu wyśmienita kawa. Rozkoszuj się smakiem i aromatem świeżo zaparzonej kawy dzięki temu ekspresowi firmy Philips. Jego kompaktowa konstrukcja jest idealna do zaparzenia od 2 do 7 filiżanek, a tłoczek aroma twister zapewnia optymalny smak każdej filiżanki kawy.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.401Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 59,
+        "fields": {
+            "name": "Lodówka Samsung RF23R62E3B1",
+            "slug": "lodowka-samsung-rf23r62e3b1",
+            "is_active": true,
+            "category": 4,
+            "price": "7499.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Lodówka Multidoor",
+            "full_description": "Klasa energetyczna: F, Rodzaj: French Door, Szerokość: 90,8 cm, Dodatkowe wyposażenie: Alarm otwartych drzwi, Kostkarka, Dystrybutor wody, Wyświetlacz, Oświetlenie LED",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.426Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 60,
+        "fields": {
+            "name": "Electrolux EW8H458BP PerfectCare",
+            "slug": "electrolux-ew8h458bp-perfectcare",
+            "is_active": true,
+            "category": 4,
+            "price": "2346.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Suszarka PerfectCare",
+            "full_description": "Suszarka Kondensacyjna klasy energetycznej A++ o szerokości 60 cm, głębokości 60 cm. Ładowność suszarki: 8 kg . Zastosowane technologie: PerfectCare",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.449Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 61,
+        "fields": {
+            "name": "Torba na ramię Coolpack Soho, Art Deco",
+            "slug": "torba-na-ramie-coolpack-soho-art-deco",
+            "is_active": true,
+            "category": 5,
+            "price": "64.97",
+            "lowest_price_last_30_days": null,
+            "short_description": "Torba na ramię Coolpack Soho, Art Deco",
+            "full_description": "Główna komora zamykana na suwak. Mała wewnętrzna kieszonka zamykana na suwak. Przednia kieszonka z ukrytym suwakiem. Wzmocniony spód. Odpinany pasek na ramię. Wymiary: 42 x 48 x 17 cm.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.473Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 62,
+        "fields": {
+            "name": "Coolpack Kołobrulion Kołozeszyt A5 200 Czerwony",
+            "slug": "coolpack-koobrulion-koozeszyt-a5-200-czerwony",
+            "is_active": true,
+            "category": 5,
+            "price": "14.16",
+            "lowest_price_last_30_days": null,
+            "short_description": "Wysokiej jakości 200 stronicowy zeszyt w kratkę B5 marki Coolpack. Zeszyt posiada transparentną kopertę, linijkę oraz cztery przekładki, dzięki którym notatki zawsze będą uporządkowane.",
+            "full_description": "200 stron w kratkę; 100 kartek; Mikro perforacja ułatwia wyrywanie kartek; Przekładki z kieszonką z możliwością oznaczenia; Transparentna koperta na wszystkie dodatkowe notatki; Zakładka z linijką.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.496Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 63,
+        "fields": {
+            "name": "Paso Plecak Original Collection Wielokomorowy Czarny",
+            "slug": "paso-plecak-original-collection-wielokomorowy-czarny",
+            "is_active": true,
+            "category": 5,
+            "price": "120.75",
+            "lowest_price_last_30_days": null,
+            "short_description": "Duży plecak młodzieżowy Paso Active w sportowej stylistyce w kolorze czarnym.Znakomicie nadaje się jednak nie tylko do szkoły, ale również na wycieczki i krótkie wypady.",
+            "full_description": "Plecak szkolny Uniwersalne Wielokomorowy. Cechy dodatkowe: Kieszeń na napoje, Elementy odblaskowe. Wysokość: 50 cm / Szerokość: 30 cm / Głębokość: 22 cm",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.524Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 64,
+        "fields": {
+            "name": "Moleskine Kaweco X Pióro Wieczne M Niebieskie",
+            "slug": "moleskine-kaweco-x-pioro-wieczne-m-niebieskie",
+            "is_active": true,
+            "category": 5,
+            "price": "108.86",
+            "lowest_price_last_30_days": null,
+            "short_description": "Klasyczne pióro wieczne z pozłacaną stalówką w rozmiarze M i zawiera jeden nabój z niebieskim atramentem. Kartonowe pudełko upominkowe tworzy schludny piórnik.",
+            "full_description": "Zaprojektowane z miłości do papieru produkty Moleskine x Kaweco to kreatywny prezent dla każdego, kto docenia magię ręcznego zapisywania pomysłów na kartce. Jedno pióro wieczne z tworzywa ABS z pozłacaną stalówką w rozmiarze M. W zestawie jeden niebieski nabój atramentowy. Kartonowe pudełko",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.551Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 65,
+        "fields": {
+            "name": "Bambino Kredki ołówkowe w oprawie drewn. 24 kolory",
+            "slug": "bambino-kredki-oowkowe-w-oprawie-drewn-24-kolory",
+            "is_active": true,
+            "category": 5,
+            "price": "38.59",
+            "lowest_price_last_30_days": null,
+            "short_description": "Kredki BAMBINO w oprawie drewnianej z temperówką",
+            "full_description": "Wysokiej jakości 24 kredki Bambino z glinki kaolinowej w drewnianej oprawie. Charakteryzują się wyjątkowo intensywnymi i nasyconymi kolorami. Doskonale kryją, idealnie nadają się do rysowania, wypełniania dużych powierzchni i wykonywania miękkich przejść pomiędzy kolorami. Kredki są grube, odpowiednio wyważone, przez co idealnie dopasowują się do małej dłoni dziecka. Dodatkowym atutem jest złota i srebrna kredka oraz dołączona do zestawu temperówka.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.578Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 66,
+        "fields": {
+            "name": "Majewski Plecak Na Kółkach Stright Tb-01 Space Moon",
+            "slug": "majewski-plecak-na-kokach-stright-tb-01-space-moon",
+            "is_active": true,
+            "category": 5,
+            "price": "237.20",
+            "lowest_price_last_30_days": null,
+            "short_description": "Produkty marki St.Right wyróżniają się doskonałą jakością wykonania, dopracowanymi w każdym szczególe detalami i trwałością. Właścicielem marki jest polska firma St. Majewski (producent między innymi Bambino).",
+            "full_description": "Plecak szkolny na kółkach Dla chłopców Wielokomorowy. Cechy dodatkowe: Elementy odblaskowe. Wysokość: 45 cm / Szerokość: 32 cm",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.604Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 67,
+        "fields": {
+            "name": "Safta Wózek Do Plecaka Granatowy",
+            "slug": "safta-wozek-do-plecaka-granatowy",
+            "is_active": true,
+            "category": 5,
+            "price": "130.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Plecak szkolny Jednokomorowy / Szerokość: 40 cm / Głębokość: 3 cm",
+            "full_description": "Wydajność: 28 LKolor: GranatowyKoła: 2Design: SportoweSystem regulacji: UniwersalnyWymiary ok.: Otwarty 40 x 28 x 85 cm. Zamknięte 40 x 28 x 54 cm. Składany 40 x 53 x 15 cm.Materiał: AluminiumpolipropylenWłaściwości: AntywibracyjnyKompatybilny z: Plecak 32 x 18 x 44 cmDzieci zasługują na to co najlepsze, dlatego przedstawiamy Ci Wózek do Plecaka Safta Granatowy, idealny dla tych, którzy szukają produktów wysokiej jakości dla dzieci! Zdobądź Safta i inne produkty markowe i licencyjne w najlepszych cenach!...",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.627Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 68,
+        "fields": {
+            "name": "Pukka Pad Kołozeszyt W Kratkę A4 Pastelowy Różowy",
+            "slug": "pukka-pad-koozeszyt-w-kratke-a4-pastelowy-rozowy",
+            "is_active": true,
+            "category": 5,
+            "price": "27.54",
+            "lowest_price_last_30_days": null,
+            "short_description": "KOŁOZESZYT A4 PROJECT BOOK PUKKA PAD KRATKA",
+            "full_description": "Pukka, czyli pierwsza jakość! Produkty Pukka to profesjonalizm wykonania połączony z najwyższą jakością materiałów i niepowtarzalnym stylem. Tworzenie notatek, segregowanie informacji i dokumentów, planowanie oraz organizacja pracy jeszcze nigdy nie były tak proste! Praca i nauka z produktami Pukka są po prostu przyjemniejsze!",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.653Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 69,
+        "fields": {
+            "name": "Staedtler Noris Digital Jumbo",
+            "slug": "staedtler-noris-digital-jumbo",
+            "is_active": true,
+            "category": 5,
+            "price": "189.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Bezbateryjne pióro do urządzeń cyfrowych zgodnych z technologią EMR",
+            "full_description": "STEADTLER Noris Digital Jumbo (z gumką) Funkcja gumki jest obsługiwana przez urządzenia które maja taką funkcjonalnośc – lista kompatybilnosci dostepna jest w pliku pdf",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.679Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 70,
+        "fields": {
+            "name": "Koh-I-Noor Temperówka Na Korbkę Aparat Fotograficzny",
+            "slug": "koh-i-noor-temperowka-na-korbke-aparat-fotograficzny",
+            "is_active": true,
+            "category": 5,
+            "price": "70.69",
+            "lowest_price_last_30_days": null,
+            "short_description": "Koh-I-Noor Temperówka Na Korbkę",
+            "full_description": "Koh i i noor Temperówka wyglądem przypomina stary aparat fotograficzny Aparat 9095 system łatwego usuwania złamanych grotów (wystarczy użyć pokrętła znajdującego się przy korbce i przekręcić go w lewo a następnie wyjąć korbkę) sposoby ostrzenia: kręcąc korbką w lewo rysik będzie smuklejszy i dłuższy kręcąc korbką w prawo rysik będzie grubszy i krótszy posiada specjalny uchwyt, dzięki któremu można przymocować ją do blatu stołu bądź biurka profesjonalny mechanizm pozwala na ostrzenie kredek do grubości 6 mm do 8 mm i do ołówków i kredek 9-12 mm metalowa głowica ostrząca kolor obudowy: czarny wielkość: 113x68x100 mm obudowa wykonana z tworzywa przykręcana do stołu, biurkaSposób użycia: pociągnij front temperówki, tak by odsunął się od całego urządzenia naciśnij srebrny przycisk z boku frontu by umożliwić sobie umieszczenie kredki w otworze przesuń kredkę do końca następnie puść przycisk (w ten sposób zablokuje kredkę i utrzyma ją bez ruchu) użyj korbki w odpowiednią dla siebie stronę (lewa lub prawa)",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.704Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 71,
+        "fields": {
+            "name": "Panta Plast Okładki Zestaw Dla Klas 4-6",
+            "slug": "panta-plast-okadki-zestaw-dla-klas-4-6",
+            "is_active": true,
+            "category": 5,
+            "price": "13.49",
+            "lowest_price_last_30_days": null,
+            "short_description": "Panta Plast Okładki Zestaw Dla Klas 4-6",
+            "full_description": "Zestaw zawiera: - okładkę OR4 23,70 X 43,00 cm - 2 szt. - okładkę OR8 26,80 X 49,00 cm - 2 szt. - okładkę A4 samoprzylepną - 2szt. - okładkę A4 PVC - 2 szt. - 8 szt. naklejek na zeszyty.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.728Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 72,
+        "fields": {
+            "name": "Vadobag Bing Królik Plecak Plecaczek Do Przedszkola 3D",
+            "slug": "vadobag-bing-krolik-plecak-plecaczek-do-przedszkola-3d",
+            "is_active": true,
+            "category": 5,
+            "price": "32.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "PLECAK PRZEDSZKOLNY - BING",
+            "full_description": "Plecak do przedszkola Dla chłopców Jednokomorowy. Motyw: Bing. Cechy dodatkowe: Regulowany pasek. Wysokość: 31 cm / Szerokość: 25 cm / Głębokość: 9 cm",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.754Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 73,
+        "fields": {
+            "name": "Herlitz Piórnik Be.Bag Airgo Czarny (11415924)",
+            "slug": "herlitz-piornik-bebag-airgo-czarny-11415924",
+            "is_active": true,
+            "category": 5,
+            "price": "45.60",
+            "lowest_price_last_30_days": null,
+            "short_description": "Herlitz Piórnik Be.Bag Airgo Czarny",
+            "full_description": "Piórnik Be.Bag Airgo to wyjątkowo modny element szkolnego wyposażenia Można w nim pomieścić przybory szkolne i inne osobiste drobiazgi. Piórnik wykonany z wysokiej jakości poliestru, zamykany na zamek błyskawiczny, usztywniana bryła.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.781Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 74,
+        "fields": {
+            "name": "Coolpack Piórnik Saszetka Silikonowa Pastel 88208Cp P15",
+            "slug": "coolpack-piornik-saszetka-silikonowa-pastel-88208cp-p15",
+            "is_active": true,
+            "category": 5,
+            "price": "23.96",
+            "lowest_price_last_30_days": null,
+            "short_description": "Silikonowy piórnik w pastelowych kolorach.",
+            "full_description": "Zbudowany z 1 dużej pojemnej przegrody zasuwanej na suwak. Występuje w kilku pastelowych kolorach (sprzedawane oddzielnie).",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.809Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 75,
+        "fields": {
+            "name": "Rawmark Promarkery Alkoholowe Purepro 80 Kolorów",
+            "slug": "rawmark-promarkery-alkoholowe-purepro-80-kolorow",
+            "is_active": true,
+            "category": 5,
+            "price": "99.83",
+            "lowest_price_last_30_days": null,
+            "short_description": "Promarkery",
+            "full_description": "PurePro to popularne promarkery alkoholowe. Markery ze specjalnym tuszem idealnie nadają się do zastosowań profesjonalnych oraz amatorskich prób i nauki. Dzięki nowej recepturze tuszu na bazie alkoholu kolory łączą się idealnie. Jest to kluczowe przy cieniowaniu. Jeżeli lubisz realistycznie wyglądające prace - docenisz to. - Tusz szybko wysycha co zapobiega rozmazywaniu oraz brudzeniu dłoni - Tusz wnika w papier dzięki czemu po wyschnięciu tworzy powłokę wodoodporną",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.887Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 76,
+        "fields": {
+            "name": "Forte Szafa Ubraniowa Niko Niks82n D30F",
+            "slug": "forte-szafa-ubraniowa-niko-niks82n-d30f",
+            "is_active": true,
+            "category": 6,
+            "price": "1029.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Szafy o wymiarach 122,6cm x 185cm x 53cm. Styl Nowoczesny, Tradycyjny.",
+            "full_description": "OGÓLNA CHARAKTERYSTYKA: Rodzaj produktu: Szafa, Kolor (wykończenie): Dąb sonoma, Materiały: Drewno",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.914Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 77,
+        "fields": {
+            "name": "Szafa wielofunkcyjna Keter/Kis LINEAR UTILITY CABINET",
+            "slug": "szafa-wielofunkcyjna-keterkis-linear-utility-cabinet",
+            "is_active": true,
+            "category": 6,
+            "price": "299.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Wielofunkcyjna szafa Linear",
+            "full_description": "wytrzymała konstrukcja wykonana z wysokiej jakości tworzywa sztucznego – polipropylenu, odpornego na działanie niekorzystnych warunków atmosferycznych, wyposażona w 3 regulowane półki (półka wytrzymuję obciążenie do 10 kg), podwójne drzwiczki z uchwytami ułatwiają otwieranie drzwi, przystosowane są również do zamykania na kłódkę (kłódka nie jest dołączona)",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.937Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 78,
+        "fields": {
+            "name": "Siesta Sofa dwuosobowa MONACO LOUNGE SOFA",
+            "slug": "siesta-sofa-dwuosobowa-monaco-lounge-sofa",
+            "is_active": true,
+            "category": 6,
+            "price": "918.01",
+            "lowest_price_last_30_days": null,
+            "short_description": "Komfortowa dwuosobowa sofa odporna na każde warunki.",
+            "full_description": "Nowość w ofercie Marki Siesta - meble modułowe ogrodowe Monaco. Meble wykonane są z odpornego na warunki atmosferyczne tworzywa imitującego wyglądem technorattan. Użyty materiał odporny jest na warunki atmosferyczne, w tym na promieniowanie UV. Kolekcja Monaco sprawdzi się zarówno w użytkowaniu prywatnym w ogrodzie, na tarasie, balkonie oraz komercyjnym. Polecane są przez projektantów wnętrz i architektów w różnych komercyjnych realizacjach takich jak meble do hoteli, meble do ogródków kawiarnianych, restauracyjnych, na plażę, basen, spa oraz innych miejsc użyteczności publicznej.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.959Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 79,
+        "fields": {
+            "name": "Pinio Marie Szafa 3-drzwiowa",
+            "slug": "pinio-marie-szafa-3-drzwiowa",
+            "is_active": true,
+            "category": 6,
+            "price": "3014.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Mebel wykonany jest płyty MDF oraz płyty laminowanej (elementy wewnętrzne).",
+            "full_description": "Bardzo pojemna szafa 3-drzwiowa z kolekcji Marie posiada wysokiej jakości system cichego zamykania. Wewnątrz szafy są dwie przegrody pionowe oraz różne możliwości aranżacji wnętrza szafy - np. 4 półki w środkowej części, 2 półki i drążek na ubrania z lewej strony oraz 2 półki i drążek na ubrania z prawej strony. W standardzie znajdują się: 4 półki do środkowej części oraz 4 półki i 2 drążki na ubrania do części zewnętrznych. Istnieje możliwość dokupienia dodatkowych półek do części zewnętrznych - maksymalnie 4 sztuki (nie pasują do części środkowej). Środkowe drzwi mogą zostać zamontowane zarówno z lewej jak i prawej strony.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:13.984Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 80,
+        "fields": {
+            "name": "Forte Komoda Niko NIKK34",
+            "slug": "forte-komoda-niko-nikk34",
+            "is_active": true,
+            "category": 6,
+            "price": "369.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "omoda Niko to mebel idealny do pokoju dziennego lub salonu.",
+            "full_description": "Beżowe Komody Forte Z szufladami, Bez nóżek. Materiał wykonania: Płyta meblowa, styl: Nowoczesny, szerokość: 89,6cm, wysokość: 82cm, głębokość: 29cm. Meble do samodzielnego montażu",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.014Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 81,
+        "fields": {
+            "name": "Halmar Fotel Wypoczynkowy Bishop",
+            "slug": "halmar-fotel-wypoczynkowy-bishop",
+            "is_active": true,
+            "category": 6,
+            "price": "989.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Wygodne i stylowe - Uszaki. Styl Klasyczny.",
+            "full_description": "Fotel wypoczynkowy Bishop marki Halmar - połączenie elegancji, wygody i wyrafinowanego designu. Ten wyjątkowy mebel to kwintesencja komfortu i stylu, doskonale wpasowujący się w różnorodne aranżacje wnętrz.Mebel zachwyca od pierwszego spojrzenia dzięki swojej niezwykłej estetyce. Jasny popiel tapicerki jest nie tylko subtelny, ale także uniwersalny, pasując zarówno do nowoczesnych minimalistycznych pomieszczeń, jak i do klasycznych, bardziej tradycyjnych aranżacji.Wyraźnie zaznaczona lamówka w kolorze ciemnoszarym nadaje fotelowi subtelny kontrast i podkreśla jego wyjątkowy kształt.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.041Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 82,
+        "fields": {
+            "name": "Garderoba Z Wieszakami I Lustrem Biała",
+            "slug": "garderoba-z-wieszakami-i-lustrem-biaa",
+            "is_active": true,
+            "category": 6,
+            "price": "351.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "PRAKTYCZNY ZESTAW DO PRZEDPOKOJU WIESZAK Z LUSTREM + SZAFKA NA OBUWIE GARDEROBA",
+            "full_description": "6 wieszaków na odzież, praktyczna półka, duże lustro, wysokość wieszaka regulują Państwo wedle własnego uznania, wygodne uchwyty do otwierana drzwiczek, szafka na buty, 8-9 par, praktyczne półeczki, Nasz model - wykonany jest z płyty o grubości 16 mm",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.067Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 83,
+        "fields": {
+            "name": "Costway Wyspa Kuchenna Na Kółkach Z Szufladą I Drzwiczkami 116 X 40 85 Cm 11649269",
+            "slug": "costway-wyspa-kuchenna-na-kokach-z-szuflada-i-drzwiczkami-116-x-40-85-cm-11649269",
+            "is_active": true,
+            "category": 6,
+            "price": "427.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Wyspa kuchenna na kółkach z szufladą i drzwiczkami 116 x 40 x 85 cm",
+            "full_description": "Idealne rozwiązanie które pomaga w zachowaniu porządku w kuchni zarazem zwiększając wygodę przygotowania i serwowania potraw. Dzięki przestronnej powierzchni blatu, obszernej szufladzie i zamykanej szafce wyspa kuchenna zapewnia dużo miejsca do przechowywania naczyń, szklanek, żywności itp. Półka wewnątrz szafy może być regulowana na 3 wysokościach aby dostosować się do wielkości przedmiotów w środku. Ponadto półka na przyprawy i wieszak na ręczniki są wygodne w używaniu. Dzięki 4 uniwersalnym kółkom (2 z hamulcami) wyspa jest łatwa do przemieszczania i bardzo bezpieczna w użytkowaniu.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.091Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 84,
+        "fields": {
+            "name": "Forte Komoda Niko CPLK14N",
+            "slug": "forte-komoda-niko-cplk14n",
+            "is_active": true,
+            "category": 6,
+            "price": "299.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Forte Komoda Niko Dąb Sonama, to komoda z szafkami i szufladą. Prosta konstrukcja mebla i nowoczesna stylistyka sprawiają, że komoda idealnie będzie pasować do nowoczesnych aranżacji wnętrz.",
+            "full_description": "Beżowe Komody Forte Z szufladami, Bez nóżek. Materiał wykonania: Płyta meblowa, styl: Nowoczesny, szerokość: 50,2cm, wysokość: 82cm, głębokość: 29cm. Meble do samodzielnego montażu",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.117Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 85,
+        "fields": {
+            "name": "Łóżko 140x200 stelaż metalowy podnoszony Panama M",
+            "slug": "ozko-140x200-stelaz-metalowy-podnoszony-panama-m",
+            "is_active": true,
+            "category": 6,
+            "price": "1345.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "ŁÓŻKO PANAMA biała rama z białym zagłówkiem",
+            "full_description": "Konstrukcja z wysokiej jakości płyty meblowej charakteryzującej się wytrzymałością oraz łatwością w utrzymaniu czystości. Pojemnik na pościel obejmuje całą powierzchnie łóżka. Montaż łóżka wykonany za pomocą łączników mimośrodowych daje gwarancję wysokiej wytrzymałości i stabilności łóżka. Prosty i szybki montaż. Do każdego łóżka dołączamy zestaw montażowy oraz instrukcję. Maksymalne obciążenie stelaża wynosi 400 kg.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.142Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 86,
+        "fields": {
+            "name": "Forte Dalate Dqls82411 M267 Szafa Ubraniowa 134047",
+            "slug": "forte-dalate-dqls82411-m267-szafa-ubraniowa-134047",
+            "is_active": true,
+            "category": 6,
+            "price": "1869.15",
+            "lowest_price_last_30_days": null,
+            "short_description": "Szafy o wymiarach 270cm x 210cm x 61cm.",
+            "full_description": "Szafa na ubrania Dalate to praktyczny mebel do sypialni czy przedpokoju, może posłużyć również jako garderoba. Kolor mebla wpasuje się w wiele aranżacji. Będzie pasowała do wnętrz klasycznych jak również do wnętrz nowoczesnych. Szafa sprawdzi się w danym pomieszczeniu. To duża szafa, która posiada półki oraz drążki do wieszania ubrań, na których powiesisz nawet długie ubrania. Pojemna szafa to dobre rozwiązanie, żeby schować to czego potrzebujesz. Do szafy na ubrania można dokupić inne meble z kolekcji Dalate.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.167Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 87,
+        "fields": {
+            "name": "Wielofunkcyjna szafa regał tekstylna na buty 9 półek (Szara)",
+            "slug": "wielofunkcyjna-szafa-rega-tekstylna-na-buty-9-poek-szara",
+            "is_active": true,
+            "category": 6,
+            "price": "109.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Szafa tekstylna to idealny sposób na uporządkowanie butów!",
+            "full_description": "Najważniejszą zaletą szafy tekstylnej jest prosta konstrukcja, która pozwala ją szybko złożyć i rozłożyć. Cały montaż szafy jest bardzo prosty i zajmuje kilka minut. Wystarczy zmontować kolanka z rurami i rozłożyć materiał na stelażu, aby po chwili z łatwością uporządkować przedmioty w szafie.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.192Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 88,
+        "fields": {
+            "name": "Halmar Trafica Ława Naturalny Czarny",
+            "slug": "halmar-trafica-awa-naturalny-czarny",
+            "is_active": true,
+            "category": 6,
+            "price": "170.98",
+            "lowest_price_last_30_days": null,
+            "short_description": "Okrągłe ławy i stoliki kawowe o szerokości 41cm. Styl Loftowy, Industrialny.",
+            "full_description": "Palenisko ogrodowe wykonane z wytrzymałych materiałów. Prezentuje się bardzo efektownie. Palenisko jest niezwykle trwałe i użytkowane w odpowiedni sposób posłuży przez długie lata. Palenisko to bezpieczny sposób na kontrolowanie ognia. Idealny dla miłośników organizowania ogniska, grilla lub pieczenia kociołka. Będzie stanowić wyjątkową ozdobę każdego ogrodu lub tarasu. Pozwoli na zorganizowanie bezpiecznych spotkań przy ogniu ze znajomymi. Oryginalny produkt holenderskiej marki Ambiance. Wyprodukowano zgodnie z europejskimi standardami.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.219Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 89,
+        "fields": {
+            "name": "Costway Regał Z Półkami I Szafkami 9 Przegródek",
+            "slug": "costway-rega-z-pokami-i-szafkami-9-przegrodek",
+            "is_active": true,
+            "category": 6,
+            "price": "391.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Białe Komody Costway Z szafkami. Materiał wykonania: Płyta meblowa, styl: Nowoczesny, szerokość: 90cm, wysokość: 90cm. Meble do samodzielnego montażu",
+            "full_description": "Nowoczesny regał z 9 przegródkamiDuża przestrzeń do przechowywania - 4 otwarte półki oraz 5 zamykanych przegródek zapewniają dużą przestrzeń do organizacji Twoich ulubionych dekoracji, książek czy roślinWysokiej jakości materiały - komoda została wykonana z najwyższej jakości płyty wiórowej, dzięki czemu gwarantuje niezrównaną wytrzymałość, stabilność i trwałośćNowoczesny design - dzięki prostemu nowoczesnemu stylowi, szafka świetnie sprawdzi się w salonie, sypialni, pokoju dziecięcym, czy biurze. Ponadczasowa forma doskonale pasuje do każdego motywu dekoracyjnegoŁatwość montażu - regał jest bardzo prosty w montażu. Wszystkie elementy potrzebne do instalacji (w tym wkręty mocujące szafkę do ściany) zostały dołączone do zestawuDane szczegółoweMaksymalne obciążenie: 40 kgMateriał: płyta wiórowaKolor: białyMontaż: wymaganyWymiarySzerokość: 90 cmGłębokość: 29 cmWysokość: 90 cmWaga: 22 kg...",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.245Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 90,
+        "fields": {
+            "name": "Toaletki Kosmetyczne Toaletka Biała Emma 3 Lustra 4 Szuflady +Taboret (BL021)",
+            "slug": "toaletki-kosmetyczne-toaletka-biaa-emma-3-lustra-4-szuflady-taboret-bl021",
+            "is_active": true,
+            "category": 6,
+            "price": "314.03",
+            "lowest_price_last_30_days": null,
+            "short_description": "Toaletki Kosmetyczne Toaletka Biała Emma 3 Lustra 4 Szuflady +Taboret (BL021)",
+            "full_description": "Ta wspaniała toaletka sprawi, że ​​serca kobiet zabiją szybciej. Zakrzywione kształty, kwiatowe ozdoby i elegancki taboret pozwolą Ci się poczuć jak we własnym salonie piękności.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.271Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 91,
+        "fields": {
+            "name": "Urządzenie wielofunkcyjne Brother InkBenefit Plus DCP-T520W",
+            "slug": "urzadzenie-wielofunkcyjne-brother-inkbenefit-plus-dcp-t520w",
+            "is_active": true,
+            "category": 7,
+            "price": "848.90",
+            "lowest_price_last_30_days": null,
+            "short_description": "Kolorowe urządzenie wielofunkcyjne A4 z systemem zbiorników do samodzielnego napełniania atramentem",
+            "full_description": "Maksymalna wielkośc formatu: A4 , Szybkość druku kolor: 9.5 ipm , Brak telefonu i faksu , Wbudowana karta sieciowa",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.299Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 92,
+        "fields": {
+            "name": "Drukarka Brother HL-L2352DW",
+            "slug": "drukarka-brother-hl-l2352dw",
+            "is_active": true,
+            "category": 7,
+            "price": "527.99",
+            "lowest_price_last_30_days": null,
+            "short_description": "Prędkość druku mono: 30str/min , Prędkość druku kolor: Nie dotyczy , Rozdzielczość mono: 1200x1200dpi , Kolor: Nie dotyczy , A4",
+            "full_description": "Drukarka HL-L2352DW oferuje wysoką prędkość druku oraz łączność bezprzewodową, umożliwiającą mobilne drukowanie bezpośrednio z telefonów komórkowych i tabletów.",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.326Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 93,
+        "fields": {
+            "name": "Drukarka Brother HL-1222WE",
+            "slug": "drukarka-brother-hl-1222we",
+            "is_active": true,
+            "category": 7,
+            "price": "499.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "MAŁE MONOCHROMATYCZNA DRUKARKA LASEROWA",
+            "full_description": "Prędkość druku mono: 20str/min , Prędkość druku kolor: Nie dotyczy , Rozdzielczość mono: 2400x600dpi , Kolor: Nie dotyczy , A4",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.353Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 94,
+        "fields": {
+            "name": "Urządzenie wielofunkcyjne Brother MFC-J6959DW",
+            "slug": "urzadzenie-wielofunkcyjne-brother-mfc-j6959dw",
+            "is_active": true,
+            "category": 7,
+            "price": "3403.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Profesjonalne urządzenie wielofunkcyjne w technologii atramentowej",
+            "full_description": "Maksymalna wielkośc formatu: A3+ , Szybkość druku kolor: 30 stron na min. , Wyłącznie faks , Wbudowana karta sieciowa",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.379Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 95,
+        "fields": {
+            "name": "Drukarka Brother HL-1223WE",
+            "slug": "drukarka-brother-hl-1223we",
+            "is_active": true,
+            "category": 7,
+            "price": "518.20",
+            "lowest_price_last_30_days": null,
+            "short_description": "BEZPRZEWODOWA DRUKARKA MONOCHROMATYCZNA",
+            "full_description": "Prędkość druku mono: 20str/min , Prędkość druku kolor: Nie dotyczy , Rozdzielczość mono: 2400x600dpi , Kolor: Nie dotyczy , A4",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.405Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 96,
+        "fields": {
+            "name": "Brother DCP-L3550CDW",
+            "slug": "brother-dcp-l3550cdw",
+            "is_active": true,
+            "category": 7,
+            "price": "1897.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Kolorowe urządzenie LED 3 w 1",
+            "full_description": "Kolorowe Urządzenia wielofunkcyjne laserowe Brother, szybkość drukowania mono: 18 stron na min., szybkość drukowania w kolorze: 18 stron na min., pojemność podajnika papieru: 250 arkuszy, Wbudowana karta sieciowa",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.433Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 97,
+        "fields": {
+            "name": "Drukarka Brother HL-B2080DW",
+            "slug": "drukarka-brother-hl-b2080dw",
+            "is_active": true,
+            "category": 7,
+            "price": "742.39",
+            "lowest_price_last_30_days": null,
+            "short_description": "KOMPAKTOWA DRUKARKA LASEROWA",
+            "full_description": "Prędkość druku mono: 34str/min , Prędkość druku kolor: Nie dotyczy , Rozdzielczość mono: 1200x1200dpi , Kolor: Nie dotyczy , A4",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.457Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 98,
+        "fields": {
+            "name": "Urządzenie wielofunkcyjne Epson EcoTank L6290",
+            "slug": "urzadzenie-wielofunkcyjne-epson-ecotank-l6290",
+            "is_active": true,
+            "category": 7,
+            "price": "1725.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Ciesz się dwustronnym drukowaniem przy bardzo niskich kosztach za sprawą tej szybkiej wielofunkcyjnej drukarki atramentowej z ADF i funkcją faksu, która idealnie sprawdza się w domach i małych biurach",
+            "full_description": "Maksymalna wielkośc formatu: A4 , Szybkość druku kolor: 8,5 stron na min. , Telefon i faks , Opcjonalna karta sieciowa",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.482Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 99,
+        "fields": {
+            "name": "Urządzenie wielofunkcyjne HP Envy 6020e AiO HP+ Instant Ink (223N4B)",
+            "slug": "urzadzenie-wielofunkcyjne-hp-envy-6020e-aio-hp-instant-ink-223n4b",
+            "is_active": true,
+            "category": 7,
+            "price": "299.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Urządzenie wielofunkcyjne HP ENVY 6020e z opcją subskrypcji druku Instant Ink",
+            "full_description": "Maksymalna wielkośc formatu: A4 , Szybkość druku kolor: 7 stron na min. , Wyłącznie faks , Wbudowana karta sieciowa",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.508Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 100,
+        "fields": {
+            "name": "Drukarka Xerox Phaser (3020V_BI)",
+            "slug": "drukarka-xerox-phaser-3020v_bi",
+            "is_active": true,
+            "category": 7,
+            "price": "374.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Xerox Phaser 3052VNI to monochromatyczna drukarka laserowa",
+            "full_description": "Prędkość druku mono: 26str/min , Prędkość druku kolor: Nie dotyczy , Rozdzielczość mono: 600x600dpi , Kolor: Nie dotyczy , A4",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.533Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 101,
+        "fields": {
+            "name": "Urządzenie wielofunkcyjne Canon PIXMA TS5150 (2228C006)",
+            "slug": "urzadzenie-wielofunkcyjne-canon-pixma-ts5150-2228c006",
+            "is_active": true,
+            "category": 7,
+            "price": "297.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "DRUKARKI DO UŻYTKU DOMOWEGO",
+            "full_description": "Maksymalna wielkośc formatu: A4 , Szybkość druku kolor: 6,8 stron na min. , Brak telefonu i faksu , Wbudowana karta sieciowa",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.559Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 102,
+        "fields": {
+            "name": "Urządzenie wielofunkcyjne Canon Pixma TS5352A różowy (3773C146)",
+            "slug": "urzadzenie-wielofunkcyjne-canon-pixma-ts5352a-rozowy-3773c146",
+            "is_active": true,
+            "category": 7,
+            "price": "479.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "Eleganckie urządzenie 3 w 1 z szybką łącznością",
+            "full_description": "Maksymalna wielkośc formatu: A4 , Szybkość druku kolor: 6,8 stron na min. , Brak telefonu i faksu , Wbudowana karta sieciowa",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.583Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 103,
+        "fields": {
+            "name": "Drukarka Canon PIXMA TS705A (3109C026)",
+            "slug": "drukarka-canon-pixma-ts705a-3109c026",
+            "is_active": true,
+            "category": 7,
+            "price": "295.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "DRUKARKI DO UŻYTKU DOMOWEGO",
+            "full_description": "Format papieru: A4 , Rozdzielczość druku mono: 4800x1200dpi , Rozdzielczość druku kolor: 4800x1200dpi",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.607Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 104,
+        "fields": {
+            "name": "Urządzenie wielofunkcyjne Canon Pixma G3410",
+            "slug": "urzadzenie-wielofunkcyjne-canon-pixma-g3410",
+            "is_active": true,
+            "category": 7,
+            "price": "599.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "DRUKARKI MEGATANK",
+            "full_description": "Maksymalna wielkośc formatu: A4 , Szybkość druku kolor: 5 stron na min. , Brak telefonu i faksu , Wbudowana karta sieciowa",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.632Z"
+        }
+    }, {
+        "model": "products_catalogue.product",
+        "pk": 105,
+        "fields": {
+            "name": "Canon i-SENSYS MF651cw",
+            "slug": "canon-i-sensys-mf651cw",
+            "is_active": true,
+            "category": 7,
+            "price": "1199.00",
+            "lowest_price_last_30_days": null,
+            "short_description": "DRUKARKI WIELOFUNKCYJNE",
+            "full_description": "Kolorowe Urządzenia wielofunkcyjne laserowe Canon, szybkość drukowania mono: 18 stron na min., szybkość drukowania w kolorze: 13 stron na min., pojemność podajnika papieru: 250 arkuszy, Opcjonalna karta sieciowa",
+            "created_at": "2023-10-11T08:00:00Z",
+            "updated_at": "2023-10-11T11:36:14.656Z"
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 1,
+        "fields": {
+            "product": 1,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 2,
+        "fields": {
+            "product": 2,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 3,
+        "fields": {
+            "product": 3,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 4,
+        "fields": {
+            "product": 4,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 5,
+        "fields": {
+            "product": 5,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 6,
+        "fields": {
+            "product": 6,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 7,
+        "fields": {
+            "product": 7,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 8,
+        "fields": {
+            "product": 8,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 9,
+        "fields": {
+            "product": 9,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 10,
+        "fields": {
+            "product": 10,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 11,
+        "fields": {
+            "product": 11,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 12,
+        "fields": {
+            "product": 12,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 13,
+        "fields": {
+            "product": 13,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 14,
+        "fields": {
+            "product": 14,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 15,
+        "fields": {
+            "product": 15,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 16,
+        "fields": {
+            "product": 16,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 17,
+        "fields": {
+            "product": 17,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 18,
+        "fields": {
+            "product": 18,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 19,
+        "fields": {
+            "product": 19,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 20,
+        "fields": {
+            "product": 20,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 21,
+        "fields": {
+            "product": 21,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 22,
+        "fields": {
+            "product": 22,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 23,
+        "fields": {
+            "product": 23,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 24,
+        "fields": {
+            "product": 24,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 25,
+        "fields": {
+            "product": 25,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 26,
+        "fields": {
+            "product": 26,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 27,
+        "fields": {
+            "product": 27,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 28,
+        "fields": {
+            "product": 28,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 29,
+        "fields": {
+            "product": 29,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 30,
+        "fields": {
+            "product": 30,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 31,
+        "fields": {
+            "product": 31,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 32,
+        "fields": {
+            "product": 32,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 33,
+        "fields": {
+            "product": 33,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 34,
+        "fields": {
+            "product": 34,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 35,
+        "fields": {
+            "product": 35,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 36,
+        "fields": {
+            "product": 36,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 37,
+        "fields": {
+            "product": 37,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 38,
+        "fields": {
+            "product": 38,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 39,
+        "fields": {
+            "product": 39,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 40,
+        "fields": {
+            "product": 40,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 41,
+        "fields": {
+            "product": 41,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 42,
+        "fields": {
+            "product": 42,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 43,
+        "fields": {
+            "product": 43,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 44,
+        "fields": {
+            "product": 44,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 45,
+        "fields": {
+            "product": 45,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 46,
+        "fields": {
+            "product": 46,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 47,
+        "fields": {
+            "product": 47,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 48,
+        "fields": {
+            "product": 48,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 49,
+        "fields": {
+            "product": 49,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 50,
+        "fields": {
+            "product": 50,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 51,
+        "fields": {
+            "product": 51,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 52,
+        "fields": {
+            "product": 52,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 53,
+        "fields": {
+            "product": 53,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 54,
+        "fields": {
+            "product": 54,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 55,
+        "fields": {
+            "product": 55,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 56,
+        "fields": {
+            "product": 56,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 57,
+        "fields": {
+            "product": 57,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 58,
+        "fields": {
+            "product": 58,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 59,
+        "fields": {
+            "product": 59,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 60,
+        "fields": {
+            "product": 60,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 61,
+        "fields": {
+            "product": 61,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 62,
+        "fields": {
+            "product": 62,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 63,
+        "fields": {
+            "product": 63,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 64,
+        "fields": {
+            "product": 64,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 65,
+        "fields": {
+            "product": 65,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 66,
+        "fields": {
+            "product": 66,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 67,
+        "fields": {
+            "product": 67,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 68,
+        "fields": {
+            "product": 68,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 69,
+        "fields": {
+            "product": 69,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 70,
+        "fields": {
+            "product": 70,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 71,
+        "fields": {
+            "product": 71,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 72,
+        "fields": {
+            "product": 72,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 73,
+        "fields": {
+            "product": 73,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 74,
+        "fields": {
+            "product": 74,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 75,
+        "fields": {
+            "product": 75,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 76,
+        "fields": {
+            "product": 76,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 77,
+        "fields": {
+            "product": 77,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 78,
+        "fields": {
+            "product": 78,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 79,
+        "fields": {
+            "product": 79,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 80,
+        "fields": {
+            "product": 80,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 81,
+        "fields": {
+            "product": 81,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 82,
+        "fields": {
+            "product": 82,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 83,
+        "fields": {
+            "product": 83,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 84,
+        "fields": {
+            "product": 84,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 85,
+        "fields": {
+            "product": 85,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 86,
+        "fields": {
+            "product": 86,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 87,
+        "fields": {
+            "product": 87,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 88,
+        "fields": {
+            "product": 88,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 89,
+        "fields": {
+            "product": 89,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 90,
+        "fields": {
+            "product": 90,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 91,
+        "fields": {
+            "product": 91,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 92,
+        "fields": {
+            "product": 92,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 93,
+        "fields": {
+            "product": 93,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 94,
+        "fields": {
+            "product": 94,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 95,
+        "fields": {
+            "product": 95,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 96,
+        "fields": {
+            "product": 96,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 97,
+        "fields": {
+            "product": 97,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 98,
+        "fields": {
+            "product": 98,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 99,
+        "fields": {
+            "product": 99,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 100,
+        "fields": {
+            "product": 100,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 101,
+        "fields": {
+            "product": 101,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 102,
+        "fields": {
+            "product": 102,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 103,
+        "fields": {
+            "product": 103,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 104,
+        "fields": {
+            "product": 104,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.productimage",
+        "pk": 105,
+        "fields": {
+            "product": 105,
+            "image": "media/jk-placeholder-image.jpg",
+            "is_featured": false
+        }
+    }, {
+        "model": "products_catalogue.category",
+        "pk": 1,
+        "fields": {
+            "name": "Buty damskie",
+            "slug": "buty-damskie",
+            "is_active": true,
+            "parent": null,
+            "ceneo_category": 1305
+        }
+    }, {
+        "model": "products_catalogue.category",
+        "pk": 2,
+        "fields": {
+            "name": "Buty męskie",
+            "slug": "buty-meskie",
+            "is_active": true,
+            "parent": null,
+            "ceneo_category": 1321
+        }
+    }, {
+        "model": "products_catalogue.category",
+        "pk": 3,
+        "fields": {
+            "name": "RTV",
+            "slug": "rtv",
+            "is_active": true,
+            "parent": null,
+            "ceneo_category": 3602
+        }
+    }, {
+        "model": "products_catalogue.category",
+        "pk": 4,
+        "fields": {
+            "name": "AGD",
+            "slug": "agd",
+            "is_active": true,
+            "parent": null,
+            "ceneo_category": 3601
+        }
+    }, {
+        "model": "products_catalogue.category",
+        "pk": 5,
+        "fields": {
+            "name": "Artykuły szkolne",
+            "slug": "artykuy-szkolne",
+            "is_active": true,
+            "parent": null,
+            "ceneo_category": 1475
+        }
+    }, {
+        "model": "products_catalogue.category",
+        "pk": 6,
+        "fields": {
+            "name": "Meble",
+            "slug": "meble",
+            "is_active": true,
+            "parent": null,
+            "ceneo_category": 1389
+        }
+    }, {
+        "model": "products_catalogue.category",
+        "pk": 7,
+        "fields": {
+            "name": "Drukarki",
+            "slug": "drukarki",
+            "is_active": true,
+            "parent": null,
+            "ceneo_category": 59
+        }
+    }
+]
