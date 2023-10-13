@@ -85,6 +85,11 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+Load data from fixtures:
+```
+python manage.py loaddata fixtures_products.json
+```
+
 Open web browser and navigate to localhost address:  http://127.0.0.1:8000/ 
 
 ---
