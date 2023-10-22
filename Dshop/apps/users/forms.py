@@ -1,7 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.forms import ModelForm
-
+from django.contrib.auth.forms import UserCreationForm
 from .models import User, CustomUser
 
 
@@ -11,13 +9,7 @@ class CustomUserForm(UserCreationForm):
         fields = ['username', 'password1', 'password2', 'email']
 
     def __init__(self, *args, **kwargs):
-        super(CustomUserForm, self).__init__(*args, **kwargs)
-        self.fields['username'].error_messages = {
-            'required': 'custom required message'}
-        self.fields['password1'].error_messages = {
-            'required': 'custom required password'}
-        self.fields['email'].error_messages = {
-            'required': 'custom required email'}
+        super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({'class': 'form-control',
                                                      "placeholder": "e.g. Luke"})
         self.fields['password1'].widget.attrs.update({'class': 'form-control',
@@ -35,12 +27,6 @@ class LoginUserForm(forms.ModelForm):
         model = User
         fields = ['username', 'password']
 
-    def __init__(self, request, *args, **kwargs):
-        super(LoginUserForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({'class': 'form-control',
-                                                     "placeholder": "e.g. Luke"})
-        self.fields['password'].widget.attrs.update({'class': 'form-control',
-                                                      "placeholder": "Password"})
 
 class UpdateCustomUserForm(forms.ModelForm):
     class Meta:
@@ -52,3 +38,4 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
+

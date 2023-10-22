@@ -1,22 +1,15 @@
-# from django.shortcuts import render
-# use class based views.
-from datetime import datetime
-
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from django.views.generic import CreateView, View, TemplateView, RedirectView
 
-from .forms import CustomUserForm, UpdateUserForm, UpdateCustomUserForm, \
-    LoginUserForm
+from .forms import CustomUserForm, UpdateUserForm, UpdateCustomUserForm
 from .models import CustomUser
+
 
 
 class RegistrationView(CreateView):
@@ -44,6 +37,8 @@ class LoginUserView(LoginView):
     redirect_authenticated_user = True
     template_name = 'users/login.html'
 
+    def get_success_url(self):
+        return reverse_lazy('home')
 
     def form_valid(self, form):
         valid = super(LoginUserView, self).form_valid(form)
@@ -92,6 +87,7 @@ class UpdateUserView(LoginRequiredMixin, View):
         if form.is_valid() & form_s.is_valid():
             form.save()
             form_s.save()
+            messages.success(request, "Profile details updated.")
             return redirect('update_user')
         context = {'form': form, 'form_s': form_s, 'user': user}
         return render(request, self.template_name, context)

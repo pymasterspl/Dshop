@@ -23,17 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-# SECRET_KEY = config('SECRET_KEY')
-SECRET_KEY = 'django-insecure-znipk%z09a@y4#z6&j49cukk8c+4n2hdni(fwp5vo)pqn+^412'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
-# DEBUG = config('DEBUG')
+DEBUG = config('DEBUG')
 
 
-ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
+ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 
 # Application definition
 PROJECT_APPS = [
@@ -168,4 +165,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 THUMBNAIL_PREFIX = 'cache/'
+
+
 
