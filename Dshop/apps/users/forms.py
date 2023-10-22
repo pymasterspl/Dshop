@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User, CustomUser
 
 
@@ -27,6 +27,12 @@ class LoginUserForm(forms.ModelForm):
         model = User
         fields = ['username', 'password']
 
+    def __init__(self, request, *args, **kwargs):
+        super(LoginUserForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-control',
+                                                     "placeholder": "e.g. Luke"})
+        self.fields['password'].widget.attrs.update({'class': 'form-control',
+                                                      "placeholder": "Password"})
 
 class UpdateCustomUserForm(forms.ModelForm):
     class Meta:
@@ -38,4 +44,3 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
-

@@ -30,6 +30,9 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG')
 
 
+# SECURITY WARNING: don't run with debug turned on in production!
+
+
 ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 
 # Application definition
@@ -165,6 +168,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 THUMBNAIL_PREFIX = 'cache/'
-
-
 

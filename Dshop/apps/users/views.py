@@ -5,11 +5,10 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
-from django.views.generic import CreateView, View, TemplateView, RedirectView
+from django.views.generic import CreateView, View, RedirectView, TemplateView
 
 from .forms import CustomUserForm, UpdateUserForm, UpdateCustomUserForm
 from .models import CustomUser
-
 
 
 class RegistrationView(CreateView):
@@ -88,6 +87,7 @@ class UpdateUserView(LoginRequiredMixin, View):
             form.save()
             form_s.save()
             messages.success(request, "Profile details updated.")
+
             return redirect('update_user')
         context = {'form': form, 'form_s': form_s, 'user': user}
         return render(request, self.template_name, context)
