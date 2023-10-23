@@ -1,0 +1,21 @@
+{%  extends 'base.html' %}
+{%  load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="mx-auto col-10 col-md-8 col-lg-6 vh-100 mt-lg-3">
+                <form method="POST" action="{%  url 'update_user' %}">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    {{ form_s.non_field_errors }}
+                    {{ form.as_p }}
+                    {{ form_s.as_p }}
+                    <div class="align-items-center">
+                        <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
