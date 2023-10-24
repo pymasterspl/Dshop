@@ -156,6 +156,17 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-tinymce"
+version = "3.6.1"
+description = "A Django application that contains a widget to render a form field as a TinyMCE editor."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-tinymce-3.6.1.tar.gz", hash = "sha256:6f4f6227c2c608052081a436a1e3054c441caae24c9e0c8c3010536e24749e29"},
+    {file = "django_tinymce-3.6.1-py3-none-any.whl", hash = "sha256:da5732413f51cf854352e3148f06f170b59d95a6c6a43fd9f7ccfdd1849f4bf9"},
+]
+
+[[package]]
 name = "idna"
 version = "3.4"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -561,4 +572,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "da29d105273bc5dde0ffcd8ad933b7ffa186d6fb529bc332d2ffc779c6800af9"
+content-hash = "6f4f6340109ead738955e32eb11685360b83fe73a656fdc7f916df50470be9c7"
