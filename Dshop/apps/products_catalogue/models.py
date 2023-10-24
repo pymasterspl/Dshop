@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from tinymce import models as tinymce_models
 
 
 class CatalogueItemModel(models.Model):
@@ -51,8 +52,8 @@ class Product(CatalogueItemModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     lowest_price_last_30_days = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    short_description = models.TextField()
-    full_description = models.TextField()
+    short_description = tinymce_models.HTMLField()
+    full_description = tinymce_models.HTMLField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
