@@ -46,7 +46,7 @@
                                 <div class="ml-2"><small class="dis-price">Cena z ostatnich 30 dni: {{ product.lowest_price_last_30_days }} PLN</small> <span></span></div>
 
                             </div>
-                            <p class="about">{{ product.full_description }}</p>
+                            <p class="about">{{ product.full_description|safe }}</p>
                             <div class="cart mt-4 align-items-center">
                                 <button class="btn btn-danger text-uppercase mr-2 px-4">Dodaj do koszyka</button>
                             </div>
