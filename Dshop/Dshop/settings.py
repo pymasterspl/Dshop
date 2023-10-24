@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sorl.thumbnail',
+    'tinymce',
 
 ] + PROJECT_APPS
 
@@ -169,3 +170,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 THUMBNAIL_PREFIX = 'cache/'
 
+TINYMCE_DEFAULT_CONFIG = {
+    "theme": "silver",
+    "width": 500,
+    "height": 300,
+    "menubar": False,
+    "plugins": "lists",
+    "toolbar": " formatselect  | bold italic | bullist "
+}
