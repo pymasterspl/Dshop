@@ -59,6 +59,11 @@ class Product(CatalogueItemModel):
     @property
     def featured_photos(self):
         return ProductImage.objects.filter(product=self, is_featured=True)
+    
+    @property
+        def lowest_price_in_30_days(self):
+            # now - 30 days
+            pass 
 
 
 class ProductImage(models.Model):

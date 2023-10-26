@@ -44,3 +44,10 @@ def test_product_creation_creates_price_change_history():
     )
     # Then
     assert PriceChangeHistory.objects.count() == 1
+
+# use https://pypi.org/project/freezegun/ for time management in tests
+# add __init__ method to product and store current price in local variable
+# in save check if price changed
+# if price changed 
+#   - update last existing PriceCHangeHistory object with disabled_at = current time
+#   - create new PriceCHangeHistory with new price
