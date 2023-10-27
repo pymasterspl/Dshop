@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twój koszyk</title>
+</head>
+<body>
+Twój koszyk
+<br>
+<br>
+
+<li>COUNT ALL {{ cart.count}}</li>
+-----------------------------------
+{% for item in cart %}
+    <li>PRODUCT {{ item.product  }}</li>
+    <li>PRICE {{ item.price  }}</li>
+    <li>SUBTOTAL {{ item.subtotal   }}</li>
+    <li>COUNT {{ item.quantity   }}</li>
+    -----------------------------------------
+{% endfor %}
+</body>
+</html>
