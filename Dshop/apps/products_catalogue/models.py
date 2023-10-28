@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
-
+from django.urls import reverse
 
 class CatalogueItemModel(models.Model):
     name = models.CharField(max_length=200)
@@ -47,6 +47,10 @@ class Category(CatalogueItemModel):
             k = k.parent
         return ' -> '.join(full_path[::-1])  
 
+    def get_absolute_url(self):
+        return reverse("category-detail", args=[self.slug, self.id])
+
+
 class Product(CatalogueItemModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -55,6 +59,12 @@ class Product(CatalogueItemModel):
     full_description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse("product-detail", args=[self.slug, self.id])
+
+    def __str__(self):
+        return self.name
 
     @property
     def featured_photos(self):

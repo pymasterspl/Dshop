@@ -19,9 +19,22 @@ from django.urls import path, include
 import os
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from sitemap import ProductSitemap, StaticViewSitemap, CategorySitemap
+
+
+sitemaps ={
+    'products' : ProductSitemap,
+    'categories': CategorySitemap,
+    "static": StaticViewSitemap,
+}
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(
+        "sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap",
+    ),
     path('', include('apps.products_catalogue.urls'))
 ]
 

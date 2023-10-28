@@ -37,6 +37,20 @@ def test_single_product_view(client):
 
 
 @pytest.mark.django_db
+def test_single_by_absolute_url(client):
+    category = Category.objects.create(name='Test Category', is_active=True)
+    product = Product.objects.create(
+        name="first one",
+        category=category,
+        price=11,
+        short_description="short desc",
+        full_description="full_description"
+    )
+    url = product.get_absolute_url()
+    response = client.get(url)
+    assert_object_response(response, product, category)
+
+@pytest.mark.django_db
 def test_create_category():
     category = Category.objects.create(name='Test Category', is_active=True)
     assert category.name == 'Test Category'
