@@ -8,7 +8,8 @@ from django.urls import reverse_lazy
 
 from django.views.generic import CreateView, View, TemplateView, RedirectView
 
-from .forms import CustomUserForm, UpdateUserForm, UpdateCustomUserForm
+from .forms import CustomUserForm, UpdateUserForm, UpdateCustomUserForm, \
+    LoginUserForm
 from .models import CustomUser
 
 
@@ -36,6 +37,8 @@ class LoginUserView(LoginView):
     redirect_authenticated_user = True
     template_name = 'users/login.html'
 
+    def get_success_url(self):
+        return reverse_lazy('home')
 
     def form_valid(self, form):
         valid = super(LoginUserView, self).form_valid(form)
@@ -92,3 +95,7 @@ class UpdateUserView(LoginRequiredMixin, View):
 
 class HomeView(TemplateView):
     template_name = 'users/home.html'
+
+
+class TempatesView(TemplateView):
+    template_name = 'users/privacy-policy.html'
