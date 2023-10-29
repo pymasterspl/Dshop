@@ -11,3 +11,4 @@ urlpatterns = [
     path('update-user/', UpdateUserView.as_view(), name='update_user')
 ]
 
+

@@ -11,7 +11,6 @@ from .forms import CustomUserForm, UpdateUserForm, UpdateCustomUserForm
 from .models import CustomUser
 
 
-
 class RegistrationView(CreateView):
     redirect_authenticated_user = True
     form_class = CustomUserForm
