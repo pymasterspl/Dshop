@@ -21,8 +21,8 @@ class CategorySitemap(Sitemap):
     def items(self):
         return Category.objects.filter(is_active=True).order_by("-id")
 
-    # def lastmod(self, obj):
-    #     return obj.updated_at
+    def lastmod(self, obj):
+        return obj.updated_at
 
 
 class StaticViewSitemap(Sitemap):

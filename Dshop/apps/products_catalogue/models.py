@@ -34,6 +34,7 @@ class CeneoCategory(models.Model):
 class Category(CatalogueItemModel):
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
     ceneo_category = models.ForeignKey(CeneoCategory, blank=True, null=True, on_delete=models.SET_NULL)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'Category'
