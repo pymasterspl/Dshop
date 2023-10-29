@@ -1,3 +1,4 @@
+
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -30,7 +31,6 @@ class RegistrationView(CreateView):
         CustomUser.objects.create(user_id=new_user.id)
         login(self.request, new_user)
         return valid
-
 
 class LoginUserView(LoginView):
     redirect_authenticated_user = True
