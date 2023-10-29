@@ -26,19 +26,10 @@ class CustomUserForm(UserCreationForm):
                                                   "placeholder": "e.g. Dshop@email.com"})
 
 
-class LoginUserForm(forms.ModelForm):
+class LoginUserForm(forms.Form):
+    username = forms.CharField(max_length=100)
     password = forms.CharField(widget=forms.PasswordInput())
 
-    class Meta:
-        model = User
-        fields = ['username', 'password']
-
-    def __init__(self, request, *args, **kwargs):
-        super(LoginUserForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({'class': 'form-control',
-                                                     "placeholder": "e.g. Luke"})
-        self.fields['password'].widget.attrs.update({'class': 'form-control',
-                                                      "placeholder": "Password"})
 
 class UpdateCustomUserForm(forms.ModelForm):
     class Meta:
