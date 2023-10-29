@@ -35,6 +35,7 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 
+
 # Application definition
 PROJECT_APPS = [
     'apps.core',
@@ -160,6 +161,7 @@ LOGIN_URL = 'login'
 # Uncomment for authentication
 # AUTH_USER_MODEL = 'core.User'
 
+
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 STRIPE_ENDPOINT_SECRET = config('STRIPE_ENDPOINT_SECRET')
@@ -178,3 +180,4 @@ TINYMCE_DEFAULT_CONFIG = {
     "plugins": "lists",
     "toolbar": " formatselect  | bold italic | bullist "
 }
+

@@ -10,6 +10,12 @@ class CustomUserForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['username'].error_messages = {
+            'required': 'custom required message'}
+        self.fields['password1'].error_messages = {
+            'required': 'custom required password'}
+        self.fields['email'].error_messages = {
+            'required': 'custom required email'}
         self.fields['username'].widget.attrs.update({'class': 'form-control',
                                                      "placeholder": "e.g. Luke"})
         self.fields['password1'].widget.attrs.update({'class': 'form-control',
