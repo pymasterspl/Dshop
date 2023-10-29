@@ -1,7 +1,19 @@
+<<<<<<< HEAD
 
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+=======
+# from django.shortcuts import render
+# use class based views.
+from datetime import datetime
+
+from django.contrib import messages
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+>>>>>>> 299953b (feature/user-management)
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -31,6 +43,7 @@ class RegistrationView(CreateView):
         CustomUser.objects.create(user_id=new_user.id)
         login(self.request, new_user)
         return valid
+<<<<<<< HEAD
 
 class LoginUserView(LoginView):
     redirect_authenticated_user = True
@@ -48,6 +61,22 @@ class LoginUserView(LoginView):
         return valid
 
 
+=======
+
+
+class LoginUserView(LoginView):
+    redirect_authenticated_user = True
+    template_name = 'users/login.html'
+
+    def get_success_url(self):
+        return reverse_lazy('home')
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Invalid username or password !')
+        return self.render_to_response(self.get_context_data(form=form))
+
+
+>>>>>>> 299953b (feature/user-management)
 class LogoutView(LoginRequiredMixin, RedirectView):
     permanent = False
     query_string = True
