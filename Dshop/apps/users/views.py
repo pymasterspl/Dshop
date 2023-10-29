@@ -8,8 +8,7 @@ from django.urls import reverse_lazy
 
 from django.views.generic import CreateView, View, RedirectView, TemplateView
 
-from .forms import CustomUserForm, UpdateUserForm, UpdateCustomUserForm, \
-    LoginUserForm
+from .forms import CustomUserForm, UpdateUserForm, UpdateCustomUserForm
 from .models import CustomUser
 
 
