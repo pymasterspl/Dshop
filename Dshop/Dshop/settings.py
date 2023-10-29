@@ -171,6 +171,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 THUMBNAIL_PREFIX = 'cache/'
+<<<<<<< HEAD
 
 TINYMCE_DEFAULT_CONFIG = {
     "theme": "silver",
@@ -181,3 +182,5 @@ TINYMCE_DEFAULT_CONFIG = {
     "toolbar": " formatselect  | bold italic | bullist "
 }
 
+=======
+>>>>>>> 0147c8a84b601c7a32ac6e9a148e7e097884de03
