@@ -1,7 +1,19 @@
 {%  extends 'base.html' %}
 {%  load static %}
+<<<<<<< HEAD
 
 {% block content %}
 
 {% endblock content %}
 
+=======
+{% block stripe %}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'main.js' %}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v6.4.0/js/all.js"></script>
+{% endblock %}
+
+{% block content %}
+
+{% endblock content %}
+>>>>>>> ccc8b58 (user-management)

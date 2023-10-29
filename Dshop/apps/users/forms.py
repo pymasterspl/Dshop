@@ -10,6 +10,12 @@ class CustomUserForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['username'].error_messages = {
+            'required': 'custom required message'}
+        self.fields['password1'].error_messages = {
+            'required': 'custom required password'}
+        self.fields['email'].error_messages = {
+            'required': 'custom required email'}
         self.fields['username'].widget.attrs.update({'class': 'form-control',
                                                      "placeholder": "e.g. Luke"})
         self.fields['password1'].widget.attrs.update({'class': 'form-control',
@@ -27,6 +33,12 @@ class LoginUserForm(forms.ModelForm):
         model = User
         fields = ['username', 'password']
 
+    def __init__(self, request, *args, **kwargs):
+        super(LoginUserForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-control',
+                                                     "placeholder": "e.g. Luke"})
+        self.fields['password'].widget.attrs.update({'class': 'form-control',
+                                                      "placeholder": "Password"})
 
 class UpdateCustomUserForm(forms.ModelForm):
     class Meta:
