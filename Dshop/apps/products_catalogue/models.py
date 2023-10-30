@@ -66,7 +66,7 @@ class Product(CatalogueItemModel):
         (90, 'Towar na zamówienie'),
         (99, 'Brak informacji o dostępności - status „sprawdź w sklepie”'),
         (110, 'Przedsprzedaż'),
-    ], default=1)
+    ], default=99)
 
     @property
     def featured_photos(self):
