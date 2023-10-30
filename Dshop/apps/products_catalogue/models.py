@@ -20,9 +20,10 @@ class CatalogueItemModel(models.Model):
         self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
 
-# TODO : CeneoCategory class must have self FK as it is in Category class
+
 class CeneoCategory(models.Model):
     name = models.CharField(max_length=200)
+    parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'CeneoCategory'
@@ -47,6 +48,7 @@ class Category(CatalogueItemModel):
             full_path.append(k.name)
             k = k.parent
         return ' -> '.join(full_path[::-1])  
+
 
 class Product(CatalogueItemModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
