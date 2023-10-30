@@ -35,7 +35,7 @@ class CeneoProductListView(View):
 
         for product in products:
             o_element = etree.SubElement(root, 'o', id=str(product.pk), url=str(), price=str(product.price),
-                                         avail=str(),  # TODO: url and available items
+                                         avail=str(product.availability),  # TODO: add url
                                          weight=str(),
                                          stock=str(),
                                          basket=str())
@@ -55,7 +55,6 @@ class CeneoProductListView(View):
             main_element = etree.SubElement(imgs_element, 'main')
             main_element.set('url', featured_image_url)
 
-            # TODO : to add additional images in loop
             additional_images = product.images.all()
             for i, additional_image in enumerate(additional_images, start=1):
                 additional_img_element = etree.SubElement(imgs_element, 'i', id=str(i))
