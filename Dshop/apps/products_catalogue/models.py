@@ -58,6 +58,15 @@ class Product(CatalogueItemModel):
     full_description = tinymce_models.HTMLField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    availability = models.PositiveSmallIntegerField(choices=[
+        (1, 'Dostępny, sklep wyśle produkt w ciągu 24 godzin'),
+        (3, 'Sklep wyśle produkt do 3 dni'),
+        (7, 'Sklep wyśle produkt w ciągu tygodnia'),
+        (14, 'Sklep wyśle produkt do 14 dni'),
+        (90, 'Towar na zamówienie'),
+        (99, 'Brak informacji o dostępności - status „sprawdź w sklepie”'),
+        (110, 'Przedsprzedaż'),
+    ], default=1)
 
     @property
     def featured_photos(self):
