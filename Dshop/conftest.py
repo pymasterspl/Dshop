@@ -1,5 +1,4 @@
 import pytest
-from dj_shop_cart.cart import get_cart_class
 from django.urls import reverse
 from pytest import fixture
 
@@ -8,7 +7,7 @@ from apps.products_catalogue.models import Category, Product
 
 @fixture()
 @pytest.mark.django_db
-def product():
+def tv_product():
     category = Category.objects.create(
         name='Test Category',
         is_active=True
@@ -22,8 +21,24 @@ def product():
     return product
 
 
+@fixture()
+@pytest.mark.django_db
+def edifier_product():
+    category = Category.objects.create(
+        name='Test Category',
+        is_active=True
+    )
+    product = Product.objects.create(
+        name='Edifier r1700dbs',
+        price=499.00,
+        full_description='Description 2',
+        category=category
+    )
+    return product
+
+
 @fixture
-def fake_request(client):
+def fake_cart_detail_view_request(client):
     url = reverse(
         "cart_detail_view"
     )
@@ -31,3 +46,19 @@ def fake_request(client):
     fake_request = fake_response.wsgi_request
 
     return fake_request
+
+
+@fixture
+def fake_add_to_cart_view_request(client, tv_product):
+    url = reverse(
+        'add_to_cart_view',
+        kwargs={
+            'slug': 'first-one',
+            'id': tv_product.id,
+            'quantity': 3
+        }
+    )
+    fake_response = client.get(url)
+    fake_add_request = fake_response.wsgi_request
+
+    return fake_add_request

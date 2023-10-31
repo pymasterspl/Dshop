@@ -28,9 +28,9 @@ class AddToCartView(CreateView):
     model = Cart
 
     def get(self, request, **kwargs):
-        quantity = 1
         cart = self.model.new(request)
         product_id = self.kwargs.get('id')
+        quantity = self.kwargs.get('quantity')
         product = get_object_or_404(Product, id=product_id)
 
         cart.add(product,  quantity=quantity)
