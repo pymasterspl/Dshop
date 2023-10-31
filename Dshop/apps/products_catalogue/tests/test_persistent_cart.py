@@ -59,8 +59,7 @@ def test_response_add_to_cart_view_request(client, tv_product):
         'add_to_cart_view',
         kwargs={
             'slug': 'first-one',
-            'id': tv_product.id,
-            'quantity': 3
+            'id': tv_product.id
         }
     )
     fake_response = client.get(url)
@@ -76,8 +75,7 @@ def test_add_non_exist_product_to_cart(client):
         'add_to_cart_view',
         kwargs={
             'slug': 'first-one',
-            'id': 999,
-            'quantity': 3
+            'id': 999
         }
     )
     fake_response = client.get(url)
@@ -89,6 +87,5 @@ def test_add_non_exist_product_to_cart(client):
 @pytest.mark.django_db
 def test_add_product_to_cart(fake_add_to_cart_view_request):
     cart = Cart.new(fake_add_to_cart_view_request)
-
     assert len(cart) == 1
-    assert cart.count == 3
+    assert cart.count == 1

@@ -30,10 +30,9 @@ class AddToCartView(CreateView):
     def get(self, request, **kwargs):
         cart = self.model.new(request)
         product_id = self.kwargs.get('id')
-        quantity = self.kwargs.get('quantity')
         product = get_object_or_404(Product, id=product_id)
 
-        cart.add(product,  quantity=quantity)
+        cart.add(product,  quantity=1)
 
         return redirect('cart_detail_view')
 
