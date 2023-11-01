@@ -41,6 +41,7 @@ PROJECT_APPS = [
     'apps.users',
     'apps.products_catalogue',
     'apps.payments.apps.PaymentsConfig',
+    'dj_shop_cart'
 ]
 
 INSTALLED_APPS = [
@@ -79,8 +80,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
                 'apps.core.context_processors.add_variable_to_context',
+
+                # If you want access to the cart instance in all templates
+                "dj_shop_cart.context_processors.cart",
             ],
         },
     },
@@ -178,3 +181,6 @@ TINYMCE_DEFAULT_CONFIG = {
     "plugins": "lists",
     "toolbar": " formatselect  | bold italic | bullist "
 }
+
+CART_STORAGE_BACKEND = "dj_shop_cart.storages.DBStorage"
+
