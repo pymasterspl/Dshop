@@ -25,6 +25,7 @@
                                 <a href="{% url 'product-detail' object.slug object.pk %}">
                                     <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                                 </a>
+
                             {% endthumbnail %}
                         {% empty %}
                             {% thumbnail object.images.first.image "200x200" crop="center" as thumb %}
