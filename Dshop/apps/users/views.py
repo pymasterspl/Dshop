@@ -95,3 +95,7 @@ class UpdateUserView(LoginRequiredMixin, View):
 
 class HomeView(TemplateView):
     template_name = 'users/home.html'
+
+
+class TemplatesView(TemplateView):
+    template_name = 'users/privacy-policy.html'
