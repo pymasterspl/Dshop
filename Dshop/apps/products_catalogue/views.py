@@ -1,10 +1,12 @@
 import requests
+from django.contrib import messages
+from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from lxml import etree
-from dj_shop_cart.cart import Cart
+from dj_shop_cart.cart import get_cart_class, Cart
 
 from .models import Product, CeneoCategory
 
@@ -32,7 +34,22 @@ class AddToCartView(CreateView):
         product_id = self.kwargs.get('id')
         product = get_object_or_404(Product, id=product_id)
 
+        if not product.is_available:
+            raise ValidationError("Produkt jest niedostępny.")
+
         cart.add(product,  quantity=1)
+
+        return redirect('cart_detail_view')
+
+
+class DeleteCartView(UpdateView):
+    model = Cart
+
+    def get(self, request, **kwargs):
+        cart = self.model.new(request)
+        item_id = self.kwargs.get('id')
+
+        cart.remove(item_id=item_id,  quantity=1)
 
         return redirect('cart_detail_view')
 

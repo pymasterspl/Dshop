@@ -15,7 +15,11 @@ Twój koszyk
     <li>PRODUCT {{ item.product  }}</li>
     <li>PRICE {{ item.price  }}</li>
     <li>SUBTOTAL {{ item.subtotal   }}</li>
-    <li>COUNT {{ item.quantity   }}</li>
+   <li>
+       <a href="{% url 'delete_cart_view' item.product.slug item.id %}" >minus</a>
+            COUNT {{ item.quantity   }}
+       <a href="{% url 'add_to_cart_view' item.product.slug item.product.id %}" >plus</a>
+   </li>
     -----------------------------------------
 {% endfor %}
 </body>

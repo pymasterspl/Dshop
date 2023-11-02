@@ -2,14 +2,13 @@ import pytest
 from django.urls import reverse
 from pytest import mark
 
-from dj_shop_cart.cart import get_cart_class, Cart
+from dj_shop_cart.cart import get_cart_class
 
 
 @mark.dj_shop_cart
 @pytest.mark.django_db
 def test_products_cart(tv_product, fake_cart_detail_view_request):
     Cart = get_cart_class()
-
     quantity = 2
     cart = Cart.new(fake_cart_detail_view_request)
     cart.add(tv_product, quantity=quantity)
@@ -22,7 +21,6 @@ def test_products_cart(tv_product, fake_cart_detail_view_request):
 @pytest.mark.django_db
 def test_two_the_same_products_cart(tv_product, fake_cart_detail_view_request):
     Cart = get_cart_class()
-
     quantity = 4
     cart = Cart.new(fake_cart_detail_view_request)
     cart.add(tv_product, quantity=quantity)
@@ -37,14 +35,12 @@ def test_two_different_products_cart(
         tv_product, edifier_product,
         fake_cart_detail_view_request
 ):
-
-    quantity_1 = 1
     Cart = get_cart_class()
+    quantity_1 = 1
     cart = Cart.new(fake_cart_detail_view_request)
     cart.add(tv_product, quantity=quantity_1)
 
     quantity_2 = 2
-    Cart = get_cart_class()
     cart = Cart.new(fake_cart_detail_view_request)
     cart.add(edifier_product, quantity=quantity_2)
 
@@ -85,7 +81,21 @@ def test_add_non_exist_product_to_cart(client):
 
 @mark.dj_shop_cart
 @pytest.mark.django_db
-def test_add_product_to_cart(fake_add_to_cart_view_request):
+def test_add_product_to_cart(tv_product, fake_add_to_cart_view_request):
+    Cart = get_cart_class()
     cart = Cart.new(fake_add_to_cart_view_request)
+
     assert len(cart) == 1
     assert cart.count == 1
+    assert cart.find_one(product=tv_product).product == tv_product
+    assert tv_product in cart.products
+
+
+@mark.dj_shop_cart
+@pytest.mark.django_db
+def test_cart_increase_quantity(tv_product, fake_add_to_cart_view_request):
+    Cart = get_cart_class()
+    cart = Cart.new(fake_add_to_cart_view_request)
+    item = cart.add(product=tv_product, quantity=10)
+    item = cart.increase(item.id, quantity=10)  # I dont know how to use it yet
+    assert item.quantity == 21
