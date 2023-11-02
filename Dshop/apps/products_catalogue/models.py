@@ -1,5 +1,8 @@
+from dj_shop_cart.cart import CartItem
 from django.db import models
+from django.db.models import DecimalField
 from django.utils.text import slugify
+from tinymce import models as tinymce_models
 
 
 class CatalogueItemModel(models.Model):
@@ -18,6 +21,7 @@ class CatalogueItemModel(models.Model):
         # path('<slug:slug>-<int:pk>/', NoteDetailView.as_view(), name='note_details'),
         self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
+
 
 # TODO : CeneoCategory class must have self FK as it is in Category class
 class CeneoCategory(models.Model):
@@ -45,20 +49,25 @@ class Category(CatalogueItemModel):
         while k is not None:
             full_path.append(k.name)
             k = k.parent
-        return ' -> '.join(full_path[::-1])  
+        return ' -> '.join(full_path[::-1])
+
 
 class Product(CatalogueItemModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     lowest_price_last_30_days = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    short_description = models.TextField()
-    full_description = models.TextField()
+    short_description = tinymce_models.HTMLField()
+    full_description = tinymce_models.HTMLField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     @property
     def featured_photos(self):
         return ProductImage.objects.filter(product=self, is_featured=True)
+
+    def get_price(self, item: CartItem) -> DecimalField:
+
+        return self.price
 
 
 class ProductImage(models.Model):

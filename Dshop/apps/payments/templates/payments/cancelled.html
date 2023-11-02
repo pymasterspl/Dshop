@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load thumbnail %}
+
+{% block stripe %}
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'main.js' %}"></script>
+<script defer src="https://use.fontawesome.com/releases/v6.4.0/js/all.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+    <section class="section">
+        <div class="container">
+            <p>Your payment was cancelled.</p>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

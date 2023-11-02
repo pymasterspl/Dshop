@@ -23,7 +23,7 @@ class CustomUser(models.Model):
     country = models.ForeignKey(Country, null=True, on_delete=models.SET_NULL)
     date_of_birth = models.DateField(null=True, blank=True)
     phone_number = models.CharField(max_length=15)
-    date_joined = models.DateTimeField(auto_now_add=True) 
+    date_joined = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.user)

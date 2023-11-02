@@ -71,6 +71,9 @@ jobs:
           echo "SECRET_KEY=default_secret_key" > .env
           echo "DEBUG=False" >> .env
           echo "ALLOWED_HOSTS=[]" >> .env
+          echo "STRIPE_PUBLISHABLE_KEY=default_stripe_publishable_key" >> .env
+          echo "STRIPE_SECRET_KEY=stripe_secret_key" >> .env
+          echo "STRIPE_ENDPOINT_SECRET=stripe_endpoint_secret" >> .env
 
       - name: Check Migrations
         run: |

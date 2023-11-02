@@ -2,8 +2,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from .views import CeneoCategoriesView, CeneoProductListView, ProductListView, ProductDetailView, \
-    CategoryListView, CategoryDetailView
+from .views import CeneoCategoriesView, CeneoProductListView, ProductListView, \
+    ProductDetailView, AddToCartView, CartDetailView, CategoryListView, CategoryDetailView
+
 
 urlpatterns = [
     path('products_list/', ProductListView.as_view(), name='products-list'),
@@ -12,7 +13,8 @@ urlpatterns = [
     path("products/<slug>-<int:id>", ProductDetailView.as_view(), name='product-detail'),
     path('categories/', CategoryListView.as_view(), name='category-list'),
     path('category/<slug>-<int:id>', CategoryDetailView.as_view(), name='category-detail'),
-
+    path("cart/<slug>-<int:id>", AddToCartView.as_view(), name='add_to_cart_view'),
+    path("cart_detail/", CartDetailView.as_view(), name='cart_detail_view'),
 ]
 
 if settings.DEBUG:
