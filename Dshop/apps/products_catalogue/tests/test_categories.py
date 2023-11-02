@@ -33,9 +33,9 @@ def test_get_empty_categories_list(client):
 
 @pytest.mark.django_db
 def test_get_non_active_categories_list(client):
-    cat_1 = Category.objects.create(name="Koszule", is_active=False)
-    cat_2 = Category.objects.create(name="Buty", is_active=False)
-    cat_3 = Category.objects.create(name="Druty", is_active=False)
+    Category.objects.create(name="Koszule", is_active=False)
+    Category.objects.create(name="Buty", is_active=False)
+    Category.objects.create(name="Druty", is_active=False)
     url = reverse("category-list")
     response = client.get(url)
     assert response.status_code == 200
