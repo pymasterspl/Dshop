@@ -23,16 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-# SECRET_KEY = 'django-secret-key-hash'
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = True
 DEBUG = config('DEBUG')
 
 
-# ALLOWED_HOSTS = []
+# SECURITY WARNING: don't run with debug turned on in production!
+
+
 ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 
 # Application definition
@@ -40,6 +40,8 @@ PROJECT_APPS = [
     'apps.core',
     'apps.users',
     'apps.products_catalogue',
+    'apps.payments.apps.PaymentsConfig',
+    'dj_shop_cart'
 ]
 
 SITE_ID = 1
@@ -54,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.sites',
     'sorl.thumbnail',
+    'tinymce',
 
 ] + PROJECT_APPS
 
@@ -81,8 +84,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
                 'apps.core.context_processors.add_variable_to_context',
+
+                # If you want access to the cart instance in all templates
+                "dj_shop_cart.context_processors.cart",
             ],
         },
     },
@@ -101,7 +106,7 @@ DATABASES = {
     }
 }
 
-## Postgrerss config 
+# Postgrerss config
 
 # DATABASES = {
 #     "default": {
@@ -113,8 +118,6 @@ DATABASES = {
 #         "PORT": config('POSTGRES_PORT'),
 #     }
 # }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -155,13 +158,36 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = 'login'
 
-
-## Settings added manually ##
+# Settings added manually
 
 # Uncomment for authentication
 # AUTH_USER_MODEL = 'core.User'
+
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+STRIPE_ENDPOINT_SECRET = config('STRIPE_ENDPOINT_SECRET')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+THUMBNAIL_PREFIX = 'cache/'
+
+TINYMCE_DEFAULT_CONFIG = {
+    "theme": "silver",
+    "width": 500,
+    "height": 300,
+    "menubar": False,
+    "plugins": "lists",
+    "toolbar": " formatselect  | bold italic | bullist "
+}
+
+CART_STORAGE_BACKEND = "dj_shop_cart.storages.DBStorage"
+

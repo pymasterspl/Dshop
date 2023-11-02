@@ -183,3 +183,5 @@ cython_debug/
 .idea/
 
 # a test
+cache
+media/

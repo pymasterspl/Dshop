@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load thumbnail %}
+
 {% block content %}
 <style>
 .product-img {
@@ -18,23 +20,33 @@
         <div class="col-md-3 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'product-detail' object.slug object.pk %}">{{ object.name
-                        }}</a></h5>
-                    <p class="card-text">Opis: {{ object.short_description }}</p>
+
+
+                    <h5 class="card-title"><a href="{% url 'product-detail' object.slug object.pk %}">{{ object.name }}</a></h5>
+                    <p class="card-text">Opis: {{ object.short_description|safe }}</p>
                     <p class="card-text">Cena: {{ object.price }} PLN</p>
                     <small>Cena z ostatnich 30 dni: {{ object.lowest_price_last_30_days }} PLN</small>
                     <hr>
                     {% if not object.images.all %}
                     <p>Brak zdjęć</p>
                     {% else %}
-                    {% for pic in object.featured_photos %}
-                    <img class="product-img" src="{{ pic.image.url }}" alt="{{ object.name }}"/>
-                    {% empty %}
-                    <img class="product-img" src="{{ object.images.first.image.url }}" alt="{{ object.name }}"/>
-                    {% endfor %}
+
+                        {% for pic in object.featured_photos %}
+                            {% thumbnail pic.image "200x200" crop="center" as im %}
+                                <a href="{% url 'product-detail' object.slug object.pk %}">
+                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                </a>
+                            {% endthumbnail %}
+                        {% empty %}
+                            {% thumbnail object.images.first.image "200x200" crop="center" as thumb %}
+                                <a href="{% url 'product-detail' object.slug object.pk %}">
+                                    <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}">
+                                </a>
+                            {% endthumbnail %}
+                        {% endfor %}
                     {% endif %}
                     <hr>
-                    <a href="#" class="btn btn-primary">Dodaj do koszyka</a>
+                    <a href="{% url 'add_to_cart_view' object.slug object.pk %}" class="btn btn-primary">Dodaj do koszyka</a>
                 </div>
             </div>
         </div>
