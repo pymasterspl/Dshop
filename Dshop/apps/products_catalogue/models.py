@@ -1,4 +1,6 @@
+from dj_shop_cart.cart import CartItem
 from django.db import models
+from django.db.models import DecimalField
 from django.utils.text import slugify
 from tinymce import models as tinymce_models
 
@@ -47,7 +49,7 @@ class Category(CatalogueItemModel):
         while k is not None:
             full_path.append(k.name)
             k = k.parent
-        return ' -> '.join(full_path[::-1])  
+        return ' -> '.join(full_path[::-1])
 
 
 class Product(CatalogueItemModel):
@@ -71,6 +73,10 @@ class Product(CatalogueItemModel):
     @property
     def featured_photos(self):
         return ProductImage.objects.filter(product=self, is_featured=True)
+
+    def get_price(self, item: CartItem) -> DecimalField:
+
+        return self.price
 
 
 class ProductImage(models.Model):

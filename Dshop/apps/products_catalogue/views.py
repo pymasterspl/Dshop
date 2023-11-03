@@ -1,10 +1,12 @@
 import requests
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from lxml import etree
+from dj_shop_cart.cart import Cart
 
-from .models import Product, CeneoCategory
+from .models import Product, CeneoCategory, Category
 
 
 class ProductListView(ListView):
@@ -20,6 +22,33 @@ class ProductDetailView(DetailView):
     template_name = 'products_catalogue/product_detail.html'
     context_object_name = 'product'
     queryset = Product.objects.filter(is_active=True)
+
+
+class AddToCartView(CreateView):
+    model = Cart
+
+    def get(self, request, **kwargs):
+        quantity = 1
+        cart = self.model.new(request)
+        product_id = self.kwargs.get('id')
+        product = get_object_or_404(Product, id=product_id)
+
+        cart.add(product,  quantity=quantity)
+
+        return redirect('cart_detail_view')
+
+
+class CartDetailView(View):
+    model = Cart
+
+    def get(self, request):
+        cart = self.model.new(request)
+
+        return render(
+            request,
+            'products_catalogue/cart_detail.html',
+            {'cart': cart}
+        )
 
 
 class CeneoProductListView(View):
@@ -125,3 +154,15 @@ class CeneoCategoriesView(View):
 
 class CeneoAPIException(Exception):
     pass
+
+
+class CategoryListView(ListView):
+    context_object_name = 'categories'
+    template_name = 'products_catalogue/categories_list.html'
+    queryset = Category.objects.filter(is_active=True)
+
+
+class CategoryDetailView(DetailView):
+    template_name = 'products_catalogue/category_detail.html'
+    context_object_name = 'category'
+    queryset = Category.objects.filter(is_active=True)

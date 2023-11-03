@@ -17,6 +17,7 @@ stripe = "^6.4.0"
 requests_mock = "^1.11.0"
 charset_normalizer = "^3.3.0"
 django-tinymce = "^3.6.1"
+dj-shop-cart = "^7.0.3"
 
 
 [tool.poetry.group.dev.dependencies]
