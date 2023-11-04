@@ -56,6 +56,10 @@ class Product(CatalogueItemModel):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __init__(self, *args, **kwargs):
+        super(Product, self).__init__(*args, **kwargs)
+        self.current_price = self.price
+
     @property
     def featured_photos(self):
         return ProductImage.objects.filter(product=self, is_featured=True)
