@@ -13,7 +13,6 @@ def xml_contains_texts(element, *texts):
     for xml_text in element.itertext():
         if xml_text in dict_:
             dict_[xml_text] = True
-    print(f"{dict_.values()}")
     return all(dict_.values())
 
 
@@ -129,8 +128,6 @@ def test_product_in_xml(client):
         full_description="Tanie dobre buty. Bardzo tanie. Są czarne. Wytrzymałe"
     )
     product_url = CURRENT_DOMAIN + product_1.get_absolute_url()
-
-    print(f"{product_url=}")
 
     url = reverse("django.contrib.sitemaps.views.sitemap")
     response = client.get(url)
