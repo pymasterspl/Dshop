@@ -60,6 +60,16 @@ class Product(CatalogueItemModel):
         super(Product, self).__init__(*args, **kwargs)
         self.current_price = self.price
 
+    def save(self, *args, **kwargs):
+        created = not self.pk
+        super(Product, self).save(*args, **kwargs)
+        last_price_change = PriceChangeHistory.objects.filter(product=self).order_by('created_at').last()
+        if self.current_price != self.price or created:
+            price_change = PriceChangeHistory.objects.create(product=self, price=self.price)
+            if last_price_change:
+                last_price_change.disabled_at = price_change.created_at
+                last_price_change.save()
+
     @property
     def featured_photos(self):
         return ProductImage.objects.filter(product=self, is_featured=True)
