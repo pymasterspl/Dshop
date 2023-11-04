@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
-
+from django.utils import timezone
+from datetime import timedelta
 
 class CatalogueItemModel(models.Model):
     name = models.CharField(max_length=200)
@@ -73,11 +74,15 @@ class Product(CatalogueItemModel):
     @property
     def featured_photos(self):
         return ProductImage.objects.filter(product=self, is_featured=True)
-    
+
     @property
-        def lowest_price_in_30_days(self):
-            # now - 30 days
-            pass 
+    def lowest_price_in_30_days(self):
+        thirty_days_ago = timezone.now() - timedelta(days=30)
+        price_changes = self.price_change_history.filter(disabled_at__gte=thirty_days_ago).order_by('price')
+        if price_changes:
+            return price_changes[0].price
+        else:
+            return self.price
 
 
 class ProductImage(models.Model):
