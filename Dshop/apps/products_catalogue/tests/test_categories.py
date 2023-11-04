@@ -44,9 +44,18 @@ def test_get_non_active_categories_list(client):
 
 
 @pytest.mark.django_db
-def test_get_categories_detail(client):
+def test_get_categories_detail_by_reversed_url(client):
     cat = Category.objects.create(name="Kategoria")
     url = reverse('category-detail', args=[cat.slug, cat.id])
+    response = client.get(url)
+    assert response.status_code == 200
+    assert isinstance(response.context['category'], Category)
+
+
+@pytest.mark.django_db
+def test_get_categories_detail_by_absolute_url(client):
+    cat = Category.objects.create(name="Kategoria")
+    url = cat.get_absolute_url()
     response = client.get(url)
     assert response.status_code == 200
     assert isinstance(response.context['category'], Category)

@@ -2,7 +2,9 @@ from dj_shop_cart.cart import CartItem
 from django.db import models
 from django.db.models import DecimalField
 from django.utils.text import slugify
+from django.urls import reverse
 from tinymce import models as tinymce_models
+
 
 
 class CatalogueItemModel(models.Model):
@@ -38,6 +40,7 @@ class CeneoCategory(models.Model):
 class Category(CatalogueItemModel):
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
     ceneo_category = models.ForeignKey(CeneoCategory, blank=True, null=True, on_delete=models.SET_NULL)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'Category'
@@ -50,6 +53,10 @@ class Category(CatalogueItemModel):
             full_path.append(k.name)
             k = k.parent
         return ' -> '.join(full_path[::-1])
+
+
+    def get_absolute_url(self):
+        return reverse("category-detail", args=[self.slug, self.id])
 
 
 class Product(CatalogueItemModel):
@@ -69,6 +76,12 @@ class Product(CatalogueItemModel):
         (99, 'Brak informacji o dostępności - status „sprawdź w sklepie”'),
         (110, 'Przedsprzedaż'),
     ], default=99)
+
+    def get_absolute_url(self):
+        return reverse("product-detail", args=[self.slug, self.id])
+
+    def __str__(self):
+        return self.name
 
     @property
     def featured_photos(self):
