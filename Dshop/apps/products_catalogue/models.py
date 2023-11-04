@@ -80,7 +80,7 @@ class Product(CatalogueItemModel):
         thirty_days_ago = timezone.now() - timedelta(days=30)
         price_changes = self.price_change_history.filter(disabled_at__gte=thirty_days_ago).order_by('price')
         if price_changes:
-            return price_changes[0].price
+            return min(price_changes[0].price, self.price)
         else:
             return self.price
 
