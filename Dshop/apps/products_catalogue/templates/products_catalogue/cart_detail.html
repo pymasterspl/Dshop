@@ -9,18 +9,22 @@ Twój koszyk
 <br>
 <br>
 
-<li>COUNT ALL {{ cart.count}}</li>
+<li>COUNT ALL {{ cart.count }}</li>
+<li> TOTAL COST {{ cart.total }}</li>
 -----------------------------------
 {% for item in cart %}
     <li>PRODUCT {{ item.product  }}</li>
     <li>PRICE {{ item.price  }}</li>
     <li>SUBTOTAL {{ item.subtotal   }}</li>
    <li>
-       <a href="{% url 'delete_cart_view' item.product.slug item.id %}" >minus</a>
+       <a href="{% url 'delete_element_cart_item_view' item.product.slug item.id %}" >minus</a>
             COUNT {{ item.quantity   }}
        <a href="{% url 'add_to_cart_view' item.product.slug item.product.id %}" >plus</a>
+       <a href="{% url 'delete_whole_cart_item_view' item.product.slug item.id %}" >DELETE</a>
    </li>
     -----------------------------------------
 {% endfor %}
+
+
 </body>
 </html>

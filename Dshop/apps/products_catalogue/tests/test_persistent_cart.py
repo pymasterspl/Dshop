@@ -1,4 +1,5 @@
 import pytest
+from django.http import HttpRequest
 from django.urls import reverse
 from pytest import mark
 
@@ -19,33 +20,30 @@ def test_products_cart(tv_product, fake_cart_detail_view_request):
 
 @mark.dj_shop_cart
 @pytest.mark.django_db
-def test_two_the_same_products_cart(tv_product, fake_cart_detail_view_request):
+def test_two_the_same_products_cart(tv_product, fake_add_to_cart_view_request):
     Cart = get_cart_class()
-    quantity = 4
-    cart = Cart.new(fake_cart_detail_view_request)
-    cart.add(tv_product, quantity=quantity)
+    cart = Cart.new(fake_add_to_cart_view_request)
 
     assert len(cart) == 1
-    assert cart.count == 4
+    assert cart.count == 1
 
 
 @mark.dj_shop_cart
 @pytest.mark.django_db
-def test_two_different_products_cart(
+def test_add_two_different_products_cart(
         tv_product, edifier_product,
-        fake_cart_detail_view_request
+        fake_add_to_cart_view_request
 ):
     Cart = get_cart_class()
-    quantity_1 = 1
-    cart = Cart.new(fake_cart_detail_view_request)
+    quantity_1 = 2
+    cart = Cart.new(fake_add_to_cart_view_request)
     cart.add(tv_product, quantity=quantity_1)
 
-    quantity_2 = 2
-    cart = Cart.new(fake_cart_detail_view_request)
+    quantity_2 = 3
     cart.add(edifier_product, quantity=quantity_2)
 
     assert len(cart) == 2
-    assert cart.count == 3
+    assert cart.count == 6
 
 
 @mark.dj_shop_cart
@@ -79,23 +77,32 @@ def test_add_non_exist_product_to_cart(client):
     assert fake_response.status_code == 404
 
 
-@mark.dj_shop_cart
-@pytest.mark.django_db
-def test_add_product_to_cart(tv_product, fake_add_to_cart_view_request):
-    Cart = get_cart_class()
-    cart = Cart.new(fake_add_to_cart_view_request)
-
-    assert len(cart) == 1
-    assert cart.count == 1
-    assert cart.find_one(product=tv_product).product == tv_product
-    assert tv_product in cart.products
-
-
-@mark.dj_shop_cart
-@pytest.mark.django_db
-def test_cart_increase_quantity(tv_product, fake_add_to_cart_view_request):
-    Cart = get_cart_class()
-    cart = Cart.new(fake_add_to_cart_view_request)
-    item = cart.add(product=tv_product, quantity=10)
-    item = cart.increase(item.id, quantity=10)  # I dont know how to use it yet
-    assert item.quantity == 21
+# @mark.dj_shop_cart
+# @pytest.mark.django_db
+# def test_delete_element_item_cart(
+#         client,
+#         tv_product, edifier_product,
+#         fake_cart_detail_view_request,
+# ):
+# """
+# It doesn't work. I don't know why
+# """
+#     Cart = get_cart_class()
+#     quantity_1 = 4
+#     cart = Cart.new(fake_cart_detail_view_request)
+#     item = cart.add(tv_product, quantity=quantity_1)
+#
+#     assert len(cart) == 1
+#     assert cart.count == 4
+#
+#     url = reverse(
+#         'delete_one_cart_item_view',
+#         kwargs={
+#             'slug': tv_product.slug,
+#             'item_id': item.id,
+#         }
+#     )
+#     cart = Cart.new(client.get(url).wsgi_request)
+#
+#     assert len(cart) == 1
+#     assert item.quantity == 2

@@ -3,7 +3,8 @@ from django.conf.urls.static import static
 from django.urls import path
 
 from .views import CeneoCategoriesView, CeneoProductListView, ProductListView, \
-    ProductDetailView, AddToCartView, CartDetailView, DeleteCartView
+    ProductDetailView, AddToCartView, CartDetailView, DeleteOneCartItemView, \
+    DeleteCartItemView
 
 urlpatterns = [
     path('products_list/', ProductListView.as_view(), name='products-list'),
@@ -11,7 +12,8 @@ urlpatterns = [
     path('ceneo_categories/', CeneoCategoriesView.as_view(), name='ceneo-categories'),
     path("products/<slug>-<int:id>", ProductDetailView.as_view(), name='product-detail'),
     path("products/cart/add/<slug>/<int:id>", AddToCartView.as_view(), name='add_to_cart_view'),
-    path("products/cart/update/<slug>/<str:id>", DeleteCartView.as_view(), name='delete_cart_view'),
+    path("products/cart/delete_one_cart_item/<slug>/<str:item_id>", DeleteOneCartItemView.as_view(), name='delete_one_cart_item_view'),
+    path("products/cart/delete_cart_item/<slug>/<str:id>", DeleteCartItemView.as_view(), name='delete_cart_item_view'),
     path("cart_detail/", CartDetailView.as_view(), name='cart_detail_view'),
 ]
 

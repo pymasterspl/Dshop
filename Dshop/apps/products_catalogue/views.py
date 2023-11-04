@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from lxml import etree
 from dj_shop_cart.cart import get_cart_class, Cart
 
@@ -42,14 +42,26 @@ class AddToCartView(CreateView):
         return redirect('cart_detail_view')
 
 
-class DeleteCartView(UpdateView):
+class DeleteOneCartItemView(DeleteView):
     model = Cart
 
     def get(self, request, **kwargs):
         cart = self.model.new(request)
-        item_id = self.kwargs.get('id')
+        item_id = self.kwargs.get('item_id')
 
         cart.remove(item_id=item_id,  quantity=1)
+
+        return redirect('cart_detail_view')
+
+
+class DeleteCartItemView(DeleteView):
+    model = Cart
+
+    def get(self, request, **kwargs):
+        cart = self.model.new(request)
+        item_id = self.kwargs.get('item_id')
+
+        cart.remove(item_id=item_id)
 
         return redirect('cart_detail_view')
 
