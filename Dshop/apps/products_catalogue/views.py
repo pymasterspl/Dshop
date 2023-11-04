@@ -77,7 +77,6 @@ class CeneoProductListView(View):
 
             if product.featured_photos.exists():
                 featured_image_url = product.featured_photos.first().image.url
-                print(featured_image_url)
             else:
                 featured_image_url = ''
             imgs_element = etree.SubElement(o_element, 'imgs')
