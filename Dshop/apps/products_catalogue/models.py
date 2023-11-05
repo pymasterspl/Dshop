@@ -25,9 +25,9 @@ class CatalogueItemModel(models.Model):
         return super().save(*args, **kwargs)
 
 
-# TODO : CeneoCategory class must have self FK as it is in Category class
 class CeneoCategory(models.Model):
     name = models.CharField(max_length=200)
+    parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'CeneoCategory'
@@ -67,6 +67,15 @@ class Product(CatalogueItemModel):
     full_description = tinymce_models.HTMLField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    availability = models.PositiveSmallIntegerField(choices=[
+        (1, 'Dostępny, sklep wyśle produkt w ciągu 24 godzin'),
+        (3, 'Sklep wyśle produkt do 3 dni'),
+        (7, 'Sklep wyśle produkt w ciągu tygodnia'),
+        (14, 'Sklep wyśle produkt do 14 dni'),
+        (90, 'Towar na zamówienie'),
+        (99, 'Brak informacji o dostępności - status „sprawdź w sklepie”'),
+        (110, 'Przedsprzedaż'),
+    ], default=99)
 
     def get_absolute_url(self):
         return reverse("product-detail", args=[self.slug, self.id])
