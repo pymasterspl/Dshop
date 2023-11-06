@@ -189,7 +189,17 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-tinymce"
+version = "3.6.1"
+description = "A Django application that contains a widget to render a form field as a TinyMCE editor."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-tinymce-3.6.1.tar.gz", hash = "sha256:6f4f6227c2c608052081a436a1e3054c441caae24c9e0c8c3010536e24749e29"},
+    {file = "django_tinymce-3.6.1-py3-none-any.whl", hash = "sha256:da5732413f51cf854352e3148f06f170b59d95a6c6a43fd9f7ccfdd1849f4bf9"},
+]
 
+[[package]]
 name = "freezegun"
 version = "1.2.2"
 description = "Let your Python tests travel through time"
@@ -202,18 +212,6 @@ files = [
 
 [package.dependencies]
 python-dateutil = ">=2.7"
-
-
-name = "django-tinymce"
-version = "3.6.1"
-description = "A Django application that contains a widget to render a form field as a TinyMCE editor."
-optional = false
-python-versions = "*"
-files = [
-    {file = "django-tinymce-3.6.1.tar.gz", hash = "sha256:6f4f6227c2c608052081a436a1e3054c441caae24c9e0c8c3010536e24749e29"},
-    {file = "django_tinymce-3.6.1-py3-none-any.whl", hash = "sha256:da5732413f51cf854352e3148f06f170b59d95a6c6a43fd9f7ccfdd1849f4bf9"},
-]
-
 
 [[package]]
 name = "idna"
@@ -635,4 +633,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "2a89e49e279f67a39aa7365bd1cffb3e853906028f138b10e5633a7188082f24"
+content-hash = "dd431c494452ac3e44463c6e33c85fee41e88f12f98bf0a5aa99e25ad01768ad"
