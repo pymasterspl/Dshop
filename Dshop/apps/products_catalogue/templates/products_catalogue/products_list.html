@@ -15,7 +15,7 @@
                     <h5 class="card-title"><a href="{% url 'product-detail' object.slug object.pk %}">{{ object.name }}</a></h5>
                     <p class="card-text">Opis: {{ object.short_description }}</p>
                     <p class="card-text">Cena: {{ object.price }} PLN</p>
-                    <small>Cena z ostatnich 30 dni: {{ object.lowest_price_last_30_days }} PLN</small>
+                    <small>Cena z ostatnich 30 dni: {{ object.lowest_price_in_30_days }} PLN</small>
                     <hr>
                     {% if not object.images.all %}
                     <p>Brak zdjęć</p>
