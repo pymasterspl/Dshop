@@ -59,7 +59,7 @@ def last_price_change_date(product):
 
 @pytest.mark.django_db
 def test_product_creation_creates_price_change_history(create_product_with_cat):   
-    product = create_product_with_cat
+    create_product_with_cat
     assert PriceChangeHistory.objects.count() == 1
 
 
