@@ -41,7 +41,10 @@ PROJECT_APPS = [
     'apps.users',
     'apps.products_catalogue',
     'apps.payments.apps.PaymentsConfig',
+    'dj_shop_cart'
 ]
+
+SITE_ID = 1
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -50,7 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
     'sorl.thumbnail',
+    'tinymce',
 
 ] + PROJECT_APPS
 
@@ -78,8 +84,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
                 'apps.core.context_processors.add_variable_to_context',
+
+                # If you want access to the cart instance in all templates
+                "dj_shop_cart.context_processors.cart",
             ],
         },
     },
@@ -146,7 +154,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -168,4 +179,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 THUMBNAIL_PREFIX = 'cache/'
+
+TINYMCE_DEFAULT_CONFIG = {
+    "theme": "silver",
+    "width": 500,
+    "height": 300,
+    "menubar": False,
+    "plugins": "lists",
+    "toolbar": " formatselect  | bold italic | bullist "
+}
+
+CART_STORAGE_BACKEND = "dj_shop_cart.storages.DBStorage"
 

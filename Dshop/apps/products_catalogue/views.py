@@ -1,10 +1,12 @@
 import requests
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from lxml import etree
+from dj_shop_cart.cart import Cart
 
-from .models import Product, CeneoCategory
+from .models import Product, CeneoCategory, Category
 
 
 class ProductListView(ListView):
@@ -22,6 +24,33 @@ class ProductDetailView(DetailView):
     queryset = Product.objects.filter(is_active=True)
 
 
+class AddToCartView(CreateView):
+    model = Cart
+
+    def get(self, request, **kwargs):
+        quantity = 1
+        cart = self.model.new(request)
+        product_id = self.kwargs.get('id')
+        product = get_object_or_404(Product, id=product_id)
+
+        cart.add(product,  quantity=quantity)
+
+        return redirect('cart_detail_view')
+
+
+class CartDetailView(View):
+    model = Cart
+
+    def get(self, request):
+        cart = self.model.new(request)
+
+        return render(
+            request,
+            'products_catalogue/cart_detail.html',
+            {'cart': cart}
+        )
+
+
 class CeneoProductListView(View):
     model = Product
 
@@ -35,10 +64,10 @@ class CeneoProductListView(View):
 
         for product in products:
             o_element = etree.SubElement(root, 'o', id=str(product.pk), url=str(), price=str(product.price),
-                                         avail=str(),   # TODO: url and available items
+                                         avail=str(product.availability),  # TODO: add url
                                          weight=str(),
                                          stock=str(),
-                                         basket=str())  
+                                         basket=str())
 
             cat_element = etree.SubElement(o_element, 'cat')
             cat_element.text = etree.CDATA(product.category.name)
@@ -46,11 +75,22 @@ class CeneoProductListView(View):
             name_element = etree.SubElement(o_element, 'name')
             name_element.text = etree.CDATA(product.name)
 
+            if product.featured_photos.exists():
+                featured_image_url = product.featured_photos.first().image.url
+            else:
+                featured_image_url = ''
             imgs_element = etree.SubElement(o_element, 'imgs')
             main_element = etree.SubElement(imgs_element, 'main')
+            main_element.set('url', featured_image_url)
 
-            main_element.set('url', str(product.images))  # TODO: get correct url to featured image
-            # TODO : to add additional images in loop
+            additional_images = product.images.all()
+            for i, additional_image in enumerate(additional_images, start=1):
+                additional_img_element = etree.SubElement(imgs_element, 'i', id=str(i))
+                additional_img_element.set('url', additional_image.image.url)
+
+                if i >= 20:
+                    break
+
             desc_element = etree.SubElement(o_element, 'desc')
             desc_element.text = etree.CDATA(product.full_description)
 
@@ -80,6 +120,7 @@ class CeneoCategoriesView(View):
             return response.content
         except requests.RequestException as e:
             raise CeneoAPIException(f"Failed to fetch data from Ceneo API: {e}")
+
     # TODO: to add parent category to the model and add functionality to write it to database
     def parse_categories(self, category_elem):
         categories = []
@@ -112,3 +153,15 @@ class CeneoCategoriesView(View):
 
 class CeneoAPIException(Exception):
     pass
+
+
+class CategoryListView(ListView):
+    context_object_name = 'categories'
+    template_name = 'products_catalogue/categories_list.html'
+    queryset = Category.objects.filter(is_active=True)
+
+
+class CategoryDetailView(DetailView):
+    template_name = 'products_catalogue/category_detail.html'
+    context_object_name = 'category'
+    queryset = Category.objects.filter(is_active=True)
