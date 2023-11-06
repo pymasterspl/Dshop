@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.utils import timezone
 from datetime import timedelta
+from decimal import Decimal
 
 class CatalogueItemModel(models.Model):
     name = models.CharField(max_length=200)
@@ -80,9 +81,9 @@ class Product(CatalogueItemModel):
         thirty_days_ago = timezone.now() - timedelta(days=30)
         price_changes = self.price_change_history.filter(disabled_at__gte=thirty_days_ago).order_by('price')
         if price_changes:
-            return min(price_changes[0].price, self.price)
+            return Decimal(min(price_changes[0].price, self.price))
         else:
-            return self.price
+            return Decimal(self.price)
 
 
 class ProductImage(models.Model):
