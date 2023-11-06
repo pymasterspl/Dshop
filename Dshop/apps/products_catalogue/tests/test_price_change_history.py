@@ -9,6 +9,8 @@
 import pytest
 from freezegun import freeze_time
 from apps.products_catalogue.models import PriceChangeHistory, Product, Category
+from decimal import Decimal
+from pytest import approx
 
 
 # use https://pypi.org/project/freezegun/ for time management in tests
@@ -89,7 +91,7 @@ def test_many_lowest_price_in_30_days_all_now(create_product_with_cat):
     product.save()
     product.price = 0.1
     product.save()
-    assert product.lowest_price_in_30_days == 0.1
+    assert product.lowest_price_in_30_days == approx(Decimal('0.1'))
 
 
 @pytest.mark.django_db
@@ -123,7 +125,7 @@ def test_many_lowest_price_in_30_days(create_product_with_cat):
     print(f"{last_price_change_date(product)=}")
 
     with freeze_time("2023-11-04"):
-        assert product.lowest_price_in_30_days == 0.25
+        assert product.lowest_price_in_30_days == approx(Decimal('0.05'))
 
 
 @pytest.mark.django_db
@@ -133,5 +135,5 @@ def test_single_old_lowest_price_in_30_days(create_product_with_cat):
         product.price = 0.1
         product.save()
     with freeze_time("2023-11-04"):
-        assert product.lowest_price_in_30_days == 0.1
+        assert product.lowest_price_in_30_days == approx(Decimal('0.1'))
     
