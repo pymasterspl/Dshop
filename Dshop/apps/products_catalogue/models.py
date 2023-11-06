@@ -52,7 +52,6 @@ class Category(CatalogueItemModel):
 class Product(CatalogueItemModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    lowest_price_last_30_days = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     short_description = models.TextField()
     full_description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
