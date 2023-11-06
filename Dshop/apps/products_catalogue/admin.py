@@ -16,10 +16,10 @@ class ProductImageInLine(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'lowest_price_last_30_days')
+    list_display = ('name', 'price')
     search_fields = ('name',)
     inlines = [ProductImageInLine]
-    readonly_fields = ('id','slug',)
+    readonly_fields = ('id', 'slug',)
 
 @admin.register(CeneoCategory)
 class CeneoCategoryAdmin(admin.ModelAdmin):
