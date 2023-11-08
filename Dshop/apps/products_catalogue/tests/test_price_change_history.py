@@ -41,7 +41,7 @@ def test_model_structure():
 
 
 @pytest.fixture
-def create_product_with_cat():
+def create_product_with_category():
     with freeze_time("2023-07-01"):
         category = Category.objects.create(name='Test Category', is_active=True)
         return Product.objects.create(
