@@ -58,20 +58,20 @@ def last_price_change_date(product):
 
 
 @pytest.mark.django_db
-def test_product_creation_creates_price_change_history(create_product_with_cat):   
-    create_product_with_cat
+def test_product_creation_creates_price_change_history(create_product_with_category):
+    create_product_with_category
     assert PriceChangeHistory.objects.count() == 1
 
 
 @pytest.mark.django_db
-def test_single_lowest_price_in_30_days(create_product_with_cat):
-    product = create_product_with_cat
+def test_single_lowest_price_in_30_days(create_product_with_category):
+    product = create_product_with_category
     assert product.lowest_price_in_30_days == product.price
 
 
 @pytest.mark.django_db
-def test_many_pricechangehistory_count(create_product_with_cat):
-    product = create_product_with_cat
+def test_many_pricechangehistory_count(create_product_with_category):
+    product = create_product_with_category
     #upper already saved once
     product.price = 2
     product.save()
@@ -83,8 +83,8 @@ def test_many_pricechangehistory_count(create_product_with_cat):
 
 
 @pytest.mark.django_db
-def test_many_lowest_price_in_30_days_all_now(create_product_with_cat):
-    product = create_product_with_cat
+def test_many_lowest_price_in_30_days_all_now(create_product_with_category):
+    product = create_product_with_category
     product.price = 10
     product.save()
     product.price = 100
@@ -95,10 +95,10 @@ def test_many_lowest_price_in_30_days_all_now(create_product_with_cat):
 
 
 @pytest.mark.django_db
-def test_many_lowest_price_in_30_days(create_product_with_cat):
+def test_many_lowest_price_in_30_days(create_product_with_category):
     with freeze_time("2023-07-01"):
         #old
-        product = create_product_with_cat
+        product = create_product_with_category
         product.price = 0.1
         product.save()
     with freeze_time("2023-07-27"):
@@ -123,9 +123,9 @@ def test_many_lowest_price_in_30_days(create_product_with_cat):
 
 
 @pytest.mark.django_db
-def test_single_old_lowest_price_in_30_days(create_product_with_cat):
+def test_single_old_lowest_price_in_30_days(create_product_with_category):
     with freeze_time("2023-07-01"):
-        product = create_product_with_cat
+        product = create_product_with_category
         product.price = 0.1
         product.save()
     with freeze_time("2023-11-04"):
