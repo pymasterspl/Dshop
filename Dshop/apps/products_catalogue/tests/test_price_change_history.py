@@ -99,30 +99,24 @@ def test_many_lowest_price_in_30_days(create_product_with_cat):
     with freeze_time("2023-07-01"):
         #old
         product = create_product_with_cat
-        print(f"{last_price_change_date(product)=}")
         product.price = 0.1
         product.save()
     with freeze_time("2023-07-27"):
         #old
         product.price = 0.5
         product.save()
-        print(f"{last_price_change_date(product)=}")
     with freeze_time("2023-07-28"):
         #old
         product.price = 0.05
         product.save()
-        print(f"{last_price_change_date(product)=}")
     with freeze_time("2023-11-02"):
         #active
         product.price = 0.25
         product.save()
-        print(f"{last_price_change_date(product)=}")
     with freeze_time("2023-11-03"):
         #active
         product.price = 1
         product.save()
-
-    print(f"{last_price_change_date(product)=}")
 
     with freeze_time("2023-11-04"):
         assert product.lowest_price_in_30_days == approx(Decimal('0.05'))
