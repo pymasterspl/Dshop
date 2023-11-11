@@ -165,3 +165,10 @@ class CategoryDetailView(DetailView):
     template_name = 'products_catalogue/category_detail.html'
     context_object_name = 'category'
     queryset = Category.objects.filter(is_active=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        products_without_parent = Product.objects.filter(category=self.get_object(), parent_product=None)
+        context['products'] = products_without_parent
+        return context
+    
