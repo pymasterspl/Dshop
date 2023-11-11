@@ -32,7 +32,7 @@
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">{{ product.short_description }}</p>
+                    <p class="card-text">{{ product.short_description|safe }}</p>
                     <a href="{% url 'product-detail' product.slug product.pk %}" class="btn btn-primary">Szczegóły</a>
                 </div>
             </div>
