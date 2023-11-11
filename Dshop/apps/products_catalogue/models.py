@@ -77,6 +77,7 @@ class Product(CatalogueItemModel):
         (99, 'Brak informacji o dostępności - status „sprawdź w sklepie”'),
         (110, 'Przedsprzedaż'),
     ], default=99)
+    parent_product = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse("product-detail", args=[self.slug, self.id])
