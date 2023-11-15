@@ -23,6 +23,13 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
     queryset = Product.objects.filter(is_active=True)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product = context['product']
+        attributes = product.get_attributes()
+        context['attributes'] = attributes
+        return context
+
 
 class AddToCartView(CreateView):
     model = Cart
