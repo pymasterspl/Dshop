@@ -112,6 +112,10 @@ class Product(CatalogueItemModel):
         else:
             return Decimal(self.price)
 
+    def get_attributes(self):
+        attributes = ProductAttribute.objects.filter(product=self)
+        return attributes
+
     def get_price(self, item: CartItem) -> DecimalField:
 
         return self.price
