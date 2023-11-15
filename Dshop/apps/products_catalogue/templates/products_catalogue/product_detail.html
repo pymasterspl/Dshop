@@ -55,7 +55,14 @@
                                     {% endfor %}
                                 </ul>
                             {% endif %}
-
+                            {% if product_variants %}
+                                <h5>Powiązane produkty:</h5>
+                                <ul>
+                                    {% for variant in product_variants %}
+                                        <li><a href="{% url 'product-detail' variant.slug variant.pk %}">{{ variant }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
                             <div class="cart mt-4 align-items-center">
                                 <button class="btn btn-danger text-uppercase mr-2 px-4">Dodaj do koszyka</button>
                             </div>
