@@ -27,7 +27,13 @@ class ProductDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         product = context['product']
         attributes = product.get_attributes()
+        if product.parent_product:
+            product_variants = Product.objects.filter(parent_product=product.parent_product).exclude(
+                id=product.id) | Product.objects.filter(id=product.parent_product.id)
+        else:
+            product_variants = Product.objects.filter(parent_product=product).exclude(id=product.id)
         context['attributes'] = attributes
+        context['product_variants'] = product_variants
         return context
 
 
