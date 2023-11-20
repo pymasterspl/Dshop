@@ -4,7 +4,7 @@ from django.urls import path
 
 from .views import CeneoCategoriesView, CeneoProductListView, ProductListView, \
     ProductDetailView, AddToCartView, CartDetailView, CategoryListView, CategoryDetailView, DeleteOneCartItemView, \
-    DeleteCartItemView,
+    DeleteCartItemView
 
 
 urlpatterns = [

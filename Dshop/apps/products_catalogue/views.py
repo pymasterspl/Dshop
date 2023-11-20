@@ -58,9 +58,8 @@ class DeleteCartItemView(DeleteView):
     model = Cart
 
     def get(self, request, **kwargs):
-        cart = self.model.new(request)
+        cart = get_cart_class().new(request)
         item_id = self.kwargs.get('item_id')
-
         cart.remove(item_id=item_id)
 
         return redirect('cart_detail_view')
