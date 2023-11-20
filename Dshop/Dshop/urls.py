@@ -14,13 +14,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
+from django.urls import path, include
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from sitemap import ProductSitemap, StaticViewSitemap, CategorySitemap
-
 
 sitemaps ={
     'products' : ProductSitemap,
@@ -37,8 +37,18 @@ urlpatterns = [
     path('products/', include('apps.products_catalogue.urls')),
     path('payments/', include('apps.payments.urls')),
     path('users/', include('apps.users.urls')),
-    path('api/users/', include('apps.users.api_urls')),
     path('tinymce/',include('tinymce.urls')),
+
+    # Api
+    path('api/users/', include('apps.users.api_urls')),
+
+    # Swagger
+    path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
+    path(
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="api-schema"),
+        name="api-docs",
+    ),
  ]
 
 
