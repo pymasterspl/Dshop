@@ -19,7 +19,8 @@ charset_normalizer = "^3.3.0"
 freezegun = "^1.2.2"
 django-tinymce = "^3.6.1"
 dj-shop-cart = "^7.0.3"
-
+djangorestframework = "^3.14.0"
+drf-spectacular = "^0.26.5"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"

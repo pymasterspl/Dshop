@@ -57,6 +57,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'sorl.thumbnail',
     'tinymce',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'drf_spectacular',
 
 ] + PROJECT_APPS
 
@@ -191,3 +194,22 @@ TINYMCE_DEFAULT_CONFIG = {
 
 CART_STORAGE_BACKEND = "dj_shop_cart.storages.DBStorage"
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    # "DEFAULT_THROTTLE_RATES": {
+    #     'registration': '3/60minutes',
+    # }
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "dshop API",
+    "DESCRIPTION": "Documentation of API endpoints of dshop",
+    "VERSION": "1.0.0",
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
+    'SERVE_INCLUDE_SCHEMA': False,
+}
