@@ -1,9 +1,10 @@
 import pytest
-from django.http import HttpRequest
+from django.contrib.auth.models import AnonymousUser
 from django.urls import reverse
 from pytest import mark
 
-from dj_shop_cart.cart import get_cart_class
+
+from dj_shop_cart.cart import get_cart_class, Cart
 
 
 @mark.dj_shop_cart
@@ -77,32 +78,20 @@ def test_add_non_exist_product_to_cart(client):
     assert fake_response.status_code == 404
 
 
-# @mark.dj_shop_cart
-# @pytest.mark.django_db
-# def test_delete_element_item_cart(
-#         client,
-#         tv_product, edifier_product,
-#         fake_cart_detail_view_request,
-# ):
-# """
-# It doesn't work. I don't know why
-# """
-#     Cart = get_cart_class()
-#     quantity_1 = 4
-#     cart = Cart.new(fake_cart_detail_view_request)
-#     item = cart.add(tv_product, quantity=quantity_1)
-#
-#     assert len(cart) == 1
-#     assert cart.count == 4
-#
-#     url = reverse(
-#         'delete_one_cart_item_view',
-#         kwargs={
-#             'slug': tv_product.slug,
-#             'item_id': item.id,
-#         }
-#     )
-#     cart = Cart.new(client.get(url).wsgi_request)
-#
-#     assert len(cart) == 1
-#     assert item.quantity == 2
+@mark.dj_shop_cart
+@pytest.mark.django_db
+def test_delete_element_item_cart(
+        fake_delete_to_cart_view_request,
+        item_cart,
+):
+    """
+    It doesn't work. I don't know why
+    """
+    item, cart = item_cart
+    assert len(cart) == 1
+    assert cart.count == 4
+
+    cart = Cart.new(fake_delete_to_cart_view_request)
+
+    assert len(cart) == 1
+    assert item.quantity == 2
