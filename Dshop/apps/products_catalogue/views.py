@@ -23,6 +23,19 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
     queryset = Product.objects.filter(is_active=True)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product = context['product']
+        attributes = product.get_attributes()
+        if product.parent_product:
+            product_variants = Product.objects.filter(parent_product=product.parent_product).exclude(
+                id=product.id) | Product.objects.filter(id=product.parent_product.id, is_active=True)
+        else:
+            product_variants = Product.objects.filter(parent_product=product, is_active=True).exclude(id=product.id)
+        context['attributes'] = attributes
+        context['product_variants'] = product_variants
+        return context
+
 
 class AddToCartView(CreateView):
     model = Cart
@@ -165,3 +178,10 @@ class CategoryDetailView(DetailView):
     template_name = 'products_catalogue/category_detail.html'
     context_object_name = 'category'
     queryset = Category.objects.filter(is_active=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        products_without_parent = Product.objects.filter(category=self.get_object(), parent_product=None, is_active=True)
+        context['products'] = products_without_parent
+        return context
+    
