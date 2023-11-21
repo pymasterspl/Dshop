@@ -1,45 +1,44 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db import IntegrityError
 from django.utils.translation import gettext_lazy as _
-from rest_framework import status
+from rest_framework import viewsets, status, mixins
 from rest_framework.permissions import AllowAny
-# from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from .models import CustomUser
 from .serializers import RegistrationSerializer
 
+User = get_user_model()
 
-class RegistrationView(APIView):
+
+class RegistrationViewSet(mixins.CreateModelMixin, viewsets.ViewSet):
     """
-    API View responsible for single user registration
+    API Viewset responsible for single user registration
 
-    :accepts: default Django User model fields (django.contrib.auth.models.User) [username, email, password1, password2]
+    :accepts: User model [username, email] + password1, password2
     :returns: 201 / 400
     """
-    permission_classes = (AllowAny,)
+    queryset = User.objects.all()
     serializer_class = RegistrationSerializer
+    permission_classes = (AllowAny,)
     throttle_scope = 'registration'
 
-    def post(self, request):
+    def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        cleaned_data = serializer.get_cleaned_data()
+        validated_data = serializer.validated_data
 
-        # Try to create new object instance with the validated data of username and email
         try:
             user = User.objects.create_user(
-                username=cleaned_data['username'],
-                email=cleaned_data['email'],
-                password=cleaned_data['password']
+                username=validated_data['username'],
+                email=validated_data['email'],
+                password=validated_data['password1']
             )
         except IntegrityError:
             user = None
 
         if user:
-            # finish registration
-            custom_user = CustomUser(user=user)  # I really don't like this. It should be signals
+            custom_user = CustomUser(user=user)
             custom_user.save()
             content = {'detail': _('Registration success.')}
             return Response(content, status=status.HTTP_201_CREATED)
