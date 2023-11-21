@@ -181,7 +181,7 @@ class CategoryDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        products_without_parent = Product.objects.filter(category=self.get_object(), parent_product=None)
+        products_without_parent = Product.objects.filter(category=self.get_object(), parent_product=None, is_active=True)
         context['products'] = products_without_parent
         return context
     
