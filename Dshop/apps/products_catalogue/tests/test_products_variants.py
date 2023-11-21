@@ -1,5 +1,6 @@
 import pytest
 from apps.products_catalogue.models import Category, Product, ProductAttribute
+from django.urls import reverse
 
 
 @pytest.fixture
@@ -44,3 +45,47 @@ def test_product_creation_with_variants():
     assert main_product.product_set.count() == 2
     assert child1.parent_product == main_product
     assert child2.parent_product == main_product
+
+
+def assert_object_product_response(response, category):
+    context = response.context
+    assert response.status_code == 200
+    product = context.get("product")
+    products_variants = context.get("product_variants")
+    assert product.name == "main_product"
+    assert products_variants[0].name == "child product 1"
+    assert products_variants[1].name == "child product 2"
+    assert products_variants[0].category == category
+    assert products_variants[1].is_active is True
+    assert products_variants[0].price == 11
+
+
+@pytest.mark.django_db
+def test_product_detail_view(client):
+    category = Category.objects.create(name='Test Category', is_active=True)
+    main_product = Product.objects.create(
+        name='main_product',
+        category=category,
+        price=10,
+        short_description='short desc',
+        full_description="full desc",
+    )
+    Product.objects.create(
+        name="child product 1",
+        category=category,
+        price=11,
+        short_description="short desc",
+        full_description="full_description",
+        parent_product=main_product
+    )
+    Product.objects.create(
+        name="child product 2",
+        category=category,
+        price=11,
+        short_description="short desc",
+        full_description="full_description",
+        parent_product=main_product
+    )
+    url = reverse("product-detail", kwargs={'slug': 'main_product', 'id': main_product.id})
+    response = client.get(url)
+    assert_object_product_response(response, category)
