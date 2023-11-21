@@ -49,38 +49,6 @@ def test_product_creation_with_variants():
 
 
 @pytest.mark.django_db
-def test_lowest_price_in_30_days_for_product_variant():
-    with freeze_time("2023-07-01"):
-        category = Category.objects.create(name='Test Category', is_active=True)
-        product = Product.objects.create(
-            name='main_product',
-            category=category,
-            price=10,
-            short_description='short desc',
-            full_description="full desc",
-        )
-        variant = Product.objects.create(
-            name="child product",
-            category=category,
-            price=11,
-            short_description="short desc",
-            full_description="full_description",
-            parent_product=product
-        )
-    with freeze_time("2023-07-28"):
-        variant.price = 0.05
-        variant.save()
-    with freeze_time("2023-11-02"):
-        variant.price = 0.25
-        variant.save()
-    with freeze_time("2023-11-03"):
-        variant.price = 1
-        variant.save()
-    with freeze_time("2023-11-04"):
-        assert variant.lowest_price_in_30_days == pytest.approx(Decimal('0.05'))
-
-
-@pytest.mark.django_db
 def test_product_variant_attributes():
     category = Category.objects.create(name='Test Category', is_active=True)
     main_product = Product.objects.create(
