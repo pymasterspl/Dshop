@@ -17,8 +17,7 @@
 <div class="container px-4 py-5" id="featured-3">
     <h2 class="pb-2 border-bottom">{{ category.name }}</h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-        {% for product in category.product_set.all %}
-        {% if product.is_active %}
+        {% for product in products %}
         <div class="embed-responsive embed-responsive-16by9">
             <div class="card" style="width: 18rem;">
                 {% if not product.images.all %}
@@ -32,12 +31,11 @@
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">{{ product.short_description }}</p>
+                    <p class="card-text">{{ product.short_description|safe }}</p>
                     <a href="{% url 'product-detail' product.slug product.pk %}" class="btn btn-primary">Szczegóły</a>
                 </div>
             </div>
         </div>
-        {% endif %}
         {% endfor %}
     </div>
 </div>
