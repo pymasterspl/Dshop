@@ -18,7 +18,6 @@
     <h2 class="pb-2 border-bottom">{{ category.name }}</h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
         {% for product in products %}
-        {% if product.is_active %}
         <div class="embed-responsive embed-responsive-16by9">
             <div class="card" style="width: 18rem;">
                 {% if not product.images.all %}
@@ -37,7 +36,6 @@
                 </div>
             </div>
         </div>
-        {% endif %}
         {% endfor %}
     </div>
 </div>
