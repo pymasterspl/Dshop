@@ -43,7 +43,7 @@ def test_product_creation_with_variants():
         parent_product=main_product
     )
     assert Product.objects.count() == 3
-    assert main_product.child_products.count() == 2
+    assert main_product.product_set.count() == 2
     assert child1.parent_product == main_product
     assert child2.parent_product == main_product
 
