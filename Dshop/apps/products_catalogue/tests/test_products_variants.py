@@ -26,7 +26,7 @@ def test_product_creation_with_variants():
         short_description='short desc',
         full_description="full desc",
     )
-    Product.objects.create(
+    child1 = Product.objects.create(
         name="child product 1",
         category=category,
         price=11,
@@ -34,7 +34,7 @@ def test_product_creation_with_variants():
         full_description="full_description",
         parent_product=main_product
     )
-    Product.objects.create(
+    child2 = Product.objects.create(
         name="child product 2",
         category=category,
         price=11,
@@ -43,6 +43,9 @@ def test_product_creation_with_variants():
         parent_product=main_product
     )
     assert Product.objects.count() == 3
+    assert main_product.child_products.count() == 2
+    assert child1.parent_product == main_product
+    assert child2.parent_product == main_product
 
 
 @pytest.mark.django_db
