@@ -77,6 +77,7 @@ class Product(CatalogueItemModel):
         (99, 'Brak informacji o dostępności - status „sprawdź w sklepie”'),
         (110, 'Przedsprzedaż'),
     ], default=99)
+    parent_product = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
 
     def get_absolute_url(self):
         return reverse("product-detail", args=[self.slug, self.id])
@@ -111,6 +112,10 @@ class Product(CatalogueItemModel):
         else:
             return Decimal(self.price)
 
+    def get_attributes(self):
+        attributes = ProductAttribute.objects.filter(product=self)
+        return attributes
+
     def get_price(self, item: CartItem) -> DecimalField:
 
         return self.price
@@ -126,3 +131,9 @@ class PriceChangeHistory(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     disabled_at = models.DateTimeField(null=True, editable=False)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+class ProductAttribute(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    key = models.CharField(max_length=255)
+    value = models.CharField(max_length=255)
