@@ -1,6 +1,4 @@
 import pytest
-from decimal import Decimal
-from freezegun import freeze_time
 from apps.products_catalogue.models import Category, Product, ProductAttribute
 
 
