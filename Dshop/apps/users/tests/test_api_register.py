@@ -16,8 +16,8 @@ class TestRegistrationViewSet(TestCase):
         self.registration_data = {
             'username': 'testuser',
             'email': 'testuser@example.com',
-            'password1': 'testpassword',
-            'password2': 'testpassword',
+            'password': 'testpassword',
+            'password_again': 'testpassword',
         }
 
     def test_registration_success(self):
@@ -49,7 +49,7 @@ class TestRegistrationViewSet(TestCase):
     def test_not_maching_passwords_failure(self):
         # Test with invalid data to simulate a registration failure upon not maching passwords
         registration_data = self.registration_data
-        registration_data['password2'] = 'changed_password'
+        registration_data['password_again'] = 'changed_password'
 
         response = self.client.post(self.url, registration_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -58,7 +58,7 @@ class TestRegistrationViewSet(TestCase):
 
     def test_missing_second_password(self):
         registration_data = self.registration_data
-        registration_data['password2'] = ''
+        registration_data['password_again'] = ''
 
         response = self.client.post(self.url, data=registration_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

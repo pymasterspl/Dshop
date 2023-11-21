@@ -10,15 +10,18 @@ class RegistrationSerializer(serializers.ModelSerializer):
     """
     Serializer related to registration of a new user
     """
-    password1 = serializers.CharField(write_only=True)
-    password2 = serializers.CharField(write_only=True)
+    password = serializers.CharField(write_only=True)
+    password_again = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password', 'password_again')
 
     def validate(self, attrs):
-        if attrs['password1'] and attrs['password2']:
-            if attrs['password1'] != attrs['password2']:
+        if attrs['password'] and attrs['password_again']:
+            if attrs['password'] != attrs['password_again']:
                 raise ValidationError(_('Passwords does not match!'))
+            else:
+                # delete arg password_again because User model does not accept it upon serializer.save()
+                del attrs['password_again']
         return attrs
