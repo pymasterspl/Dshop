@@ -29,9 +29,9 @@ class ProductDetailView(DetailView):
         attributes = product.get_attributes()
         if product.parent_product:
             product_variants = Product.objects.filter(parent_product=product.parent_product).exclude(
-                id=product.id) | Product.objects.filter(id=product.parent_product.id)
+                id=product.id) | Product.objects.filter(id=product.parent_product.id, is_active=True)
         else:
-            product_variants = Product.objects.filter(parent_product=product).exclude(id=product.id)
+            product_variants = Product.objects.filter(parent_product=product, is_active=True).exclude(id=product.id)
         context['attributes'] = attributes
         context['product_variants'] = product_variants
         return context
