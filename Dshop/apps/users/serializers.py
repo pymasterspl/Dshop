@@ -22,9 +22,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
         if attrs['password'] and attrs['password_again']:
             if attrs['password'] != attrs['password_again']:
                 raise ValidationError(_('Passwords does not match!'))
-            # else:
-            #     # delete arg password_again because User model does not accept it upon serializer.save()
-            #     del attrs['password_again']
         return attrs
 
     def save(self, **kwargs):
