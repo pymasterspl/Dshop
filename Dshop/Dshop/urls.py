@@ -37,7 +37,7 @@ urlpatterns = [
     path('products/', include('apps.products_catalogue.urls')),
     path('payments/', include('apps.payments.urls')),
     path('users/', include('apps.users.urls')),
-    path('tinymce/',include('tinymce.urls')),
+    path('tinymce/', include('tinymce.urls')),
 
     # Api
     path('api/users/', include('apps.users.api_urls')),

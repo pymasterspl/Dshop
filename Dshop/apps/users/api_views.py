@@ -36,5 +36,9 @@ class LoginView(GenericAPIView):
         django_login(request, user)
 
         token, _ = Token.objects.get_or_create(user=user)
-        token_serializer = TokenSerializer(instance=token)
-        return Response(token_serializer.data, status=status.HTTP_200_OK)
+        if token:
+            token_serializer = TokenSerializer(instance=token)
+            return Response(token_serializer.data, status=status.HTTP_200_OK)
+        else:
+            msg = {'detail': _('Unable to retrieve user auth token')}
+            return Response(msg, status=status.HTTP_400_BAD_REQUEST)
