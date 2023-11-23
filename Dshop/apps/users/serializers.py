@@ -48,17 +48,5 @@ class LoginSerializer(serializers.Serializer):
 
         if not user:
             raise ValidationError(_('Unable to log in with provided credentials'))
-        if not user.is_active:
-            raise ValidationError(_('User account is disabled.'))
-
         attrs['user'] = user
         return attrs
-
-
-class TokenSerializer(serializers.ModelSerializer):
-    """
-    Serializer for Token model.
-    """
-    class Meta:
-        model = Token
-        fields = ('key',)
