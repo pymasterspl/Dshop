@@ -50,7 +50,7 @@ def test_add_two_different_products_cart(
 @pytest.mark.django_db
 def test_response_add_to_cart_view_request(client, tv_product):
     url = reverse(
-        'add_to_cart_view',
+        'add_to_cart',
         kwargs={
             'slug': 'first-one',
             'id': tv_product.id,
@@ -60,14 +60,14 @@ def test_response_add_to_cart_view_request(client, tv_product):
     fake_response = client.post(url)
 
     assert fake_response.status_code == 302
-    assert fake_response.url == reverse('cart_detail_view')
+    assert fake_response.url == reverse('cart_detail')
 
 
 @mark.dj_shop_cart
 @pytest.mark.django_db
 def test_add_non_exist_product_to_cart(client):
     url = reverse(
-        'add_to_cart_view',
+        'add_to_cart',
         kwargs={
             'slug': 'first-one',
             'id': 999,
@@ -77,34 +77,3 @@ def test_add_non_exist_product_to_cart(client):
     fake_response = client.post(url)
 
     assert fake_response.status_code == 404
-
-
-# @mark.dj_shop_cart
-# @pytest.mark.django_db
-# def test_delete_element_item_cart(
-#         client,
-#         tv_product, edifier_product,
-#         fake_cart_detail_view_request,
-# ):
-# """
-# It doesn't work. I don't know why
-# """
-#     Cart = get_cart_class()
-#     quantity_1 = 4
-#     cart = Cart.new(fake_cart_detail_view_request)
-#     item = cart.add(tv_product, quantity=quantity_1)
-#
-#     assert len(cart) == 1
-#     assert cart.count == 4
-#
-#     url = reverse(
-#         'delete_one_cart_item_view',
-#         kwargs={
-#             'slug': tv_product.slug,
-#             'item_id': item.id,
-#         }
-#     )
-#     cart = Cart.new(client.get(url).wsgi_request)
-#
-#     assert len(cart) == 1
-#     assert item.quantity == 2

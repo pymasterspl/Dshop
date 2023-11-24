@@ -48,7 +48,7 @@ def edifier_product():
 @fixture
 def fake_cart_detail_view_request(client):
     url = reverse(
-        "cart_detail_view"
+        "cart_detail"
     )
     fake_response = client.get(url)
     fake_request = fake_response.wsgi_request
@@ -59,7 +59,7 @@ def fake_cart_detail_view_request(client):
 @fixture
 def fake_add_to_cart_view_request(client, tv_product):
     url = reverse(
-        'add_to_cart_view',
+        'add_to_cart',
         kwargs={
             'slug': tv_product.slug,
             'id': tv_product.id,

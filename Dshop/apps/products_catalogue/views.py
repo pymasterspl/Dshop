@@ -40,7 +40,7 @@ class AddToCartView(View):
 
         cart.add(product,  quantity=quantity)
 
-        return redirect('cart_detail_view')
+        return redirect('cart_detail')
 
 
 class DeleteOneCartItemView(DeleteView):
@@ -52,7 +52,7 @@ class DeleteOneCartItemView(DeleteView):
 
         cart.remove(item_id=item_id,  quantity=1)
 
-        return redirect('cart_detail_view')
+        return redirect('cart_detail')
 
 
 class DeleteCartItemView(DeleteView):
@@ -63,7 +63,7 @@ class DeleteCartItemView(DeleteView):
         item_id = self.kwargs.get('id')
         cart.remove(item_id=item_id)
 
-        return redirect('cart_detail_view')
+        return redirect('cart_detail')
 
 
 class CartDetailView(View):

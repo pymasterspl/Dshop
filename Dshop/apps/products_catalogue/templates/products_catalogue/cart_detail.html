@@ -17,17 +17,17 @@ Twój koszyk
     <li>PRICE {{ item.price  }}</li>
     <li>SUBTOTAL {{ item.subtotal   }}</li>
    <li>
-       <form action="{% url 'delete_one_cart_item_view' item.product.slug item.id 1 %}" method="post">
+       <form action="{% url 'delete_one_cart_item' item.product.slug item.id 1 %}" method="post">
            {% csrf_token %}
            <input type="submit" value="minus">
        </form>
 
             COUNT {{ item.quantity }}
-       <form action="{% url 'add_to_cart_view' item.product.slug item.product.id 1 %}" method="post">
+       <form action="{% url 'add_to_cart' item.product.slug item.product.id 1 %}" method="post">
            {% csrf_token %}
            <input type="submit" value="plus">
        </form>
-       <form action="{% url 'delete_cart_item_view' item.product.slug item.id %}" method="post">
+       <form action="{% url 'delete_cart_item' item.product.slug item.id %}" method="post">
            {% csrf_token %}
            <input type="submit" value="DELETE">
        </form>
