@@ -46,7 +46,7 @@ class AddToCartView(View):
 class DeleteOneCartItemView(DeleteView):
     model = Cart
 
-    def get(self, request, **kwargs):
+    def post(self, request, **kwargs):
         cart = self.model.new(request)
         item_id = self.kwargs.get('item_id')
 
@@ -58,9 +58,9 @@ class DeleteOneCartItemView(DeleteView):
 class DeleteCartItemView(DeleteView):
     model = Cart
 
-    def delete(self, request, **kwargs):
+    def post(self, request, **kwargs):
         cart = get_cart_class().new(request)
-        item_id = self.kwargs.get('item_id')
+        item_id = self.kwargs.get('id')
         cart.remove(item_id=item_id)
 
         return redirect('cart_detail_view')
