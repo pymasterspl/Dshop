@@ -26,18 +26,19 @@ class ProductDetailView(DetailView):
     queryset = Product.objects.filter(is_active=True)
 
 
-class AddToCartView(CreateView):
+class AddToCartView(View):
     model = Cart
 
-    def get(self, request, **kwargs):
+    def post(self, request, **kwargs):
         cart = self.model.new(request)
         product_id = self.kwargs.get('id')
+        quantity = self.kwargs.get('quantity')
         product = get_object_or_404(Product, id=product_id)
 
         if not product.is_available:
             raise ValidationError("Produkt jest niedostępny.")
 
-        cart.add(product,  quantity=1)
+        cart.add(product,  quantity=quantity)
 
         return redirect('cart_detail_view')
 
@@ -57,7 +58,7 @@ class DeleteOneCartItemView(DeleteView):
 class DeleteCartItemView(DeleteView):
     model = Cart
 
-    def get(self, request, **kwargs):
+    def delete(self, request, **kwargs):
         cart = get_cart_class().new(request)
         item_id = self.kwargs.get('item_id')
         cart.remove(item_id=item_id)

@@ -53,10 +53,11 @@ def test_response_add_to_cart_view_request(client, tv_product):
         'add_to_cart_view',
         kwargs={
             'slug': 'first-one',
-            'id': tv_product.id
+            'id': tv_product.id,
+            'quantity': 1
         }
     )
-    fake_response = client.get(url)
+    fake_response = client.post(url)
 
     assert fake_response.status_code == 302
     assert fake_response.url == reverse('cart_detail_view')
@@ -69,10 +70,11 @@ def test_add_non_exist_product_to_cart(client):
         'add_to_cart_view',
         kwargs={
             'slug': 'first-one',
-            'id': 999
+            'id': 999,
+            'quantity': 1
         }
     )
-    fake_response = client.get(url)
+    fake_response = client.post(url)
 
     assert fake_response.status_code == 404
 

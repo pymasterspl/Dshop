@@ -63,9 +63,10 @@ def fake_add_to_cart_view_request(client, tv_product):
         kwargs={
             'slug': tv_product.slug,
             'id': tv_product.id,
+            'quantity': 1
         }
     )
-    fake_response = client.get(url)
+    fake_response = client.post(url)
     fake_add_request = fake_response.wsgi_request
 
     return fake_add_request
