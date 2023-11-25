@@ -36,11 +36,9 @@ The project will be developed incrementaly. We will make sure project is usable 
 
 ### MVP#2
 1. Integrate the whole Cart with products catalogue, payment and delivery so we can actually order something. 
+2. Product variations, types, sizes, etc.
+3. REST API to access the service (DRF, great to test TDD skills)
 
-### MVP #3.
-1. Product variations, types, sizes, etc.
-2. REST API to access the service (DRF, great to test TDD skills)
-
-### MPV #4
+### MPV #3
 1. Product warehouse and amount of products
 TBD.
