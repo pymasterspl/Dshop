@@ -44,12 +44,25 @@
                                 <h5 class="text-uppercase">{{ product.name }}</h5>
                                 <div class="price d-flex flex-row align-items-center"><span class="act-price">Cena: {{ product.price }} PLN</span>
                                 </div>
-
-                                <div class="ml-2"><small class="dis-price">Cena z ostatnich 30 dni: {{ product.lowest_price_last_30_days }} PLN</small> <span></span></div>
-
+                                <div class="ml-2"><small class="dis-price">Cena z ostatnich 30 dni: {{ product.lowest_price_in_30_days }} PLN</small> <span></span></div>
                             </div>
                             <p class="about">{{ product.full_description|safe }}</p>
-
+                            {% if attributes %}
+                                <h5>Informacje dodatkowe:</h5>
+                                <ul>
+                                    {% for attribute in attributes %}
+                                        <li><strong>{{ attribute.key }}:</strong> {{ attribute.value }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {% if product_variants %}
+                                <h5>Powiązane produkty:</h5>
+                                <ul>
+                                    {% for variant in product_variants %}
+                                        <li><a href="{% url 'product-detail' variant.slug variant.pk %}">{{ variant }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
                             <div class="cart mt-4 align-items-center">
                                 <form action="{% url 'add_to_cart' object.slug object.pk 1 %}" method="post">
                                     {% csrf_token %}
