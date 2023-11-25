@@ -46,6 +46,7 @@ PROJECT_APPS = [
 
 SITE_ID = 1
 
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,9 +58,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'sorl.thumbnail',
     'tinymce',
-
+    'rest_framework',
+    'rest_framework.authtoken',
+    'drf_spectacular',
 ] + PROJECT_APPS
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -191,3 +193,28 @@ TINYMCE_DEFAULT_CONFIG = {
 
 CART_STORAGE_BACKEND = "dj_shop_cart.storages.DBStorage"
 
+# django-rest-framework
+# -------------------------------------------------------------------------------
+# django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_THROTTLE_RATES": {
+        # 'registration': '3/day'
+    },
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# drf_spectacular
+# -------------------------------------------------------------------------------
+# drf_spectacular -  https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
+SPECTACULAR_SETTINGS = {
+    "TITLE": "dshop API",
+    "DESCRIPTION": "Documentation of API endpoints of dshop",
+    "VERSION": "1.0.0",
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
+    "SERVE_INCLUDE_SCHEMA": False,
+}
