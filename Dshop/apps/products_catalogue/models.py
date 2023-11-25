@@ -122,8 +122,7 @@ class Product(CatalogueItemModel):
 
     @staticmethod
     def is_available(self):
-        # How check this?
-        return True
+        return self.availability
 
 
 class ProductImage(models.Model):
