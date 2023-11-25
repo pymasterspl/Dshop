@@ -120,7 +120,6 @@ class Product(CatalogueItemModel):
 
         return self.price
 
-    @staticmethod
     def is_available(self):
         return self.availability
 
