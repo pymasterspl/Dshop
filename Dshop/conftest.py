@@ -1,10 +1,7 @@
 import pytest
 from dj_shop_cart.cart import get_cart_class
-from django.contrib.auth import get_user_model
-from django.contrib.sessions.backends.base import SessionBase
 from django.urls import reverse
 from pytest import fixture
-from django.test import RequestFactory
 
 from apps.products_catalogue.models import Category, Product
 from apps.users.models import CustomUser

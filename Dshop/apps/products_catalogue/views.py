@@ -1,10 +1,9 @@
 import requests
-from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView
 from lxml import etree
 from dj_shop_cart.cart import get_cart_class, Cart
 
