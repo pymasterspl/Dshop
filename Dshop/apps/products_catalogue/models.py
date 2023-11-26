@@ -120,6 +120,9 @@ class Product(CatalogueItemModel):
 
         return self.price
 
+    def is_available(self):
+        return self.availability
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
