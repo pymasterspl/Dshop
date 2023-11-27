@@ -53,7 +53,7 @@ def test_password_change_success(api_client, password_change_url, user_instance_
 
 @pytest.mark.django_db
 def test_password_change_empty_token(api_client, password_change_url):
-    api_client.credentials(HTTP_AUTHORIZATION=f'Token ')
+    api_client.credentials(HTTP_AUTHORIZATION='Token ')
     response = api_client.post(password_change_url, data={}, format='json')
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
 

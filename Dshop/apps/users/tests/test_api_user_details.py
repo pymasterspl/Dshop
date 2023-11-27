@@ -38,7 +38,7 @@ def test_user_details_get_success(api_client, user_details_change_url, custom_us
 
 @pytest.mark.django_db
 def test_user_details_empty_token(api_client, user_details_change_url, user_instance_token, custom_user_instance):
-    api_client.credentials(HTTP_AUTHORIZATION=f'Token ')
+    api_client.credentials(HTTP_AUTHORIZATION='Token ')
     get_response = api_client.get(user_details_change_url)
     assert get_response.status_code == status.HTTP_401_UNAUTHORIZED
 
