@@ -1,10 +1,11 @@
 import requests
+from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, DeleteView
 from lxml import etree
-from dj_shop_cart.cart import Cart
+from dj_shop_cart.cart import get_cart_class, Cart
 
 from .models import Product, CeneoCategory, Category
 
@@ -37,18 +38,44 @@ class ProductDetailView(DetailView):
         return context
 
 
-class AddToCartView(CreateView):
+class AddToCartView(View):
     model = Cart
 
-    def get(self, request, **kwargs):
-        quantity = 1
+    def post(self, request, **kwargs):
         cart = self.model.new(request)
         product_id = self.kwargs.get('id')
+        quantity = self.kwargs.get('quantity')
         product = get_object_or_404(Product, id=product_id)
+
+        if not product.is_available:
+            raise ValidationError("Produkt jest niedostępny.")
 
         cart.add(product,  quantity=quantity)
 
-        return redirect('cart_detail_view')
+        return redirect('cart_detail')
+
+
+class DeleteOneCartItemView(DeleteView):
+    model = Cart
+
+    def post(self, request, **kwargs):
+        cart = self.model.new(request)
+        item_id = self.kwargs.get('item_id')
+
+        cart.remove(item_id=item_id,  quantity=1)
+
+        return redirect('cart_detail')
+
+
+class DeleteCartItemView(DeleteView):
+    model = Cart
+
+    def post(self, request, **kwargs):
+        cart = get_cart_class().new(request)
+        item_id = self.kwargs.get('id')
+        cart.remove(item_id=item_id)
+
+        return redirect('cart_detail')
 
 
 class CartDetailView(View):
