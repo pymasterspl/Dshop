@@ -54,7 +54,7 @@ def test_password_change_success(api_client, password_change_url, user_instance_
 @pytest.mark.django_db
 def test_password_change_empty_token(api_client, password_change_url):
     api_client.credentials(HTTP_AUTHORIZATION=f'Token ')
-    response = api_client.post(password_change_url, {}, format='json')
+    response = api_client.post(password_change_url, data={}, format='json')
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     field_errors = json.loads(response.content).keys()
@@ -64,7 +64,7 @@ def test_password_change_empty_token(api_client, password_change_url):
 @pytest.mark.django_db
 def test_password_change_empty_data(api_client, password_change_url, user_instance_token):
     api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
-    response = api_client.post(password_change_url, {}, format='json')
+    response = api_client.post(password_change_url, data={}, format='json')
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
     field_errors = json.loads(response.content).keys()
