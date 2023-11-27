@@ -10,8 +10,8 @@ User = get_user_model()
 
 
 @pytest.fixture
-def login_url():
-    return reverse('api-login')
+def password_change_url():
+    return reverse('api-password-change')
 
 
 @pytest.fixture
@@ -19,6 +19,15 @@ def login_data():
     return {
         'username': 'testuser',
         'password': 'testpassword',
+    }
+
+
+@pytest.fixture
+def password_change_data():
+    return {
+        'current_password': 'testpassword',
+        'new_password': 'new_testpassword',
+        'new_password_again': 'new_testpassword',
     }
 
 
@@ -33,57 +42,83 @@ def user_instance_token(user_instance):
 
 
 @pytest.mark.django_db
-def test_login_success(api_client, login_url, login_data, user_instance, user_instance_token):
-    response = api_client.post(login_url, login_data, format='json')
-    content = json.loads(response.content.decode('utf-8'))
+def test_password_change_success(api_client, password_change_url, user_instance_token, password_change_data):
+    api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
+    response = api_client.post(password_change_url, password_change_data, format='json')
     assert response.status_code == status.HTTP_200_OK
-    assert content['username'] == user_instance.username
-    assert content['email'] == user_instance.email
-    assert content['token'] == user_instance_token.key
+
+    response = api_client.post(password_change_url, password_change_data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
 @pytest.mark.django_db
-def test_login_empty_data(api_client, login_url):
-    response = api_client.post(login_url, {}, format='json')
+def test_password_change_empty_token(api_client, password_change_url):
+    api_client.credentials(HTTP_AUTHORIZATION=f'Token ')
+    response = api_client.post(password_change_url, {}, format='json')
+    assert response.status_code == status.HTTP_401_UNAUTHORIZED
+
     field_errors = json.loads(response.content).keys()
+    assert len(field_errors) == 1
+
+
+@pytest.mark.django_db
+def test_password_change_empty_data(api_client, password_change_url, user_instance_token):
+    api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
+    response = api_client.post(password_change_url, {}, format='json')
     assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    field_errors = json.loads(response.content).keys()
+    assert len(field_errors) == 3
+    assert "current_password" in field_errors
+    assert "new_password" in field_errors
+    assert "new_password_again" in field_errors
+
+
+@pytest.mark.django_db
+def test_password_change_wrong_current_password(api_client, password_change_url, user_instance_token, password_change_data):
+    password_change_data['current_password'] = 'wrong_current_password'
+    api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
+    response = api_client.post(password_change_url, password_change_data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    field_errors = json.loads(response.content).keys()
+    assert len(field_errors) == 1
+    assert "current_password" in field_errors
+
+
+@pytest.mark.django_db
+def test_password_change_no_current_password(api_client, password_change_url, user_instance_token, password_change_data):
+    del password_change_data['current_password']
+    api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
+    response = api_client.post(password_change_url, password_change_data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    field_errors = json.loads(response.content).keys()
+    assert len(field_errors) == 1
+    assert "current_password" in field_errors
+
+
+@pytest.mark.django_db
+def test_password_change_no_new_password(api_client, password_change_url, user_instance_token, password_change_data):
+    del password_change_data['new_password']
+    api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
+    response = api_client.post(password_change_url, password_change_data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    field_errors = json.loads(response.content).keys()
+    assert len(field_errors) == 1
+    assert "new_password" in field_errors
+
+
+@pytest.mark.django_db
+def test_password_change_no_new_password_and_password_again(api_client, password_change_url, user_instance_token, password_change_data):
+    del password_change_data['new_password']
+    del password_change_data['new_password_again']
+    api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
+    response = api_client.post(password_change_url, password_change_data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    field_errors = json.loads(response.content).keys()
     assert len(field_errors) == 2
-    assert "username" in field_errors
-    assert "password" in field_errors
-
-
-@pytest.mark.django_db
-def test_login_with_only_username(api_client, login_url, user_instance):
-    response = api_client.post(login_url, {'username': 'testuser'}, format='json')
-    field_errors = json.loads(response.content).keys()
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert len(field_errors) == 1
-    assert "password" in field_errors
-
-
-@pytest.mark.django_db
-def test_login_with_only_password(api_client, login_url, user_instance):
-    response = api_client.post(login_url, {'password': 'testpassword'}, format='json')
-    field_errors = json.loads(response.content).keys()
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert len(field_errors) == 1
-    assert "username" in field_errors
-
-
-@pytest.mark.django_db
-def test_login_with_username_and_empty_password(api_client, login_url, login_data, user_instance):
-    login_data['password'] = ''
-    response = api_client.post(login_url, login_data, format='json')
-    field_errors = json.loads(response.content).keys()
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert len(field_errors) == 1
-    assert "password" in field_errors
-
-
-@pytest.mark.django_db
-def test_login_wrong_password(api_client, login_url, login_data, user_instance):
-    login_data['password'] = 'different_password'
-    response = api_client.post(login_url, login_data, format='json')
-    field_errors = json.loads(response.content).keys()
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert len(field_errors) == 1
+    assert "new_password" in field_errors
+    assert "new_password_again" in field_errors

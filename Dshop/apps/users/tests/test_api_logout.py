@@ -1,7 +1,7 @@
 import json
 
 import pytest
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.authtoken.models import Token
@@ -10,8 +10,8 @@ User = get_user_model()
 
 
 @pytest.fixture
-def login_url():
-    return reverse('api-login')
+def logout_url():
+    return reverse('api-logout')
 
 
 @pytest.fixture
@@ -33,57 +33,20 @@ def user_instance_token(user_instance):
 
 
 @pytest.mark.django_db
-def test_login_success(api_client, login_url, login_data, user_instance, user_instance_token):
-    response = api_client.post(login_url, login_data, format='json')
-    content = json.loads(response.content.decode('utf-8'))
-    assert response.status_code == status.HTTP_200_OK
-    assert content['username'] == user_instance.username
-    assert content['email'] == user_instance.email
-    assert content['token'] == user_instance_token.key
+def test_logout_success(api_client, logout_url, user_instance, user_instance_token):
+    api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
+    logout_response = api_client.post(logout_url)
+    assert logout_response.status_code == status.HTTP_200_OK
+
+    authenticated_user = authenticate(user_instance=user_instance, token_key=user_instance_token.key)
+    assert authenticated_user is None
+
+    with pytest.raises(user_instance_token.DoesNotExist):
+        Token.objects.get(user=user_instance)
 
 
 @pytest.mark.django_db
-def test_login_empty_data(api_client, login_url):
-    response = api_client.post(login_url, {}, format='json')
-    field_errors = json.loads(response.content).keys()
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert len(field_errors) == 2
-    assert "username" in field_errors
-    assert "password" in field_errors
-
-
-@pytest.mark.django_db
-def test_login_with_only_username(api_client, login_url, user_instance):
-    response = api_client.post(login_url, {'username': 'testuser'}, format='json')
-    field_errors = json.loads(response.content).keys()
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert len(field_errors) == 1
-    assert "password" in field_errors
-
-
-@pytest.mark.django_db
-def test_login_with_only_password(api_client, login_url, user_instance):
-    response = api_client.post(login_url, {'password': 'testpassword'}, format='json')
-    field_errors = json.loads(response.content).keys()
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert len(field_errors) == 1
-    assert "username" in field_errors
-
-
-@pytest.mark.django_db
-def test_login_with_username_and_empty_password(api_client, login_url, login_data, user_instance):
-    login_data['password'] = ''
-    response = api_client.post(login_url, login_data, format='json')
-    field_errors = json.loads(response.content).keys()
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert len(field_errors) == 1
-    assert "password" in field_errors
-
-
-@pytest.mark.django_db
-def test_login_wrong_password(api_client, login_url, login_data, user_instance):
-    login_data['password'] = 'different_password'
-    response = api_client.post(login_url, login_data, format='json')
-    field_errors = json.loads(response.content).keys()
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert len(field_errors) == 1
+def test_logout_success_without_credentials(api_client, logout_url):
+    # If user is not logged in, response should be also 200 because user is already logged out
+    logout_response = api_client.post(logout_url)
+    assert logout_response.status_code == status.HTTP_200_OK
