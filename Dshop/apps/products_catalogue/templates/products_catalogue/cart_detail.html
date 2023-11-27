@@ -1,22 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Twój koszyk</title>
-</head>
-<body>
-Twój koszyk
-<br>
-<br>
+{% extends 'base.html' %}
 
-<li>COUNT ALL {{ cart.count}}</li>
------------------------------------
-{% for item in cart %}
-    <li>PRODUCT {{ item.product  }}</li>
-    <li>PRICE {{ item.price  }}</li>
-    <li>SUBTOTAL {{ item.subtotal   }}</li>
-    <li>COUNT {{ item.quantity   }}</li>
+{% load thumbnail %}
+
+{% block content %}
+
+<div class="container">
+    <H3>Twój koszyk</H3>
+
+    <li>Wszystkich elementów {{ cart.count }}</li>
+    <li> Całkowity koszt {{ cart.total }}</li>
+    -----------------------------------
+    {% for item in cart %}
+        <li>Produkt: {{ item.product  }}</li>
+        <li>Cena jednostkowa: {{ item.price  }}</li>
+        <li>Całkowity koszt {{ item.subtotal   }}</li>
+            <div class="col-md-3 mb-4">
+                <form action="{% url 'delete_one_cart_item' item.product.slug item.id 1 %}" method="post">
+                    {% csrf_token %}
+                    <input class="btn btn-primary" type="submit" value="minus">
+                </form>
+            </div>
+            Liczba produktów {{ item.quantity }}
+            <div class="col-md-3 mb-4">
+                <form action="{% url 'add_to_cart' item.product.slug item.product.id 1 %}" method="post">
+                   {% csrf_token %}
+                   <input  class="btn btn-primary" type="submit" value="plus">
+                </form>
+            </div>
+            <div class="cart mt-4 align-items-center">
+                <form action="{% url 'delete_cart_item' item.product.slug item.id %}" method="post">
+                   {% csrf_token %}
+                   <input class="btn btn-danger text-uppercase mr-2 px-4" type="submit" value="DELETE">
+                </form>
+            </div>
     -----------------------------------------
-{% endfor %}
-</body>
-</html>
+    {% endfor %}
+
+</div>
+{% endblock %}

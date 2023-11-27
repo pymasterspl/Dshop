@@ -64,7 +64,10 @@
                                 </ul>
                             {% endif %}
                             <div class="cart mt-4 align-items-center">
-                                <button class="btn btn-danger text-uppercase mr-2 px-4">Dodaj do koszyka</button>
+                                <form action="{% url 'add_to_cart' object.slug object.pk 1 %}" method="post">
+                                    {% csrf_token %}
+                                    <input class="btn btn-danger text-uppercase mr-2 px-4" type="submit" value="Dodaj do koszyka">
+                                </form>
                             </div>
                         </div>
                     </div>
