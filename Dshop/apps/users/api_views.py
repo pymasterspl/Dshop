@@ -59,7 +59,6 @@ class LoginView(GenericAPIView):
 
 class LogoutView(GenericAPIView):
     permission_classes = (AllowAny, )
-    # serializer_class = EmptySerializer
     throttle_scope = 'logout'
 
     def get(self, request):

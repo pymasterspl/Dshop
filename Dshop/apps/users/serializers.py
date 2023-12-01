@@ -8,10 +8,6 @@ from .models import CustomUser
 User = get_user_model()
 
 
-class EmptySerializer(serializers.Serializer):
-    pass
-
-
 class RegistrationSerializer(serializers.ModelSerializer):
     """
     Serializer related to registration of a new user
