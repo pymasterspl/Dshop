@@ -12,7 +12,6 @@ from .models import CustomUser
 from .serializers import (
     RegistrationSerializer,
     LoginSerializer,
-    EmptySerializer,
     PasswordChangeSerializer,
     UserDataChangeSerializer,
     UserDataReadSerializer
