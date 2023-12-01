@@ -138,8 +138,8 @@ def test_put_user_details_with_2_empty_fields(
         custom_user_instance,
         country_instance
 ):
-    user_details_data['first_name'] = ''
-    user_details_data['phone_number'] = ''
+    del user_details_data['first_name']
+    del user_details_data['phone_number']
 
     api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
     response = api_client.put(user_details_url, data=user_details_data)
@@ -215,8 +215,8 @@ def test_patch_user_details_with_2_empty_fields(
         custom_user_instance,
         country_instance
 ):
-    user_details_data['first_name'] = ''
-    user_details_data['phone_number'] = ''
+    del user_details_data['first_name']
+    del user_details_data['phone_number']
 
     api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
     response = api_client.patch(user_details_url, data=user_details_data)
