@@ -4,7 +4,6 @@ import pytest
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
-from rest_framework.authtoken.models import Token
 
 User = get_user_model()
 
@@ -12,14 +11,6 @@ User = get_user_model()
 @pytest.fixture
 def password_change_url():
     return reverse('api-password-change')
-
-
-@pytest.fixture
-def login_data():
-    return {
-        'username': 'testuser',
-        'password': 'testpassword',
-    }
 
 
 @pytest.fixture
@@ -31,30 +22,40 @@ def password_change_data():
     }
 
 
-@pytest.fixture
-def user_instance(login_data):
-    return User.objects.create_user(**login_data)
+@pytest.mark.django_db
+def test_password_change_success(
+        api_client,
+        password_change_url,
+        user_instance_token,
+        password_change_data,
+        login_data,
+        login_url
+):
+    api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
+    response = api_client.post(password_change_url, password_change_data)
+    assert response.status_code == status.HTTP_200_OK
 
-
-@pytest.fixture
-def user_instance_token(user_instance):
-    return Token.objects.get_or_create(user=user_instance)[0]
+    # set new login data after password change and perform login
+    login_data['password'] = password_change_data['new_password']
+    response = api_client.post(login_url, login_data)
+    assert response.status_code == status.HTTP_200_OK
 
 
 @pytest.mark.django_db
-def test_password_change_success(api_client, password_change_url, user_instance_token, password_change_data):
+def test_password_change_failure(api_client, password_change_url, user_instance_token, password_change_data):
     api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
-    response = api_client.post(password_change_url, password_change_data, format='json')
+    response = api_client.post(password_change_url, password_change_data)
     assert response.status_code == status.HTTP_200_OK
 
-    response = api_client.post(password_change_url, password_change_data, format='json')
+    # after successful password change, current_password in password_change_data is no longer valid
+    response = api_client.post(password_change_url, password_change_data)
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
 @pytest.mark.django_db
 def test_password_change_empty_token(api_client, password_change_url):
     api_client.credentials(HTTP_AUTHORIZATION='Token ')
-    response = api_client.post(password_change_url, data={}, format='json')
+    response = api_client.post(password_change_url, data={})
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     field_errors = json.loads(response.content).keys()
@@ -64,7 +65,7 @@ def test_password_change_empty_token(api_client, password_change_url):
 @pytest.mark.django_db
 def test_password_change_empty_data(api_client, password_change_url, user_instance_token):
     api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
-    response = api_client.post(password_change_url, data={}, format='json')
+    response = api_client.post(password_change_url, data={})
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
     field_errors = json.loads(response.content).keys()
@@ -78,7 +79,7 @@ def test_password_change_empty_data(api_client, password_change_url, user_instan
 def test_password_change_wrong_current_password(api_client, password_change_url, user_instance_token, password_change_data):
     password_change_data['current_password'] = 'wrong_current_password'
     api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
-    response = api_client.post(password_change_url, password_change_data, format='json')
+    response = api_client.post(password_change_url, password_change_data)
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
     field_errors = json.loads(response.content).keys()
@@ -90,7 +91,7 @@ def test_password_change_wrong_current_password(api_client, password_change_url,
 def test_password_change_no_current_password(api_client, password_change_url, user_instance_token, password_change_data):
     del password_change_data['current_password']
     api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
-    response = api_client.post(password_change_url, password_change_data, format='json')
+    response = api_client.post(password_change_url, password_change_data)
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
     field_errors = json.loads(response.content).keys()
@@ -102,7 +103,7 @@ def test_password_change_no_current_password(api_client, password_change_url, us
 def test_password_change_no_new_password(api_client, password_change_url, user_instance_token, password_change_data):
     del password_change_data['new_password']
     api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
-    response = api_client.post(password_change_url, password_change_data, format='json')
+    response = api_client.post(password_change_url, password_change_data)
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
     field_errors = json.loads(response.content).keys()
@@ -115,7 +116,7 @@ def test_password_change_no_new_password_and_password_again(api_client, password
     del password_change_data['new_password']
     del password_change_data['new_password_again']
     api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
-    response = api_client.post(password_change_url, password_change_data, format='json')
+    response = api_client.post(password_change_url, password_change_data)
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
     field_errors = json.loads(response.content).keys()

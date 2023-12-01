@@ -77,32 +77,39 @@ class PasswordChangeSerializer(serializers.Serializer):
 
 
 class UserDataReadSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(source='user.email')
+    email = serializers.ReadOnlyField(source='user.email')
+    user_email = serializers.EmailField(required=False, write_only=True)
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = CustomUser
-        fields = '__all__'
+        fields = (
+            'user',
+            'email',
+            'user_email',
+            'first_name',
+            'last_name',
+            'address',
+            'postal_code',
+            'city',
+            'country',
+            'date_of_birth',
+            'phone_number'
+        )
 
 
 class UserDataChangeSerializer(UserDataReadSerializer):
-    email = serializers.EmailField(required=False)
 
     def update(self, instance, validated_data):
-        # Update CustomUser fields
-        instance.first_name = validated_data.get('first_name', instance.first_name)
-        instance.last_name = validated_data.get('last_name', instance.last_name)
-        instance.address = validated_data.get('address', instance.address)
-        instance.postal_code = validated_data.get('postal_code', instance.postal_code)
-        instance.city = validated_data.get('city', instance.city)
-        instance.country = validated_data.get('country', instance.country)
-        instance.date_of_birth = validated_data.get('date_of_birth', instance.date_of_birth)
-        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
-        instance.save()
-
         # Update User fields
         user = instance.user
-        if 'email' in validated_data:
-            user.email = validated_data['email']
+        if 'user_email' in validated_data:
+            user.email = validated_data.pop('user_email')
             user.save()
+
+        # Update CustomUser fields
+        for key, value in validated_data.items():
+            setattr(instance, key, value)
+        instance.save()
 
         return instance

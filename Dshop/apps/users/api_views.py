@@ -23,7 +23,7 @@ User = get_user_model()
 
 class RegistrationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = User.objects.all()
-    permission_classes = [AllowAny]
+    permission_classes = (AllowAny, )
     throttle_scope = 'registration'
     serializer_class = RegistrationSerializer
 
@@ -34,7 +34,7 @@ class RegistrationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
 
 class LoginView(GenericAPIView):
-    permission_classes = [AllowAny]
+    permission_classes = (AllowAny, )
     serializer_class = LoginSerializer
     throttle_scope = 'login'
 
@@ -58,11 +58,11 @@ class LoginView(GenericAPIView):
 
 
 class LogoutView(GenericAPIView):
-    permission_classes = [AllowAny]
-    serializer_class = EmptySerializer
+    permission_classes = (AllowAny, )
+    # serializer_class = EmptySerializer
     throttle_scope = 'logout'
 
-    def post(self, request):
+    def get(self, request):
         try:
             request.user.auth_token.delete()
         except (AttributeError, ObjectDoesNotExist):
@@ -78,7 +78,7 @@ class LogoutView(GenericAPIView):
 
 class PasswordChangeView(GenericAPIView):
     serializer_class = PasswordChangeSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated, )
     throttle_scope = 'password_change'
 
     def post(self, request):
@@ -90,7 +90,7 @@ class PasswordChangeView(GenericAPIView):
 
 
 class UserDataChangeView(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated, )
     throttle_scope = 'change_user_data'
 
     def get_serializer_class(self):
