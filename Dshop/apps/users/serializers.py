@@ -109,3 +109,7 @@ class UserDataChangeSerializer(UserDataReadSerializer):
         instance.save()
 
         return instance
+
+
+class EmptySerializer:  # required in LogoutView, otherwise sending warning.
+    pass

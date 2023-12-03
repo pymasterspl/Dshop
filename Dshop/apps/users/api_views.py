@@ -14,7 +14,8 @@ from .serializers import (
     LoginSerializer,
     PasswordChangeSerializer,
     UserDataChangeSerializer,
-    UserDataReadSerializer
+    UserDataReadSerializer,
+    EmptySerializer
 )
 
 User = get_user_model()
@@ -59,6 +60,7 @@ class LoginView(GenericAPIView):
 class LogoutView(GenericAPIView):
     permission_classes = (AllowAny, )
     throttle_scope = 'logout'
+    serializer_class = EmptySerializer
 
     def get(self, request):
         try:
