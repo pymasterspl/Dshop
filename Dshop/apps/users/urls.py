@@ -11,4 +11,3 @@ urlpatterns = [
     path('update-user/', UpdateUserView.as_view(), name='update_user'),
     path('privacy-policy/', TemplatesView.as_view(), name='privacy-policy')
 ]
-
