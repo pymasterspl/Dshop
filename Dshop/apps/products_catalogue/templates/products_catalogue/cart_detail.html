@@ -4,37 +4,47 @@
 
 {% block content %}
 
-<div class="container">
-    <H3>Twój koszyk</H3>
+<div class="container mt-5" style="padding-left: 20%; padding-right: 20%;">
+    <h3 class="mb-4">Twój koszyk</h3>
 
-    <li>Wszystkich elementów {{ cart.count }}</li>
-    <li> Całkowity koszt {{ cart.total }}</li>
-    -----------------------------------
+    <ul class="list-group mb-3">
+        <li class="list-group-item">Wszystkich elementów: <strong>{{ cart.count }}</strong></li>
+        <li class="list-group-item">Całkowity koszt: <strong>{{ cart.total }}</strong></li>
+    </ul>
+
     {% for item in cart %}
-        <li>Produkt: {{ item.product  }}</li>
-        <li>Cena jednostkowa: {{ item.price  }}</li>
-        <li>Całkowity koszt {{ item.subtotal   }}</li>
-            <div class="col-md-3 mb-4">
-                <form action="{% url 'delete_one_cart_item' item.product.slug item.id 1 %}" method="post">
-                    {% csrf_token %}
-                    <input class="btn btn-primary" type="submit" value="minus">
-                </form>
+    <div class="card mb-5">
+        <div class="card-body">
+            <h5 class="card-title">Produkt: {{ item.product }}</h5>
+            <p class="card-text">Cena jednostkowa: {{ item.price }}</p>
+            <p class="card-text">Całkowity koszt: {{ item.subtotal }}</p>
+            <div class="row align-items-center">
+                <div class="col-md-1">
+                    <form action="{% url 'delete_one_cart_item' item.product.slug item.id 1 %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-primary" type="submit">-</button>
+                    </form>
+                </div>
+                <div class="col-md-3">
+                    <span class="mx-2">Liczba produktów: {{ item.quantity }}</span>
+                </div>
+                <div class="col-md-1">
+                    <form action="{% url 'add_to_cart' item.product.slug item.product.id 1 %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-primary" type="submit">+</button>
+                    </form>
+                </div>
+                <div class="col-md-1">
+                    <form action="{% url 'delete_cart_item' item.product.slug item.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-danger" type="submit">Usuń</button>
+                    </form>
+                </div>
             </div>
-            Liczba produktów {{ item.quantity }}
-            <div class="col-md-3 mb-4">
-                <form action="{% url 'add_to_cart' item.product.slug item.product.id 1 %}" method="post">
-                   {% csrf_token %}
-                   <input  class="btn btn-primary" type="submit" value="plus">
-                </form>
-            </div>
-            <div class="cart mt-4 align-items-center">
-                <form action="{% url 'delete_cart_item' item.product.slug item.id %}" method="post">
-                   {% csrf_token %}
-                   <input class="btn btn-danger text-uppercase mr-2 px-4" type="submit" value="DELETE">
-                </form>
-            </div>
-    -----------------------------------------
-    {% endfor %}
+        </div>
+    </div>
 
+    {% endfor %}
 </div>
+
 {% endblock %}
