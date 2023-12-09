@@ -18,8 +18,8 @@ class Command(BaseCommand):
         root = etree.fromstring(xml_data)
         categories = self.parse_categories(root)
         for category in categories:
-            category['Id'] = int(category['Id'])
-        categories.sort(key=lambda x: x['Id'])
+            category['id'] = int(category['id'])
+        categories.sort(key=lambda x: x['id'])
         self.import_ceneo_categories(categories)
         self.stdout.write(self.style.SUCCESS('Ceneo categories data imported successfully.'))
 
@@ -38,7 +38,7 @@ class Command(BaseCommand):
         categories = []
         for elem in category_elem:
             category = {
-                'Id': int(elem.findtext('Id')),
+                'id': int(elem.findtext('Id')),
                 'name': elem.findtext('Name'),
             }
             subcategories_elem = elem.find('Subcategories')
@@ -53,10 +53,10 @@ class Command(BaseCommand):
         new_categories = []
 
         for category in categories:
-            if category['Id'] in existing_categories:
-                logging.info(f"Category {category['Id']} ({category['name']}) already exists.")
+            if category['id'] in existing_categories:
+                logging.info(f"Category {category['id']} ({category['name']}) already exists.")
             else:
-                new_categories.append(CeneoCategory(id=category['Id'], name=category['name']))
+                new_categories.append(CeneoCategory(id=category['id'], name=category['name']))
 
         if new_categories:
             CeneoCategory.objects.bulk_create(new_categories, ignore_conflicts=True, update_conflicts=False)
