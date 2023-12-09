@@ -41,7 +41,8 @@ PROJECT_APPS = [
     'apps.users',
     'apps.products_catalogue',
     'apps.payments.apps.PaymentsConfig',
-    'dj_shop_cart'
+    'dj_shop_cart',
+    'apps.shipping'
 ]
 
 SITE_ID = 1
