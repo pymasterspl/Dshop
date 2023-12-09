@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
-from decouple import config    
+from decouple import config
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,23 +23,29 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-# SECRET_KEY = 'django-secret-key-hash'
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = True
 DEBUG = config('DEBUG')
 
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = [
-                config('ALLOWED_HOST_1'),
-                config('ALLOWED_HOST_2'),
-                config('ALLOWED_HOST_3') 
-]
+# SECURITY WARNING: don't run with debug turned on in production!
+
+
+ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 
 # Application definition
+PROJECT_APPS = [
+    'apps.core',
+    'apps.users',
+    'apps.products_catalogue',
+    'apps.payments.apps.PaymentsConfig',
+    'dj_shop_cart'
+]
+
+SITE_ID = 1
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -47,11 +54,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    ## local apps
-    'apps.core',
-    'apps.users',
-]
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
+    'sorl.thumbnail',
+    'tinymce',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'drf_spectacular',
+] + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,7 +78,7 @@ ROOT_URLCONF = 'Dshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,6 +86,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.core.context_processors.add_variable_to_context',
+
+                # If you want access to the cart instance in all templates
+                "dj_shop_cart.context_processors.cart",
             ],
         },
     },
@@ -94,7 +108,7 @@ DATABASES = {
     }
 }
 
-## Postgrerss config 
+# Postgrerss config
 
 # DATABASES = {
 #     "default": {
@@ -106,8 +120,6 @@ DATABASES = {
 #         "PORT": config('POSTGRES_PORT'),
 #     }
 # }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -143,15 +155,67 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = 'login'
 
-
-## Settings added manually ##
+# Settings added manually
 
 # Uncomment for authentication
 # AUTH_USER_MODEL = 'core.User'
+
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+STRIPE_ENDPOINT_SECRET = config('STRIPE_ENDPOINT_SECRET')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+THUMBNAIL_PREFIX = 'cache/'
+
+TINYMCE_DEFAULT_CONFIG = {
+    "theme": "silver",
+    "width": 500,
+    "height": 300,
+    "menubar": False,
+    "plugins": "lists",
+    "toolbar": " formatselect  | bold italic | bullist "
+}
+
+CART_STORAGE_BACKEND = "dj_shop_cart.storages.DBStorage"
+
+# django-rest-framework
+# -------------------------------------------------------------------------------
+# django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_THROTTLE_RATES": {
+        # 'registration': '3/day'
+    },
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# drf_spectacular
+# -------------------------------------------------------------------------------
+# drf_spectacular -  https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
+SPECTACULAR_SETTINGS = {
+    "TITLE": "dshop API",
+    "DESCRIPTION": "Documentation of API endpoints of dshop",
+    "VERSION": "1.0.0",
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
+    "SERVE_INCLUDE_SCHEMA": False,
+}
