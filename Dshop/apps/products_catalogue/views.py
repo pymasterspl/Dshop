@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from dj_shop_cart.cart import get_cart_class, Cart
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
