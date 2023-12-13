@@ -15,7 +15,7 @@
     {% for item in cart %}
     <div class="card mb-5">
         <div class="card-body">
-            <h5 class="card-title">Produkt: {{ item.product }}</h5>
+            <h5 class="card-title">{{ item.product }}</h5>
             <p class="card-text">Cena jednostkowa: {{ item.price }}</p>
             <p class="card-text">Całkowity koszt: {{ item.subtotal }}</p>
             <div class="row align-items-center">
