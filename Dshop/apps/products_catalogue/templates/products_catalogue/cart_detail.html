@@ -17,7 +17,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ item.product }}</h5>
             <p class="card-text">Cena: {{ item.price }}</p>
-            <p class="card-text">Całkowity koszt: {{ item.subtotal }}</p>
+            <p class="card-text">Suma: {{ item.subtotal }}</p>
             <div class="row align-items-center">
                 <div class="col-md-1">
                     <form action="{% url 'delete_one_cart_item' item.product.slug item.id 1 %}" method="post">
