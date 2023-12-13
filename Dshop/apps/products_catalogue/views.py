@@ -1,4 +1,5 @@
 import requests
+from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -48,9 +49,14 @@ class AddToCartView(View):
         product = get_object_or_404(Product, id=product_id)
 
         if not product.is_available:
-            raise ValidationError("Produkt jest niedostępny.")
+            messages.error(request, "Produkt jest niedostępny.")
+            return redirect('cart_detail')
 
-        cart.add(product,  quantity=quantity)
+        try:
+            cart.add(product,  quantity=quantity)
+        except AssertionError as e:
+            messages.error(request, "Ilość musi być większa niż 0.")
+            return redirect('cart_detail')
 
         return redirect('cart_detail')
 

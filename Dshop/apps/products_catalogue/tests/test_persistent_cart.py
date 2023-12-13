@@ -3,6 +3,7 @@ from django.urls import reverse
 from pytest import mark
 
 from dj_shop_cart.cart import get_cart_class
+from setuptools.config._validate_pyproject import ValidationError
 
 
 @mark.dj_shop_cart
@@ -76,3 +77,20 @@ def test_add_non_exist_product_to_cart(client):
     fake_response = client.post(url)
 
     assert fake_response.status_code == 404
+
+
+@mark.dj_shop_cart
+@pytest.mark.django_db
+def test_response_add_to_cart_zero_view_request(client, tv_product):
+    url = reverse(
+        'add_to_cart',
+        kwargs={
+            'slug': 'first-one',
+            'id': tv_product.id,
+            'quantity': 0
+        }
+    )
+    fake_response = client.post(url)
+
+    assert fake_response.status_code == 302
+    assert fake_response.url == reverse('cart_detail')
