@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Metody InPost</title>
+</head>
+<body>
+{% if error %}
+<p>{{ error }}</p>
+{% else %}
+<ul>
+    {% for method in methods %}
+    <li>{{ method.name }} - {{ method.description }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
