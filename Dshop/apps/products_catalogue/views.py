@@ -45,7 +45,7 @@ class AddToCartView(View):
     def post(self, request, **kwargs):
         cart = self.model.new(request)
         product_id = self.kwargs.get('id')
-        quantity = self.kwargs.get('quantity')
+        quantity = int(self.kwargs.get('quantity'))
         product = get_object_or_404(Product, id=product_id)
 
         if not product.is_available:
@@ -67,8 +67,13 @@ class DeleteOneCartItemView(DeleteView):
     def post(self, request, **kwargs):
         cart = self.model.new(request)
         item_id = self.kwargs.get('item_id')
+        quantity = int(self.kwargs.get('quantity'))
 
-        cart.remove(item_id=item_id,  quantity=1)
+        if quantity < 1:
+            messages.error(request, "Ilość musi być większa niż 0.")
+            return redirect('cart_detail')
+
+        cart.remove(item_id=item_id, quantity=quantity)
 
         return redirect('cart_detail')
 
