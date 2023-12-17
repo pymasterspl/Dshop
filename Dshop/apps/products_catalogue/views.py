@@ -55,7 +55,7 @@ class AddToCartView(View):
 
         try:
             cart.add(product,  quantity=quantity)
-        except AssertionError as e:
+        except AssertionError:
             messages.error(request, "Ilość musi być większa niż 0.")
             return redirect('cart_detail')
           
