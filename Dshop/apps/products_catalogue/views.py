@@ -8,7 +8,8 @@ from django.views.generic import ListView, DetailView, DeleteView
 from lxml import etree
 from dj_shop_cart.cart import Cart
 
-from .models import Product, CeneoCategory, Category
+
+from .models import Product, Category
 
 
 class ProductListView(ListView):
@@ -57,7 +58,7 @@ class AddToCartView(View):
         except AssertionError as e:
             messages.error(request, "Ilość musi być większa niż 0.")
             return redirect('cart_detail')
-
+          
         return redirect('cart_detail')
 
 
@@ -165,48 +166,6 @@ class CeneoProductListView(View):
         return response
 
 
-class CeneoCategoriesView(View):
-
-    @staticmethod
-    def fetch_ceneo_data():
-        url = 'https://developers.ceneo.pl/api/v3/kategorie'
-        try:
-            response = requests.get(url)
-            response.raise_for_status()
-            return response.content
-        except requests.RequestException as e:
-            raise CeneoAPIException(f"Failed to fetch data from Ceneo API: {e}")
-
-    # TODO: to add parent category to the model and add functionality to write it to database
-    def parse_categories(self, category_elem):
-        categories = []
-        for elem in category_elem:
-            category = {
-                'Id': int(elem.findtext('Id')),
-                'name': elem.findtext('Name'),
-            }
-            subcategories_elem = elem.find('Subcategories')
-            if subcategories_elem is not None:
-                categories.extend(self.parse_categories(subcategories_elem))
-            categories.append(category)
-        return categories
-
-    @staticmethod
-    def import_ceneo_categories(categories):
-        bulk_list = [CeneoCategory(id=category['Id'], name=category['name']) for category in categories]
-        CeneoCategory.objects.bulk_create(bulk_list, ignore_conflicts=True, update_conflicts=False)
-
-    def get(self, request, *args, **kwargs):
-        xml_data = self.fetch_ceneo_data()
-        root = etree.fromstring(xml_data)
-        categories = self.parse_categories(root)
-        for category in categories:
-            category['Id'] = int(category['Id'])
-        categories.sort(key=lambda x: x['Id'])
-        self.import_ceneo_categories(categories)
-        return HttpResponse('Ceneo categories data imported successfully.', 200)
-
-
 class CeneoAPIException(Exception):
     pass
 
@@ -224,7 +183,7 @@ class CategoryDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        products_without_parent = Product.objects.filter(category=self.get_object(), parent_product=None, is_active=True)
+        products_without_parent = Product.objects.filter(category=self.get_object(), parent_product=None,
+                                                         is_active=True)
         context['products'] = products_without_parent
         return context
-    
