@@ -3,7 +3,6 @@ from django.urls import reverse
 from pytest import mark
 
 from dj_shop_cart.cart import get_cart_class
-from setuptools.config._validate_pyproject import ValidationError
 
 
 @mark.dj_shop_cart
