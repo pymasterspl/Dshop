@@ -23,11 +23,10 @@ from sitemap import ProductSitemap, StaticViewSitemap, CategorySitemap
 
 
 sitemaps ={
-    'products' : ProductSitemap,
+    'products': ProductSitemap,
     'categories': CategorySitemap,
     "static": StaticViewSitemap,
 }
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),

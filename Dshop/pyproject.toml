@@ -19,6 +19,7 @@ charset_normalizer = "^3.3.0"
 freezegun = "^1.2.2"
 django-tinymce = "^3.6.1"
 dj-shop-cart = "^7.0.3"
+sentry-sdk = {extras = ["django"], version = "^1.39.1"}
 
 
 [tool.poetry.group.dev.dependencies]
