@@ -1,6 +1,7 @@
 import pytest
 from django.urls import reverse
 from apps.products_catalogue.models import Category, Product
+# pylama:ignore=W0404, W0611
 from apps.users.conftest import api_client, login_url, login_data, user_instance, user_instance_token
 
 
