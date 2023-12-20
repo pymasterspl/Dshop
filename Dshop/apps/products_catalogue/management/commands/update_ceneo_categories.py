@@ -34,16 +34,22 @@ class Command(BaseCommand):
             logging.error(f"Failed to fetch data from Ceneo API: {e}")
             raise
 
-    def parse_categories(self, category_elem):
+    def parse_categories(self, category_elem, parent_category_id=None):
         categories = []
         for elem in category_elem:
+            category_id = int(elem.findtext("Id"))
             category = {
-                'id': int(elem.findtext('Id')),
-                'name': elem.findtext('Name'),
+                "id": category_id,
+                "name": elem.findtext("Name"),
+                "parent_id": parent_category_id,
             }
             subcategories_elem = elem.find('Subcategories')
             if subcategories_elem is not None:
-                categories.extend(self.parse_categories(subcategories_elem))
+                categories.extend(
+                    self.parse_categories(
+                        subcategories_elem, parent_category_id=category_id
+                    )
+                )
             categories.append(category)
         return categories
 
@@ -56,7 +62,7 @@ class Command(BaseCommand):
             if category['id'] in existing_categories:
                 logging.info(f"Category {category['id']} ({category['name']}) already exists.")
             else:
-                new_categories.append(CeneoCategory(id=category['id'], name=category['name']))
+                new_categories.append(CeneoCategory(**category))
 
         if new_categories:
             CeneoCategory.objects.bulk_create(new_categories, ignore_conflicts=True, update_conflicts=False)
