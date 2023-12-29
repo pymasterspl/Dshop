@@ -85,7 +85,7 @@ def test_product_detail(authenticated_api_client, create_active_product):
 def test_create_product(authenticated_api_client, create_category):
     url = reverse('products-api-list')
     data = {
-        'category': create_category.id,  # replace with an existing category ID
+        'category': create_category.id,
         'name': 'Test Product',
         'price': '19.99',
         'short_description': 'Test short description',
