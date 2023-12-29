@@ -1,10 +1,12 @@
-from dj_shop_cart.cart import get_cart_class, Cart
+from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from django.views.generic import ListView, DetailView, DeleteView
 from lxml import etree
+from dj_shop_cart.cart import Cart
+
 
 from .models import Product, Category
 
@@ -43,14 +45,19 @@ class AddToCartView(View):
     def post(self, request, **kwargs):
         cart = self.model.new(request)
         product_id = self.kwargs.get('id')
-        quantity = self.kwargs.get('quantity')
+        quantity = int(self.kwargs.get('quantity'))
         product = get_object_or_404(Product, id=product_id)
 
         if not product.is_available:
-            raise ValidationError("Produkt jest niedostępny.")
+            messages.error(request, "Produkt jest niedostępny.")
+            return redirect('cart_detail')
 
-        cart.add(product, quantity=quantity)
-
+        try:
+            cart.add(product,  quantity=quantity)
+        except AssertionError:
+            messages.error(request, "Ilość musi być większa niż 0.")
+            return redirect('cart_detail')
+          
         return redirect('cart_detail')
 
 
@@ -61,7 +68,17 @@ class DeleteOneCartItemView(DeleteView):
         cart = self.model.new(request)
         item_id = self.kwargs.get('item_id')
 
-        cart.remove(item_id=item_id, quantity=1)
+        try:
+            quantity = int(self.kwargs.get('quantity'))
+        except ValidationError:
+            messages.error(request, "Quantity musi być liczbą całkowitą")
+            return redirect('cart_detail')
+
+        if quantity < 1:
+            messages.error(request, "Ilość musi być większa niż 0.")
+            return redirect('cart_detail')
+
+        cart.remove(item_id=item_id, quantity=quantity)
 
         return redirect('cart_detail')
 
@@ -70,7 +87,7 @@ class DeleteCartItemView(DeleteView):
     model = Cart
 
     def post(self, request, **kwargs):
-        cart = get_cart_class().new(request)
+        cart = self.model.new(request)
         item_id = self.kwargs.get('id')
         cart.remove(item_id=item_id)
 
