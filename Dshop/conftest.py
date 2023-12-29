@@ -4,10 +4,8 @@ from django.urls import reverse
 from pytest import fixture
 from apps.products_catalogue.models import Category, Product
 from apps.users.models import CustomUser
-from django.contrib.auth.models import User
 
 
-BaseUser = User
 User = CustomUser
 Cart = get_cart_class()
 
