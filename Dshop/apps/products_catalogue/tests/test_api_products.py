@@ -11,14 +11,28 @@ def create_category():
 
 
 @pytest.fixture
-def create_product():
+def create_active_product():
     category = Category.objects.create(name='Test Category', is_active=True)
     return Product.objects.create(
         name="main product",
         category=category,
         price=11,
         short_description="short desc",
-        full_description="full_description"
+        full_description="full_description",
+        is_active=True
+    )
+
+
+@pytest.fixture
+def create_inactive_product():
+    category = Category.objects.create(name='Test Category 2', is_active=True)
+    return Product.objects.create(
+        name="main product inactive",
+        category=category,
+        price=150,
+        short_description="short desc inactive",
+        full_description="full_description inactive",
+        is_active=False
     )
 
 
