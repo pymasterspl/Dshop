@@ -37,12 +37,24 @@ def create_inactive_product():
 
 
 @pytest.mark.django_db
-def test_access_protected_resource(api_client, user_instance_token):
+def test_access_protected_resource(api_client, user_instance_token, create_active_product, create_inactive_product):
     api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
 
     url = reverse('products-api-list')
     response = api_client.get(url)
     assert response.status_code == 200
+
+    results = response.data.get('results', [])
+    assert len(results) == 1
+
+    for product_data in results:
+        assert 'id' in product_data
+        assert 'category' in product_data
+        assert 'name' in product_data
+        assert 'price' in product_data
+        assert 'short_description' in product_data
+        assert 'full_description' in product_data
+        assert 'parent_product' in product_data
 
 
 def test_access_protected_resource_without_authentication(api_client):
