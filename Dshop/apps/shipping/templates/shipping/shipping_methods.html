@@ -1,17 +1,57 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Metody InPost</title>
-</head>
-<body>
+<!-- your_template.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
 {% if error %}
 <p>{{ error }}</p>
 {% else %}
-<ul>
-    {% for method in methods %}
-    <li>{{ method.name }} - {{ method.description }}</li>
-    {% endfor %}
-</ul>
+<form method="post" action="{% url 'handle_method_choice' %}" class="container mt-4" id="shippingForm">
+    {% csrf_token %}
+
+    <div class="field">
+        <label class="radio">
+            <input type="radio" name="selected_method" value="courier">
+            Kurier
+        </label>
+    </div>
+
+    <div class="field">
+        <label class="radio">
+            <input type="radio" name="selected_method" value="parcel_locker">
+            Paczkomat
+        </label>
+    </div>
+
+    <div class="field">
+        <label class="label">
+            Wybierz paczkomat:
+        </label>
+        <div class="control">
+            <a href="{% url 'paczkomat_page' %}" class="button is-info">Wybierz paczkomat</a>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">
+            Adres dostawy:
+        </label>
+        <div class="control">
+            <input type="text" name="name" class="input" placeholder="Imię i nazwisko">
+            <input type="text" name="street" class="input" placeholder="Ulica i numer domu">
+            <input type="text" name="city" class="input" placeholder="Miejscowość">
+            <input type="text" name="postal" class="input" placeholder="Kod pocztowy">
+            <input type="text" name="info" class="input" placeholder="Dodatkowe informacje">
+        </div>
+    </div>
+
+
+    <div class="field">
+        <div class="control">
+            <button type="submit" class="button is-primary">Apply</button>
+        </div>
+    </div>
+</form><br>
 {% endif %}
-</body>
-</html>
+{% endblock %}
