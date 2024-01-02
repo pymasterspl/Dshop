@@ -45,3 +45,4 @@ STRIPE_ENDPOINT_SECRET=stripe_endpoint_secret
 # INPOST TOKEN AND ORGANIZATION ID
 INPOST_TOKEN=inpost_token
 INPOST_ORG_ID=inpost_organization_id
+INPOST_GEOWIDGET_TOKEN=inpost_geowidget_token
