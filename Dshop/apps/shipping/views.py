@@ -1,13 +1,12 @@
-# views.py
 import os
 
 import requests
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 
 
-class InPostSendingMethodsView(View):
-    template_name = 'shipping/shipping_methods.html'
+class InPostSendingMethodView(View):
 
     def get(self, request, *args, **kwargs):
         api_url = "https://api-shipx-pl.easypack24.net/v1/sending_methods"
@@ -17,18 +16,22 @@ class InPostSendingMethodsView(View):
 
         if response.status_code == 200:
             data = response.json()
-            items = data.get("items", [])
-
-            context = {
-                "items": items,
-                "token_for_geo": os.getenv('INPOST_GEOWIDGET_TOKEN'),
-                "language": "pl",
-            }
-
-            return render(request, self.template_name, context)
+            return JsonResponse(data)
         else:
             error_message = f"Request failed: {response.status_code}, message: {response.text}"
-            return render(request, self.template_name, {"error": error_message}, status=500)
+            return JsonResponse({"error": error_message}, status=500)
+
+
+class InPostShippingView(View):
+    template_name = 'shipping/shipping_form.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            "token_for_geo": os.getenv('INPOST_GEOWIDGET_TOKEN'),
+            "language": "pl",
+        }
+
+        return render(request, self.template_name, context)
 
 
 class PaczkomatPageView(View):
