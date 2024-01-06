@@ -42,6 +42,18 @@ def authenticated_api_client(api_client, user_instance_token):
     return api_client
 
 
+def assert_active_object(data):
+    fields_values = {
+        "name": "main product",
+        "price": "11.00",
+        "short_description": "short desc",
+        "full_description": "full_description",
+    }
+    for key, value in data.items():
+        if key in fields_values:
+            assert fields_values[key] == value
+
+
 @pytest.mark.django_db
 def test_access_protected_resource(authenticated_api_client, create_active_product, create_inactive_product):
     url = reverse('products-api-list')
@@ -51,14 +63,13 @@ def test_access_protected_resource(authenticated_api_client, create_active_produ
     results = response.data.get('results', [])
     assert len(results) == 1
 
-    for product_data in results:
-        assert 'id' in product_data
-        assert 'category' in product_data
-        assert 'name' in product_data
-        assert 'price' in product_data
-        assert 'short_description' in product_data
-        assert 'full_description' in product_data
-        assert 'parent_product' in product_data
+    product_data = results[0]
+
+    assert 'id' in product_data, "Field 'id' is missing in product data"
+    assert 'category' in product_data, "Field 'category' is missing in product data"
+    assert product_data['category'] is not None, "Field 'category' should not be None"
+
+    assert_active_object(product_data)
 
 
 def test_access_protected_resource_without_authentication(api_client):
