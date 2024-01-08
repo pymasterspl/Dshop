@@ -1,10 +1,8 @@
 from django.urls import path
 
-from .views import InPostShippingView, PaczkomatPageView, HandleMethodChoiceView, InPostSendingMethodView
+from .views import InPostSendingMethodView, InPostPointsView
 
 urlpatterns = [
-    path('', InPostShippingView.as_view(), name='shipping-page'),
-    path('paczkomat/', PaczkomatPageView.as_view(), name='paczkomat-page'),
-    path('shipping-choice/', HandleMethodChoiceView.as_view(), name='handle-method-choice'),
+    path('points/', InPostPointsView.as_view(), name='inpost-points'),
     path('sending-methods/', InPostSendingMethodView.as_view(), name='sending-methods'),
 ]
