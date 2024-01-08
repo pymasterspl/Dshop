@@ -23,11 +23,11 @@ class InPostSendingMethodView(View):
 class InPostPointsView(View):
 
     def get(self, request, *args, **kwargs):
-        api_url = config("INPOST_ENDPOINT_SANDBOX") + "points"
+        api_points_url = config("INPOST_ENDPOINT_SANDBOX") + "points"
         headers = {"Content-Type": "application/json",
                    "Authorization": "Bearer " + config("INPOST_TOKEN")}
 
-        response = requests.get(api_url, headers=headers)
+        response = requests.get(api_points_url, headers=headers)
 
         if response.status_code == 200:
             data = response.json()
