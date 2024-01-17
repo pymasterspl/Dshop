@@ -1,6 +1,6 @@
 
 from django.contrib.sitemaps import Sitemap
-from apps.products_catalogue.models import Product, Category
+from Dshop.apps.products_catalogue.models import Product, Category
 from django.urls import reverse
 
 

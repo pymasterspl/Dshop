@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-from sitemap import ProductSitemap, StaticViewSitemap, CategorySitemap
+from Dshop.sitemap import ProductSitemap, StaticViewSitemap, CategorySitemap
 
 sitemaps ={
     'products' : ProductSitemap,
@@ -34,14 +34,12 @@ urlpatterns = [
     path(
         "sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap",
     ),
-    path('products/', include('apps.products_catalogue.urls')),
-    path('payments/', include('apps.payments.urls')),
-    path('users/', include('apps.users.urls')),
-    path('tinymce/', include('tinymce.urls')),
-
-    path('api/users/', include('apps.users.api_urls')),
-    path('api/products/', include('apps.products_catalogue.api_urls')),
-
+    path("products/", include("Dshop.apps.products_catalogue.urls")),
+    path("payments/", include("Dshop.apps.payments.urls")),
+    path("users/", include("Dshop.apps.users.urls")),
+    path("tinymce/", include("tinymce.urls")),
+    path("api/users/", include("Dshop.apps.users.api_urls")),
+    path("api/products/", include("Dshop.apps.products_catalogue.api_urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(
         "api/docs/",

@@ -4,7 +4,7 @@ import requests
 from django.core.management.base import BaseCommand
 from lxml import etree
 
-from apps.products_catalogue.models import CeneoCategory
+from Dshop.apps.products_catalogue.models import CeneoCategory
 
 logging.basicConfig(level=logging.INFO)
 
@@ -13,7 +13,8 @@ class Command(BaseCommand):
     help = 'Update Ceneo categories in the database.'
 
     def handle(self, *args, **kwargs):
-        self.stdout.write('Fetching Ceneo data...')
+        from lxml import etree
+
         xml_data = self.fetch_ceneo_data()
         root = etree.fromstring(xml_data)
         categories = self.parse_categories(root)

@@ -3,8 +3,8 @@ from dj_shop_cart.cart import get_cart_class
 from django.urls import reverse
 from pytest import fixture
 
-from apps.products_catalogue.models import Category, Product
-from apps.users.models import CustomUser
+from Dshop.apps.products_catalogue.models import Category, Product
+from Dshop.apps.users.models import CustomUser
 
 User = CustomUser
 Cart = get_cart_class()
