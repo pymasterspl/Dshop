@@ -39,7 +39,7 @@ DEBUG = False
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ["*.execute-api.eu-west-1.amazonaws.com"]
+ALLOWED_HOSTS = [".execute-api.eu-west-1.amazonaws.com"]
 
 # Application definition
 PROJECT_APPS = [
@@ -117,13 +117,6 @@ DATABASES = {
     }
 }
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django_s3_sqlite",
-        "NAME": "sqlite-dev.db",
-        "BUCKET": "dshop-test",
-    }
-}
 
 # Postgrerss config
 
@@ -137,6 +130,19 @@ DATABASES = {
 #         "PORT": config('POSTGRES_PORT'),
 #     }
 # }
+
+# AWS postgres
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "zappa_dev",
+        "USER": "postgres",
+        "PASSWORD": "this_is_not_a_good_password",
+        "HOST": "zappa-dev1.cf8iw6846e7t.eu-west-1.rds.amazonaws.com",
+        "PORT": "5432",
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
