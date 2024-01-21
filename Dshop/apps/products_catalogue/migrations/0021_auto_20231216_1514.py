@@ -4,7 +4,7 @@ from django.db import migrations
 
 
 def delete_all_ceneocategories(apps, schema_editor):
-    CC = Dshop.apps.get_model("products_catalogue", "CeneoCategory")
+    CC = apps.get_model("products_catalogue", "CeneoCategory")
     CC.objects.all().delete()
 
 
