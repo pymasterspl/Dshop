@@ -17,24 +17,29 @@ def counts_to_price_quantity(products, quantities):
 @pytest.mark.django_db
 def test_get_cart_detail():
     client = APIClient()
-    url = reverse("api_cart_detail")
+    url = reverse("api_cart")
     user = User.objects.create_user(username='testuser', password='testpassword')
     client.force_authenticate(user)
-    response = client.get(url, {}, content_type="application/json")
+    response = client.get(url, {}, format="json")
     assert response.status_code == status.HTTP_200_OK
+    print("response.data")
     assert "total" in response.data
     assert "count" in response.data
     assert "items" in response.data
-
+    
 
 @pytest.mark.django_db
 def test_add(tv_product):
     client = APIClient()
-    product = tv_product
-    add_url = reverse("api_add_to_cart", args=[product.id, 10])
     user = User.objects.create_user(username='testuser', password='testpassword')
     client.force_authenticate(user)
-    response = client.post(add_url, {}, content_type="application/json")
+    product = tv_product
+    data = {
+        'items': [ {'product_pk': product.pk, 'quantity': 10} ] 
+    }
+   
+    response = client.post(reverse("api_cart"), data, format='json')
+    print(f"{response.data=}")
     data = response.data
     first_item = data.get("items")[0]
     assert response.status_code == status.HTTP_201_CREATED

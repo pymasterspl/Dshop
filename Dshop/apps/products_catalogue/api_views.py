@@ -1,41 +1,30 @@
 from django.forms import ValidationError
 from django.shortcuts import get_object_or_404
+from django.db import transaction
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Product
-from .serializers import serialize_cart
+from .serializers import CartSerializer
 from dj_shop_cart.cart import get_cart_class
 
 
 class CartAPIView(APIView):
-    def post(self, request, id, quantity):
+    
+    @transaction.atomic
+    def post(self, request):
+        # TU?
+        serializer = CartSerializer(data=request.data)
+        serializer.is_valid()
+        print(f"{serializer.validated_data=}")
         cart = get_cart_class().new(request)
-        product = get_object_or_404(Product, id=id)
-
-        if not product.is_available:
-            raise ValidationError("Produkt jest niedostępny.")
-        if quantity <= 0:
-            raise ValidationError("Nieprawidłowa ilość")
-        cart.add(product,  quantity=quantity)
-        return Response(serialize_cart(cart), status=status.HTTP_201_CREATED)
-
-
+        cart.empty()
+        for el in request.data.get("items"):
+            print(f"{el=}")
+            product = get_object_or_404(Product, pk=el.get("product_pk"))
+            cart.add(product, quantity=el.get("quantity"))
+        return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
     def get(self, request):
         cart = get_cart_class().new(request)
-        return Response(serialize_cart(cart), status=status.HTTP_200_OK)
-    
-    def delete(self, request, item_id, quantity=None):
-        cart = get_cart_class().new(request)    
-        if quantity is None:
-            result = cart.remove(item_id=item_id)
-            if not result:
-                return Response(status=status.HTTP_404_NOT_FOUND)
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        elif quantity <= 0:
-            raise ValidationError("Nieprawidłowa ilość")
-        else:
-            result = cart.remove(item_id=item_id, quantity=quantity)
-            if not result:
-                return Response(status=status.HTTP_404_NOT_FOUND)
-            return Response(status=status.HTTP_204_NO_CONTENT)
+        serializer = CartSerializer(cart)
+        return Response(serializer.data, status=status.HTTP_200_OK)#
