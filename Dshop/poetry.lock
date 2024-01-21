@@ -285,6 +285,20 @@ files = [
 Django = ">=3.2"
 
 [[package]]
+name = "django-s3-sqlite"
+version = "0.0.5"
+description = "An AWS S3-hosted SQLite database backend for Django."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-s3-sqlite-0.0.5.tar.gz", hash = "sha256:b0804112e2be4e0a92f665446bc416ac4a290b2131629c5022b32207a569faac"},
+    {file = "django_s3_sqlite-0.0.5-py3-none-any.whl", hash = "sha256:4372846580f0f1d4b9030c89e16b5b11aec8cac58ef82c6d62be8817894d7a73"},
+]
+
+[package.dependencies]
+Django = ">=2"
+
+[[package]]
 name = "django-tinymce"
 version = "3.6.1"
 description = "A Django application that contains a widget to render a form field as a TinyMCE editor."
@@ -1248,4 +1262,4 @@ wheel = "*"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "abe6dd797355675ef079ef44459b67c98b6914828f1a8717b814877af13f8313"
+content-hash = "418b1767038d1c7dda983a6aa18d88f30f0c55891234fe4a1758146d62b665c6"
