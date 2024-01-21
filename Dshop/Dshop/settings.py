@@ -39,7 +39,7 @@ DEBUG = False
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ["277jzdivo9.execute-api.eu-west-1.amazonaws.com"]
+ALLOWED_HOSTS = ["*.execute-api.eu-west-1.amazonaws.com"]
 
 # Application definition
 PROJECT_APPS = [
