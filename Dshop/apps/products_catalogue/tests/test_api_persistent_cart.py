@@ -18,15 +18,19 @@ def counts_to_price_quantity(products, quantities):
 def test_get_cart_detail():
     client = APIClient()
     url = reverse("api_cart")
-    user = User.objects.create_user(username='testuser', password='testpassword')
+    user = User.objects.create_user(username="testuser", password="testpassword")
     client.force_authenticate(user)
     response = client.get(url, {}, format="json")
     assert response.status_code == status.HTTP_200_OK
     print("response.data")
+    print(response.data)
     assert "total" in response.data
     assert "count" in response.data
     assert "items" in response.data
-    
+    assert (
+        False
+    ), "Expected fail, test pass, cleanup"  # to jest dość przydatne - pozwala zobaczyć printy. Usuwać na koncu, gdy test działa
+
 
 @pytest.mark.django_db
 def test_add(tv_product):
