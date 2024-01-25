@@ -70,7 +70,6 @@ INSTALLED_APPS = [
     'django_filters',
 ] + PROJECT_APPS
 
-INSTALLED_APPS += ["django_s3_sqlite"]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
