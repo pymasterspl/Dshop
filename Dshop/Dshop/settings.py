@@ -186,17 +186,44 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-if IS_AWS_LAMBDA:
-    AWS_DEFAULT_ACL = 'public-read'
-    AWS_STORAGE_BUCKET_NAME = 'dshop-media-pesentation'
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400',
-    }
-    AWS_LOCATION = 'static'
 
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+if IS_AWS_LAMBDA:
+    DEFAULT_ACL = 'public-read'
+    STORAGE_BUCKET_NAME = 'dshop-media-pesentation'
+    S3_CUSTOM_DOMAIN = f'{STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    LOCATION = "static"
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": 'storages.backends.s3.S3Storage',
+            "OPTIONS": {
+                "default_acl": DEFAULT_ACL,
+                "bucket_name": STORAGE_BUCKET_NAME,
+                "custom_domain": S3_CUSTOM_DOMAIN,
+                "object_parameters": {
+                    'CacheControl': 'max-age=86400',
+                },
+                "location": LOCATION,
+            },
+        },
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "default_acl": DEFAULT_ACL,
+                "bucket_name": STORAGE_BUCKET_NAME,
+                "custom_domain": S3_CUSTOM_DOMAIN,
+                "object_parameters": {
+                    'CacheControl': 'max-age=86400',
+                },
+                "location": "media",
+            },
+        },
+    }
+    STATIC_URL = f'https://{S3_CUSTOM_DOMAIN}/{LOCATION}/'
+    MEDIA_URL = f'https://{S3_CUSTOM_DOMAIN}/media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -212,9 +239,6 @@ LOGIN_URL = 'login'
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 STRIPE_ENDPOINT_SECRET = config('STRIPE_ENDPOINT_SECRET')
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 THUMBNAIL_PREFIX = 'cache/'
