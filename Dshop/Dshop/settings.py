@@ -22,6 +22,7 @@ from sentry_sdk.integrations.logging import LoggingIntegration
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+IS_AWS_LAMBDA = os.getenv("IS_AWS_LAMBDA", False)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -32,14 +33,17 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = config('DEBUG')
-DEBUG = False
+DEBUG = config('DEBUG')
+if IS_AWS_LAMBDA:
+    DEBUG = False
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-
-ALLOWED_HOSTS = [".execute-api.eu-west-1.amazonaws.com"]
+if IS_AWS_LAMBDA:
+    ALLOWED_HOSTS = [".execute-api.eu-west-1.amazonaws.com"]
+else:
+    ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 
 # Application definition
 PROJECT_APPS = [
@@ -68,6 +72,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_spectacular',
     'django_filters',
+    'storages',
 ] + PROJECT_APPS
 
 
@@ -131,17 +136,17 @@ DATABASES = {
 # }
 
 # AWS postgres
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "zappa_dev",
-        "USER": "postgres",
-        "PASSWORD": "this_is_not_a_good_password",
-        "HOST": "zappa-dev1.cf8iw6846e7t.eu-west-1.rds.amazonaws.com",
-        "PORT": "5432",
+if IS_AWS_LAMBDA:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": "zappa_dev",
+            "USER": "postgres",
+            "PASSWORD": "this_is_not_a_good_password",
+            "HOST": "zappa-dev.cf8iw6846e7t.eu-west-1.rds.amazonaws.com",
+            "PORT": "5432",
+        }
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -181,7 +186,17 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+if IS_AWS_LAMBDA:
+    AWS_DEFAULT_ACL = 'public-read'
+    AWS_STORAGE_BUCKET_NAME = 'dshop-media-pesentation'
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',
+    }
+    AWS_LOCATION = 'static'
 
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -210,7 +225,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "height": 300,
     "menubar": False,
     "plugins": "lists",
-    "toolbar": " formatselect  | bold italic | bullist "
+    "toolbar": " formatselect  | bold italic | bullist ",
 }
 
 CART_STORAGE_BACKEND = "dj_shop_cart.storages.DBStorage"
@@ -231,8 +246,7 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 25,
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
-
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
 
 # drf_spectacular
@@ -249,7 +263,7 @@ SPECTACULAR_SETTINGS = {
 # Sentry
 SENTRY_DSN = config(
     "SENTRY_DSN",
-    default='https://545276765834eb4685af9a56c4fad326@o4506418469928960.ingest.sentry.io/4506418471632896'
+    default='https://545276765834eb4685af9a56c4fad326@o4506418469928960.ingest.sentry.io/4506418471632896',
 )
 SENTRY_LOG_LEVEL = config("DJANGO_SENTRY_LOG_LEVEL", logging.INFO)
 
