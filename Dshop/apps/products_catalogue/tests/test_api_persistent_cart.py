@@ -128,7 +128,7 @@ def test_get_non_unique_pks(tv_product):
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 @pytest.mark.django_db
-def test_get_non_unique_pks(tv_product):
+def test_get_non_existing_pks(tv_product):
     client = APIClient()
     user = User.objects.create_user(username='testuser', password='testpassword')
     client.force_authenticate(user)
