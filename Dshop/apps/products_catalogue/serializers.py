@@ -1,3 +1,4 @@
+from django.db import transaction
 from django.shortcuts import get_object_or_404
 from dj_shop_cart.cart import get_cart_class
 from rest_framework import serializers
@@ -41,15 +42,16 @@ class CartReadSerializer(serializers.Serializer):
 
 
 class CartWriteSerializer(serializers.Serializer):
-    items = CartItemSerializer(many=True, required=True)
+    items = CartItemSerializer(many=True, required=False)
 
     def create(self, validated_data):
         request = self.context['request']
         cart = get_cart_class().new(request)
         cart.empty()
-        for item in validated_data['items']:
-            product = get_object_or_404(Product, pk=item['product_pk'])
-            cart.add(product, quantity=item['quantity'])
+        with transaction.atomic():
+            for item in validated_data.get("items", []):
+                product = get_object_or_404(Product, pk=item['product_pk'])
+                cart.add(product, quantity=item['quantity'])
         return cart
     
 
