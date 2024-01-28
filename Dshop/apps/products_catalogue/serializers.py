@@ -1,52 +1,18 @@
+from django.shortcuts import get_object_or_404
+from dj_shop_cart.cart import get_cart_class
 from rest_framework import serializers
+from .models import Product
 
-def serialize_cart(cart):
-    return {
-        "total": cart.total,
-        "count": cart.count,
-        "items": [
-            {
-                "item_id": item.id,
-                "product_id": item.product.id,
-                "product_name": item.product.name,
-                "price": item.price,
-                "subtotal": item.subtotal,
-                "quantity": item.quantity
-            }
-            for item in cart
-        ]
-    }
-
-"""
-example input
-{items: [
-    {product_id: 1, quantity: 100},
-    {product_id: 10, quamtity: 600}]
-}
-
-example output
-    return {
-        "total": cart.total,
-        "count": cart.count,
-        "items": [
-            {
-                "item_id": item.id,
-                "product_id": item.product.id,
-                "product_name": item.product.name,
-                "price": item.price,
-                "subtotal": item.subtotal,
-                "quantity": item.quantity
-            }
-            for item in cart
-        ]
-    }
-
-"""
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'category', 'name', 'price', 'short_description', 'full_description', 'parent_product']
+        read_only_fields = ['id']
 
 
 class CartItemSerializer(serializers.Serializer):
-    product_pk = serializers.IntegerField(min_value=1)
-    quantity = serializers.IntegerField(min_value=1)
+    product_pk = serializers.IntegerField(min_value=1, required=True)
+    quantity = serializers.IntegerField(min_value=1, required=True)
     product_name = serializers.CharField(read_only=True, max_length=200)
     price = serializers.DecimalField(
         read_only=True, min_value=0, max_digits=10, decimal_places=2
@@ -55,35 +21,45 @@ class CartItemSerializer(serializers.Serializer):
         read_only=True, min_value=0, max_digits=10, decimal_places=2
     )
     item_id = serializers.IntegerField(read_only=True, min_value=1)
+    
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        product_name = Product.objects.get(pk=instance.product_pk).name
+        representation['product_name'] = product_name
+        return representation
 
-    # zapewne będziesz tutaj musial napisac wlasne: to_internal_value albo lepiej create i update
-    # https://www.django-rest-framework.org/api-guide/serializers/#baseserializer
-    # aczkolwiek może warto będzie zrobić create i update w CartSerializer, zamiast tutaj.
-    # Dlaczego? Bo tam masz bez problemu dostęp do pełnego cart.
-    # Niemniej, zachowaj ten serializer do walidacji danych.
 
-
-class CartSerializer(serializers.Serializer):
+class CartReadSerializer(serializers.Serializer):
     total = serializers.DecimalField(
         read_only=True, min_value=0, max_digits=10, decimal_places=2
     )
-    items = CartItemSerializer(many=True, write_only=True)
     items = serializers.SerializerMethodField()
     count = serializers.IntegerField(read_only=True, min_value=1)
 
     def get_items(self, obj):
-        print("alamakota get_items")
-        print(obj)
-        return "ala"  # co tu zwrócisz będzie w items
-        # dokumentacja: https://www.django-rest-framework.org/api-guide/fields/#serializermethodfield
+        return CartItemSerializer(list(obj), many=True).data
+
+
+class CartWriteSerializer(serializers.Serializer):
+    items = CartItemSerializer(many=True, required=True)
+
+    def create(self, validated_data):
+        request = self.context['request']
+        cart = get_cart_class().new(request)
+        cart.empty()
+        for item in validated_data['items']:
+            product = get_object_or_404(Product, pk=item['product_pk'])
+            cart.add(product, quantity=item['quantity'])
+        return cart
+    
 
     def validate_items(self, items):
-        item_ids = set()
+        product_pks = set()
         for item in items:
-            item_id = item.get("item_id")
-            if item_id in item_ids:
+            product_pk = item.get("product_pk")
+            if product_pk in product_pks:
                 raise serializers.ValidationError(
-                    "item_id must be unique within items."
+                    "product_pk must be unique within items."
                 )
-            item_ids.add(item_id)
+            product_pks.add(product_pk)
         return items
