@@ -1,5 +1,5 @@
 import pytest
-from apps.products_catalogue.models import Category, Product
+from Dshop.apps.products_catalogue.models import Category, Product
 from django.urls import reverse
 
 

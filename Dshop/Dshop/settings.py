@@ -22,6 +22,7 @@ from sentry_sdk.integrations.logging import LoggingIntegration
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+IS_AWS_LAMBDA = os.getenv("IS_AWS_LAMBDA", False)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -33,20 +34,24 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = config('DEBUG')
+if IS_AWS_LAMBDA:
+    DEBUG = False
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-
-ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
+if IS_AWS_LAMBDA:
+    ALLOWED_HOSTS = [".execute-api.eu-west-1.amazonaws.com"]
+else:
+    ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 
 # Application definition
 PROJECT_APPS = [
-    'apps.core',
-    'apps.users',
-    'apps.products_catalogue',
-    'apps.payments.apps.PaymentsConfig',
-    'dj_shop_cart'
+    "Dshop.apps.core",
+    "Dshop.apps.users",
+    "Dshop.apps.products_catalogue",
+    "Dshop.apps.payments.apps.PaymentsConfig",
+    "dj_shop_cart",
 ]
 
 SITE_ID = 1
@@ -67,7 +72,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_spectacular',
     'django_filters',
+    'storages',
 ] + PROJECT_APPS
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,21 +86,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Dshop.urls'
+ROOT_URLCONF = "Dshop.Dshop.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'apps.core.context_processors.add_variable_to_context',
-
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                # "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "Dshop.apps.core.context_processors.add_variable_to_context",
                 # If you want access to the cart instance in all templates
                 "dj_shop_cart.context_processors.cart",
             ],
@@ -101,18 +107,20 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Dshop.wsgi.application'
+
+WSGI_APPLICATION = "Dshop.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
 
 # Postgrerss config
 
@@ -126,6 +134,19 @@ DATABASES = {
 #         "PORT": config('POSTGRES_PORT'),
 #     }
 # }
+
+# AWS postgres
+if IS_AWS_LAMBDA:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": "zappa_dev",
+            "USER": "postgres",
+            "PASSWORD": "this_is_not_a_good_password",
+            "HOST": "zappa-dev.cf8iw6846e7t.eu-west-1.rds.amazonaws.com",
+            "PORT": "5432",
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -166,6 +187,44 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+if IS_AWS_LAMBDA:
+    DEFAULT_ACL = 'public-read'
+    STORAGE_BUCKET_NAME = 'dshop-media-pesentation'
+    # sadly, seems required for thumbnails, despite django changes
+    AWS_STORAGE_BUCKET_NAME = STORAGE_BUCKET_NAME
+    S3_CUSTOM_DOMAIN = f'{STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    LOCATION = "static"
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": 'storages.backends.s3.S3Storage',
+            "OPTIONS": {
+                "default_acl": DEFAULT_ACL,
+                "bucket_name": STORAGE_BUCKET_NAME,
+                "custom_domain": S3_CUSTOM_DOMAIN,
+                "object_parameters": {
+                    'CacheControl': 'max-age=86400',
+                },
+                "location": LOCATION,
+            },
+        },
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "default_acl": DEFAULT_ACL,
+                "bucket_name": STORAGE_BUCKET_NAME,
+                "custom_domain": S3_CUSTOM_DOMAIN,
+                "object_parameters": {
+                    'CacheControl': 'max-age=86400',
+                },
+                "location": "media",
+            },
+        },
+    }
+    STATIC_URL = f'https://{S3_CUSTOM_DOMAIN}/{LOCATION}/'
+    MEDIA_URL = f'https://{S3_CUSTOM_DOMAIN}/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -182,11 +241,9 @@ STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 STRIPE_ENDPOINT_SECRET = config('STRIPE_ENDPOINT_SECRET')
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
 
 THUMBNAIL_PREFIX = 'cache/'
+
 
 TINYMCE_DEFAULT_CONFIG = {
     "theme": "silver",
@@ -194,7 +251,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "height": 300,
     "menubar": False,
     "plugins": "lists",
-    "toolbar": " formatselect  | bold italic | bullist "
+    "toolbar": " formatselect  | bold italic | bullist ",
 }
 
 CART_STORAGE_BACKEND = "dj_shop_cart.storages.DBStorage"
@@ -215,8 +272,7 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 25,
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
-
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
 
 # drf_spectacular
@@ -233,7 +289,7 @@ SPECTACULAR_SETTINGS = {
 # Sentry
 SENTRY_DSN = config(
     "SENTRY_DSN",
-    default='https://545276765834eb4685af9a56c4fad326@o4506418469928960.ingest.sentry.io/4506418471632896'
+    default='https://545276765834eb4685af9a56c4fad326@o4506418469928960.ingest.sentry.io/4506418471632896',
 )
 SENTRY_LOG_LEVEL = config("DJANGO_SENTRY_LOG_LEVEL", logging.INFO)
 
