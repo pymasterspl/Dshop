@@ -138,7 +138,7 @@ DATABASES = {
         "NAME": "zappa_dev",
         "USER": "postgres",
         "PASSWORD": "this_is_not_a_good_password",
-        "HOST": "zappa-dev1.cf8iw6846e7t.eu-west-1.rds.amazonaws.com",
+        "HOST": "zappa-dev.cf8iw6846e7t.eu-west-1.rds.amazonaws.com",
         "PORT": "5432",
     }
 }
