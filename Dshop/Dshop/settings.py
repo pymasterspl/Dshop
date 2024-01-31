@@ -193,7 +193,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 if IS_AWS_LAMBDA:
     DEFAULT_ACL = 'public-read'
     STORAGE_BUCKET_NAME = 'dshop-media-pesentation'
-    # sadly, seems required for thumbnnails
+    # sadly, seems required for thumbnails, despite django changes
     AWS_STORAGE_BUCKET_NAME = STORAGE_BUCKET_NAME
     S3_CUSTOM_DOMAIN = f'{STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     LOCATION = "static"
