@@ -41,21 +41,22 @@ class CeneoCategory(models.Model):
 
 class Category(CatalogueItemModel):
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
-    ceneo_category = models.ForeignKey(CeneoCategory, blank=True, null=True, on_delete=models.SET_NULL)
+    ceneo_category = models.ForeignKey(
+        CeneoCategory, blank=True, null=True, on_delete=models.SET_NULL
+    )
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
-    def __str__(self):                           
-        full_path = [self.name]                  
+    def __str__(self):
+        full_path = [self.name]
         k = self.parent
         while k is not None:
             full_path.append(k.name)
             k = k.parent
         return ' -> '.join(full_path[::-1])
-
 
     def get_absolute_url(self):
         return reverse("category-detail", args=[self.slug, self.id])
@@ -68,16 +69,21 @@ class Product(CatalogueItemModel):
     full_description = tinymce_models.HTMLField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    availability = models.PositiveSmallIntegerField(choices=[
-        (1, 'Dostępny, sklep wyśle produkt w ciągu 24 godzin'),
-        (3, 'Sklep wyśle produkt do 3 dni'),
-        (7, 'Sklep wyśle produkt w ciągu tygodnia'),
-        (14, 'Sklep wyśle produkt do 14 dni'),
-        (90, 'Towar na zamówienie'),
-        (99, 'Brak informacji o dostępności - status „sprawdź w sklepie”'),
-        (110, 'Przedsprzedaż'),
-    ], default=99)
-    parent_product = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
+    availability = models.PositiveSmallIntegerField(
+        choices=[
+            (1, 'Dostępny, sklep wyśle produkt w ciągu 24 godzin'),
+            (3, 'Sklep wyśle produkt do 3 dni'),
+            (7, 'Sklep wyśle produkt w ciągu tygodnia'),
+            (14, 'Sklep wyśle produkt do 14 dni'),
+            (90, 'Towar na zamówienie'),
+            (99, 'Brak informacji o dostępności - status „sprawdź w sklepie”'),
+            (110, 'Przedsprzedaż'),
+        ],
+        default=99,
+    )
+    parent_product = models.ForeignKey(
+        'self', null=True, blank=True, on_delete=models.SET_NULL
+    )
 
     def get_absolute_url(self):
         return reverse("product-detail", args=[self.slug, self.id])
@@ -92,9 +98,15 @@ class Product(CatalogueItemModel):
     def save(self, *args, **kwargs):
         created = not self.pk
         super(Product, self).save(*args, **kwargs)
-        last_price_change = PriceChangeHistory.objects.filter(product=self).order_by('created_at').last()
+        last_price_change = (
+            PriceChangeHistory.objects.filter(product=self)
+            .order_by('created_at')
+            .last()
+        )
         if self.current_price != self.price or created:
-            price_change = PriceChangeHistory.objects.create(product=self, price=self.price)
+            price_change = PriceChangeHistory.objects.create(
+                product=self, price=self.price
+            )
             if last_price_change:
                 last_price_change.disabled_at = price_change.created_at
                 last_price_change.save()
@@ -106,7 +118,9 @@ class Product(CatalogueItemModel):
     @property
     def lowest_price_in_30_days(self):
         thirty_days_ago = timezone.now() - timedelta(days=30)
-        price_changes = self.price_change_history.filter(disabled_at__gte=thirty_days_ago).order_by('price')
+        price_changes = self.price_change_history.filter(
+            disabled_at__gte=thirty_days_ago
+        ).order_by('price')
         if price_changes:
             return Decimal(min(price_changes[0].price, self.price))
         else:
@@ -117,7 +131,6 @@ class Product(CatalogueItemModel):
         return attributes
 
     def get_price(self, item: CartItem) -> DecimalField:
-
         return self.price
 
     def is_available(self):
@@ -125,12 +138,17 @@ class Product(CatalogueItemModel):
 
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='media/')
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='images'
+    )
+    image = models.ImageField(upload_to='products/')
     is_featured = models.BooleanField(default=False)
 
+
 class PriceChangeHistory(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='price_change_history')
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='price_change_history'
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     disabled_at = models.DateTimeField(null=True, editable=False)
     price = models.DecimalField(max_digits=10, decimal_places=2)
