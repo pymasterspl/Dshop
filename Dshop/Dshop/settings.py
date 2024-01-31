@@ -32,21 +32,22 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = config('DEBUG')
+# DEBUG = config('DEBUG')
+DEBUG = False
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
+ALLOWED_HOSTS = [".execute-api.eu-west-1.amazonaws.com"]
 
 # Application definition
 PROJECT_APPS = [
-    'apps.core',
-    'apps.users',
-    'apps.products_catalogue',
-    'apps.payments.apps.PaymentsConfig',
-    'dj_shop_cart'
+    "Dshop.apps.core",
+    "Dshop.apps.users",
+    "Dshop.apps.products_catalogue",
+    "Dshop.apps.payments.apps.PaymentsConfig",
+    "dj_shop_cart",
 ]
 
 SITE_ID = 1
@@ -69,6 +70,7 @@ INSTALLED_APPS = [
     'django_filters',
 ] + PROJECT_APPS
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -79,21 +81,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Dshop.urls'
+ROOT_URLCONF = "Dshop.Dshop.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'apps.core.context_processors.add_variable_to_context',
-
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "Dshop.apps.core.context_processors.add_variable_to_context",
                 # If you want access to the cart instance in all templates
                 "dj_shop_cart.context_processors.cart",
             ],
@@ -101,18 +102,20 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Dshop.wsgi.application'
+
+WSGI_APPLICATION = "Dshop.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
 
 # Postgrerss config
 
@@ -126,6 +129,19 @@ DATABASES = {
 #         "PORT": config('POSTGRES_PORT'),
 #     }
 # }
+
+# AWS postgres
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "zappa_dev",
+        "USER": "postgres",
+        "PASSWORD": "this_is_not_a_good_password",
+        "HOST": "zappa-dev.cf8iw6846e7t.eu-west-1.rds.amazonaws.com",
+        "PORT": "5432",
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -4,7 +4,7 @@ from lxml import etree
 
 from django.urls import reverse
 
-from apps.products_catalogue.models import Category, Product
+from Dshop.apps.products_catalogue.models import Category, Product
 
 
 def assert_object_response(response, product, category):

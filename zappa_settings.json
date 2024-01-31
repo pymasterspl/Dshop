@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "django_settings": "Dshop.Dshop.settings",
+        "profile_name": "pymasters-zappa",
+        "project_name": "dshop",
+        "runtime": "python3.11",
+        "s3_bucket": "zappa-vjjecpt38",
+        "slim_handler": "true",
+        "vpc_config": {
+            "SubnetIds": [
+                "subnet-03421dbf026a670b8",
+                "subnet-0536415f9b444a6c0",
+                "subnet-0f7f2b6dcb03dc903"
+            ],
+            "SecurityGroupIds": [
+                "sg-067d9ec47e87dafe9"
+            ]
+        }
+    }
+}

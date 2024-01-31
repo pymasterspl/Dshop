@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from django.views.generic import ListView, DetailView, DeleteView
-from lxml import etree
+
 from dj_shop_cart.cart import Cart
 
 
