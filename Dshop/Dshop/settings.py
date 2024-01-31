@@ -95,7 +95,7 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
-                "django.template.context_processors.debug",
+                # "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
@@ -193,6 +193,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 if IS_AWS_LAMBDA:
     DEFAULT_ACL = 'public-read'
     STORAGE_BUCKET_NAME = 'dshop-media-pesentation'
+    # sadly, seems required for thumbnnails
+    AWS_STORAGE_BUCKET_NAME = STORAGE_BUCKET_NAME
     S3_CUSTOM_DOMAIN = f'{STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     LOCATION = "static"
     STORAGES = {
@@ -224,7 +226,6 @@ if IS_AWS_LAMBDA:
     STATIC_URL = f'https://{S3_CUSTOM_DOMAIN}/{LOCATION}/'
     MEDIA_URL = f'https://{S3_CUSTOM_DOMAIN}/media/'
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -242,6 +243,7 @@ STRIPE_ENDPOINT_SECRET = config('STRIPE_ENDPOINT_SECRET')
 
 
 THUMBNAIL_PREFIX = 'cache/'
+
 
 TINYMCE_DEFAULT_CONFIG = {
     "theme": "silver",
