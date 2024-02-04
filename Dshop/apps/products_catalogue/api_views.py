@@ -24,7 +24,6 @@ class CartAPIView(APIView):
             read_serializer = CartReadSerializer(cart)
             return Response(read_serializer.data, status=status.HTTP_201_CREATED)
         else:
-            print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def get(self, request):
