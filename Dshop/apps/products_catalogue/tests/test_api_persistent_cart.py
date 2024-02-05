@@ -90,6 +90,31 @@ def test_add_ten_and_get(api_client, ten_tv_products):
 
 
 @pytest.mark.django_db
+def test_add_ten_replace_with_one(api_client, ten_tv_products, tv_product):
+    quantities = [11, 1, 3, 8, 4, 5, 6, 7, 1, 10]
+    data = {   
+        'items': [
+                {'product_pk': product.pk, 'quantity': quantity}
+                for product, quantity in zip(ten_tv_products, quantities)
+            ]
+        }
+    response = api_client.post(reverse("api_cart"), data)
+    assert response.status_code == status.HTTP_201_CREATED
+
+    data = {
+        'items' : [
+            {'product_pk': tv_product.pk, 'quantity': 666}
+        ]
+    }
+    response = api_client.post(reverse("api_cart"), data)
+    assert response.status_code == status.HTTP_201_CREATED
+    assert_products_data(response.data, [tv_product], [666])
+    response = api_client.get(reverse("api_cart"))
+    assert response.status_code == status.HTTP_200_OK
+    assert_products_data(response.data, [tv_product], [666])
+
+
+@pytest.mark.django_db
 def test_delete_ten(api_client, ten_tv_products):
     quantities = [1, 1, 6, 8, 3, 4, 2, 26, 1, 10]
     data = {   
