@@ -34,7 +34,7 @@ def assert_data_empty(data):
 
 @pytest.mark.django_db
 def test_get_cart_empty(api_client):
-    response = api_client.get(reverse("api_cart"), {}, format="json")
+    response = api_client.get(reverse("api_cart"))
     assert response.status_code == status.HTTP_200_OK
     assert_data_empty(response.data)
 
@@ -44,10 +44,10 @@ def test_add(api_client, tv_product):
     data = {
         'items': [ {'product_pk': tv_product.pk, 'quantity': 10} ] 
     }
-    response = api_client.post(reverse("api_cart"), data, format='json')
+    response = api_client.post(reverse("api_cart"), data)
     assert_products_data(response.data, [tv_product], [10])
     assert response.status_code == status.HTTP_201_CREATED
-    response = api_client.get(reverse("api_cart"), {}, format='json')
+    response = api_client.get(reverse("api_cart"))
     assert response.status_code == status.HTTP_200_OK
     assert_products_data(response.data, [tv_product], [10])
 
@@ -60,13 +60,13 @@ def test_add_relogin_get(tv_product):
     data = {
         'items': [ {'product_pk': tv_product.pk, 'quantity': 10} ] 
     }
-    response = client.post(reverse("api_cart"), data, format='json')
+    response = client.post(reverse("api_cart"), data)
     assert response.status_code == status.HTTP_201_CREATED
     assert_products_data(response.data, [tv_product], [10])
     client.force_authenticate(user=None)
     client.force_authenticate(user)
     
-    response = client.get(reverse("api_cart"), {}, format='json')
+    response = client.get(reverse("api_cart"))
     assert response.status_code == status.HTTP_200_OK
     assert_products_data(response.data, [tv_product], [10])
     
@@ -81,10 +81,10 @@ def test_add_ten_and_get(api_client, ten_tv_products):
             for product, quantity in zip(ten_tv_products, quantities)
         ]
     }
-    response = api_client.post(reverse("api_cart"), data, format="json")
+    response = api_client.post(reverse("api_cart"), data)
     assert response.status_code == status.HTTP_201_CREATED
     assert_products_data(response.data, ten_tv_products, quantities)
-    response = api_client.get(reverse("api_cart"), {}, format="json")
+    response = api_client.get(reverse("api_cart"))
     assert response.status_code == status.HTTP_200_OK
     assert_products_data(response.data, ten_tv_products, quantities)
 
@@ -98,12 +98,12 @@ def test_delete_ten(api_client, ten_tv_products):
             for product, quantity in zip(ten_tv_products, quantities)
         ]
     }
-    response = api_client.post(reverse("api_cart"), data, format="json")
+    response = api_client.post(reverse("api_cart"), data)
     assert response.status_code == status.HTTP_201_CREATED
-    response = api_client.post(reverse("api_cart"), {}, format="json")
+    response = api_client.post(reverse("api_cart"), {})
     assert response.status_code == status.HTTP_201_CREATED
     assert_data_empty(response.data)
-    response = api_client.get(reverse("api_cart"), {}, format="json")
+    response = api_client.get(reverse("api_cart"))
     assert_data_empty(response.data)
 
 
@@ -115,7 +115,7 @@ def test_get_non_unique_pks(api_client, tv_product):
             {'product_pk': tv_product.pk, 'quantity': 3}
         ]
     }
-    response = api_client.post(reverse("api_cart"), data, format="json")
+    response = api_client.post(reverse("api_cart"), data)
     assert str(response.data['items'][0]) == "product_pk must be unique within items."
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
@@ -129,9 +129,9 @@ def test_get_non_existing_pks(api_client, tv_product):
             {'product_pk': NON_EXISTING_ID, 'quantity': 3}
         ]
     }
-    response = api_client.post(reverse("api_cart"), data, format="json")
+    response = api_client.post(reverse("api_cart"), data)
     assert response.status_code == status.HTTP_404_NOT_FOUND
-    response = api_client.get(reverse("api_cart"), {}, format="json")
+    response = api_client.get(reverse("api_cart"))
     assert_data_empty(response.data)
 
 
@@ -142,7 +142,7 @@ def test_get_zero_quantities(api_client, tv_product):
             {'product_pk': tv_product.pk, 'quantity': 0}
         ]
     }
-    response = api_client.post(reverse("api_cart"), data, format="json")
+    response = api_client.post(reverse("api_cart"), data)
     error_str = str(response.data['items'][0]['quantity'][0])
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert error_str == 'Ensure this value is greater than or equal to 1.'
