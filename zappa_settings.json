@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "django_settings": "Dshop.Dshop.settings",
+        "profile_name": "pymasters-zappa",
+        "project_name": "dshop",
+        "runtime": "python3.11",
+        "s3_bucket": "zappa-vjjecpt38",
+        "slim_handler": "true"
+    }
+}

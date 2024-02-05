@@ -185,3 +185,4 @@ cython_debug/
 # a test
 cache
 media/
+.DS_Store
