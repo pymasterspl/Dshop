@@ -9,10 +9,15 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import json
+import logging
 import os
 from pathlib import Path
+
+import sentry_sdk
 from decouple import config
-import json
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import LoggingIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -61,6 +66,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'drf_spectacular',
+    'django_filters',
 ] + PROJECT_APPS
 
 MIDDLEWARE = [
@@ -207,6 +213,10 @@ REST_FRAMEWORK = {
     },
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 25,
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
+
 }
 
 # drf_spectacular
@@ -219,3 +229,23 @@ SPECTACULAR_SETTINGS = {
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     "SERVE_INCLUDE_SCHEMA": False,
 }
+
+# Sentry
+SENTRY_DSN = config(
+    "SENTRY_DSN",
+    default='https://545276765834eb4685af9a56c4fad326@o4506418469928960.ingest.sentry.io/4506418471632896'
+)
+SENTRY_LOG_LEVEL = config("DJANGO_SENTRY_LOG_LEVEL", logging.INFO)
+
+sentry_logging = LoggingIntegration(
+    level=SENTRY_LOG_LEVEL,  # Capture info and above as breadcrumbs
+    event_level=logging.ERROR,  # Send errors as events
+)
+
+integrations = [sentry_logging, DjangoIntegration()]
+sentry_sdk.init(
+    dsn=SENTRY_DSN,
+    integrations=integrations,
+    environment=config("SENTRY_ENVIRONMENT", default="local"),
+    traces_sample_rate=config("SENTRY_TRACES_SAMPLE_RATE", default=0.0),
+)
