@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from Dshop.apps.products_catalogue.models import Product
+from apps.products_catalogue.models import Product
 
 
 class Command(BaseCommand):

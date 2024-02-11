@@ -1,7 +1,7 @@
 import pytest
 from django.urls import reverse
 import xml.etree.ElementTree as ET
-from Dshop.apps.products_catalogue.models import Category, Product
+from apps.products_catalogue.models import Category, Product
 from decimal import Decimal
 
 

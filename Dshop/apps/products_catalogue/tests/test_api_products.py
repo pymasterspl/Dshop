@@ -1,9 +1,9 @@
 import pytest
 from django.urls import reverse
-from Dshop.apps.products_catalogue.models import Category, Product
+from apps.products_catalogue.models import Category, Product
 
 # pylama:ignore=W0404, W0611
-from Dshop.apps.users.conftest import (
+from apps.users.conftest import (
     api_client,
     login_url,
     login_data,

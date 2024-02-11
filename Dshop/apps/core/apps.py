@@ -9,4 +9,4 @@ class CoreConfig(AppConfig):
 
     # New name, and label
     label='core'
-    name = 'Dshop.apps.core'
+    name = 'apps.core'

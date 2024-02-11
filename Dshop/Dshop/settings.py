@@ -47,10 +47,10 @@ else:
 
 # Application definition
 PROJECT_APPS = [
-    "Dshop.apps.core",
-    "Dshop.apps.users",
-    "Dshop.apps.products_catalogue",
-    "Dshop.apps.payments.apps.PaymentsConfig",
+    "apps.core",
+    "apps.users",
+    "apps.products_catalogue",
+    "apps.payments.apps.PaymentsConfig",
     "dj_shop_cart",
 ]
 
@@ -86,7 +86,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = "Dshop.Dshop.urls"
+ROOT_URLCONF = "Dshop.urls"
 
 TEMPLATES = [
     {
@@ -99,7 +99,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "Dshop.apps.core.context_processors.add_variable_to_context",
+                "apps.core.context_processors.add_variable_to_context",
                 # If you want access to the cart instance in all templates
                 "dj_shop_cart.context_processors.cart",
             ],

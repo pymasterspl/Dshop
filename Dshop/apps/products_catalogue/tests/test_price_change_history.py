@@ -8,7 +8,7 @@
 
 import pytest
 from freezegun import freeze_time
-from Dshop.apps.products_catalogue.models import PriceChangeHistory, Product, Category
+from apps.products_catalogue.models import PriceChangeHistory, Product, Category
 from decimal import Decimal
 from pytest import approx
 
