@@ -42,3 +42,7 @@ The project will be developed incrementaly. We will make sure project is usable 
 ### MPV #3
 1. Product warehouse and amount of products
 TBD.
+
+
+### Definition of done:
+I am able to buy something in the shop, pick delivery method, pay, and I will receive transactional emails. 
