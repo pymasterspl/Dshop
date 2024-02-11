@@ -29,7 +29,7 @@ ADD . /www
 WORKDIR /www/Dshop
 # important!
 RUN ln -s /www/.venv .venv
-CMD [ "sh", "docker-entrypoint.sh" ]
+CMD [ "sh", "../docker-entrypoint.sh" ]
 
 
 # RUN pip install --upgrade pip
