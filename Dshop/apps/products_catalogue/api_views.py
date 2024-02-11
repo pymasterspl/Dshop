@@ -4,9 +4,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from dj_shop_cart.cart import get_cart_class
+
 from .models import Product
 from .serializers import CartReadSerializer, ProductSerializer, CartWriteSerializer
 from .filters import ProductFilter
+from .api_permissions import IsStaffOrReadOnly
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -14,7 +16,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = ProductFilter
-
+    permission_classes = (IsStaffOrReadOnly, )
 
 class CartAPIView(APIView):
     def post(self, request):
