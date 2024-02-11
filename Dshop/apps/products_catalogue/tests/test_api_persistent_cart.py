@@ -33,21 +33,21 @@ def assert_data_empty(data):
 
 
 @pytest.mark.django_db
-def test_get_cart_empty(api_client):
-    response = api_client.get(reverse("api_cart"))
+def test_get_cart_empty(api_client_authed):
+    response = api_client_authed.get(reverse("api_cart"))
     assert response.status_code == status.HTTP_200_OK
     assert_data_empty(response.data)
 
 
 @pytest.mark.django_db
-def test_add(api_client, tv_product):
+def test_add(api_client_authed, tv_product):
     data = {
         'items': [ {'product_pk': tv_product.pk, 'quantity': 10} ] 
     }
-    response = api_client.post(reverse("api_cart"), data)
+    response = api_client_authed.post(reverse("api_cart"), data)
     assert_products_data(response.data, [tv_product], [10])
     assert response.status_code == status.HTTP_201_CREATED
-    response = api_client.get(reverse("api_cart"))
+    response = api_client_authed.get(reverse("api_cart"))
     assert response.status_code == status.HTTP_200_OK
     assert_products_data(response.data, [tv_product], [10])
 
@@ -72,7 +72,7 @@ def test_add_relogin_get(tv_product):
     
 
 @pytest.mark.django_db
-def test_add_ten_and_get(api_client, ten_tv_products):
+def test_add_ten_and_get(api_client_authed, ten_tv_products):
     quantities = [1, 1, 6, 8, 3, 4, 2, 26, 1, 10]
 
     data = {   
@@ -81,16 +81,16 @@ def test_add_ten_and_get(api_client, ten_tv_products):
             for product, quantity in zip(ten_tv_products, quantities)
         ]
     }
-    response = api_client.post(reverse("api_cart"), data)
+    response = api_client_authed.post(reverse("api_cart"), data)
     assert response.status_code == status.HTTP_201_CREATED
     assert_products_data(response.data, ten_tv_products, quantities)
-    response = api_client.get(reverse("api_cart"))
+    response = api_client_authed.get(reverse("api_cart"))
     assert response.status_code == status.HTTP_200_OK
     assert_products_data(response.data, ten_tv_products, quantities)
 
 
 @pytest.mark.django_db
-def test_add_ten_replace_with_one(api_client, ten_tv_products, tv_product):
+def test_add_ten_replace_with_one(api_client_authed, ten_tv_products, tv_product):
     quantities = [11, 1, 3, 8, 4, 5, 6, 7, 1, 10]
     data = {   
         'items': [
@@ -98,7 +98,7 @@ def test_add_ten_replace_with_one(api_client, ten_tv_products, tv_product):
                 for product, quantity in zip(ten_tv_products, quantities)
             ]
         }
-    response = api_client.post(reverse("api_cart"), data)
+    response = api_client_authed.post(reverse("api_cart"), data)
     assert response.status_code == status.HTTP_201_CREATED
 
     data = {
@@ -106,16 +106,16 @@ def test_add_ten_replace_with_one(api_client, ten_tv_products, tv_product):
             {'product_pk': tv_product.pk, 'quantity': 666}
         ]
     }
-    response = api_client.post(reverse("api_cart"), data)
+    response = api_client_authed.post(reverse("api_cart"), data)
     assert response.status_code == status.HTTP_201_CREATED
     assert_products_data(response.data, [tv_product], [666])
-    response = api_client.get(reverse("api_cart"))
+    response = api_client_authed.get(reverse("api_cart"))
     assert response.status_code == status.HTTP_200_OK
     assert_products_data(response.data, [tv_product], [666])
 
 
 @pytest.mark.django_db
-def test_delete_ten(api_client, ten_tv_products):
+def test_delete_ten(api_client_authed, ten_tv_products):
     quantities = [1, 1, 6, 8, 3, 4, 2, 26, 1, 10]
     data = {   
     'items': [
@@ -123,30 +123,30 @@ def test_delete_ten(api_client, ten_tv_products):
             for product, quantity in zip(ten_tv_products, quantities)
         ]
     }
-    response = api_client.post(reverse("api_cart"), data)
+    response = api_client_authed.post(reverse("api_cart"), data)
     assert response.status_code == status.HTTP_201_CREATED
-    response = api_client.post(reverse("api_cart"), {})
+    response = api_client_authed.post(reverse("api_cart"), {})
     assert response.status_code == status.HTTP_201_CREATED
     assert_data_empty(response.data)
-    response = api_client.get(reverse("api_cart"))
+    response = api_client_authed.get(reverse("api_cart"))
     assert_data_empty(response.data)
 
 
 @pytest.mark.django_db
-def test_get_non_unique_pks(api_client, tv_product):
+def test_get_non_unique_pks(api_client_authed, tv_product):
     data = {
         'items':[
             {'product_pk': tv_product.pk, 'quantity': 2},
             {'product_pk': tv_product.pk, 'quantity': 3}
         ]
     }
-    response = api_client.post(reverse("api_cart"), data)
+    response = api_client_authed.post(reverse("api_cart"), data)
     assert str(response.data['items'][0]) == "product_pk must be unique within items."
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
 @pytest.mark.django_db
-def test_get_non_existing_pks(api_client, tv_product):
+def test_get_non_existing_pks(api_client_authed, tv_product):
     NON_EXISTING_ID = 999999
     data = {
         'items':[
@@ -154,20 +154,20 @@ def test_get_non_existing_pks(api_client, tv_product):
             {'product_pk': NON_EXISTING_ID, 'quantity': 3}
         ]
     }
-    response = api_client.post(reverse("api_cart"), data)
+    response = api_client_authed.post(reverse("api_cart"), data)
     assert response.status_code == status.HTTP_404_NOT_FOUND
-    response = api_client.get(reverse("api_cart"))
+    response = api_client_authed.get(reverse("api_cart"))
     assert_data_empty(response.data)
 
 
 @pytest.mark.django_db
-def test_get_zero_quantities(api_client, tv_product):
+def test_get_zero_quantities(api_client_authed, tv_product):
     data = {
         'items':[
             {'product_pk': tv_product.pk, 'quantity': 0}
         ]
     }
-    response = api_client.post(reverse("api_cart"), data)
+    response = api_client_authed.post(reverse("api_cart"), data)
     error_str = str(response.data['items'][0]['quantity'][0])
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert error_str == 'Ensure this value is greater than or equal to 1.'

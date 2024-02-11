@@ -3,12 +3,42 @@ from dj_shop_cart.cart import get_cart_class
 from django.urls import reverse
 from pytest import fixture
 from apps.products_catalogue.models import Category, Product
-from apps.users.models import CustomUser
+from django.contrib.auth import get_user_model
+from rest_framework.test import APIClient
 
 
-User = CustomUser
+User = get_user_model()
 Cart = get_cart_class()
 
+
+@pytest.fixture
+def api_client():
+    return APIClient()
+
+@pytest.fixture
+def api_client_authed():
+    client = APIClient()
+    user = User.objects.create_user(username='testuser', password='testpassword')
+    client.force_authenticate(user)
+    return client
+
+@pytest.fixture
+def api_client_staff():
+    client = APIClient()
+    staff_user = User.objects.create_user(username='staffuser', is_staff=True, password="staffsword")
+    client.force_authenticate(staff_user)
+    return client
+
+@pytest.fixture
+def api_client_admin():
+    client = APIClient()
+    admin = User.objects.create_user(username='admin', is_staff=True, is_admin=True, password='@dmin123')
+    client.force_authenticate(admin)
+    return client
+
+@pytest.fixture
+def create_category():
+    return Category.objects.create(name='Test Category', is_active=True)
 
 @fixture
 @pytest.mark.django_db
