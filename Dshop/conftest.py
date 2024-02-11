@@ -50,10 +50,24 @@ def tv_product():
     product = Product.objects.create(
         name='TV AMOLED',
         price=3999.00,
-        full_description='Description 1',
-        category=category
+        full_description='Test full description',
+        short_description='Test short description',
+        category=category,
     )
     return product
+
+
+@pytest.fixture
+def inactive_product():
+    category = Category.objects.create(name='Test Category 2', is_active=True)
+    return Product.objects.create(
+        name="main product inactive",
+        category=category,
+        price=150,
+        short_description="short desc inactive",
+        full_description="full_description inactive",
+        is_active=False
+    )
 
 
 @fixture

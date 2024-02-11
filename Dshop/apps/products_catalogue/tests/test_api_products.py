@@ -1,45 +1,16 @@
+from rest_framework.test import APIClient
 import pytest
 from django.urls import reverse
-from rest_framework.test import APIClient
-from apps.products_catalogue.models import Category, Product
-
-
-@pytest.fixture
-def create_active_product():
-    category = Category.objects.create(name='Test Category', is_active=True)
-    return Product.objects.create(
-        name="main product",
-        category=category,
-        price=11,
-        short_description="short desc",
-        full_description="full_description",
-        is_active=True
-    )
-
-
-@pytest.fixture
-def create_inactive_product():
-    category = Category.objects.create(name='Test Category 2', is_active=True)
-    return Product.objects.create(
-        name="main product inactive",
-        category=category,
-        price=150,
-        short_description="short desc inactive",
-        full_description="full_description inactive",
-        is_active=False
-    )
 
 
 def assert_active_object(data):
-    assert data['category'] is not None
-
     fields_values = {
         "id": 1,
         "category": 1,
-        "name": "main product",
-        "price": "11.00",
-        "short_description": "short desc",
-        "full_description": "full_description",
+        "name": "TV AMOLED",
+        "price": "3999.00",
+        "short_description": 'Test short description',
+        "full_description": 'Test full description',
         "parent_product": None,
     }
     for key, value in data.items():
@@ -47,35 +18,28 @@ def assert_active_object(data):
 
 
 @pytest.mark.django_db
-def test_access_protected_resource(api_client_authed, create_active_product, create_inactive_product):
+def test_get_list_one(api_client, tv_product, inactive_product):
     url = reverse('products-api-list')
-    response = api_client_authed.get(url)
+    response = api_client.get(url)
     assert response.status_code == 200
-
     results = response.data.get('results', [])
     assert len(results) == 1
-
     product_data = results[0]
-
+    assert response.data['count'] == 1
+    assert response.data['previous'] is None
+    assert response.data['next'] is None
     assert_active_object(product_data)
 
 
 @pytest.mark.django_db
-def test_product_detail(api_client_authed, create_active_product):
-    url = reverse('products-api-detail', kwargs={'pk': create_active_product.id})
-    response = api_client_authed.get(url)
-
-    assert response.status_code == 200
-    assert response.data['id'] == create_active_product.id
-    assert response.data['name'] == "main product"
-    assert response.data['price'] == "11.00"
-    assert response.data['short_description'] == "short desc"
-    assert response.data['full_description'] == "full_description"
+def test_product_detail_404():
+    url = reverse('products-api-detail', kwargs={'pk': 6669})
+    response = APIClient().get(url)
+    assert response.status_code == 404
 
 
 @pytest.mark.django_db
-def test_create_product(api_client_authed, create_category):
-    url = reverse('products-api-list')
+def test_create_product(api_client_staff, create_category):
     data = {
         'category': create_category.id,
         'name': 'Test Product',
@@ -83,7 +47,8 @@ def test_create_product(api_client_authed, create_category):
         'short_description': 'Test short description',
         'full_description': 'Test full description',
     }
-    response = api_client_authed.post(url, data, format='json')
+    url = reverse('products-api-list')
+    response = api_client_staff.post(url, data, format='json')
 
     assert response.status_code == 201
     assert response.data['name'] == "Test Product"
@@ -91,11 +56,38 @@ def test_create_product(api_client_authed, create_category):
 
 
 @pytest.mark.django_db
-def test_update_product(api_client_authed, create_active_product):
-    url = reverse('products-api-detail', kwargs={'pk': create_active_product.id})
+def test_update_product(api_client_staff, tv_product):
+    url = reverse('products-api-detail', kwargs={'pk': tv_product.id})
     data = {'name': 'Updated product name'}
-    response = api_client_authed.patch(url, data, format='json')
-
+    response = api_client_staff.patch(url, data, format='json')
     assert response.status_code == 200
-    assert response.data['name'] == "Updated product name"
-    assert response.data['short_description'] == "short desc"
+    tv_product.refresh_from_db()
+    assert tv_product.name == "Updated product name"
+
+
+@pytest.fixture(autouse=True)
+def set_test_pagination_size(settings):
+    settings.REST_FRAMEWORK['PAGE_SIZE'] = 5
+
+
+@pytest.mark.django_db
+def test_product_list_empty():
+    response = APIClient().get(reverse("products-api-list"))
+    print(response.data)
+    assert response.status_code == 200
+    assert response.data['results'] == []
+    assert response.data['count'] == 0
+    assert response.data['previous'] is None
+    assert response.data['next'] is None
+
+@pytest.mark.django_db
+def test_product_detail(tv_product):
+    url = reverse('products-api-detail', kwargs={'pk': tv_product.id})
+    response = APIClient().get(url)
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_product_list_pagination_ten_products_page_too_far(tv_product):
+    response = APIClient().get(f"{reverse('products-api-list')}?page=100")
+    assert response.status_code == 404
