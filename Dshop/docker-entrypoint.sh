@@ -2,13 +2,13 @@
 set -e
 
 echo "collectstatic"
-poetry run Dshop/manage.py collectstatic --noinput
+poetry run manage.py collectstatic --noinput
 # Apply database migrations
 echo "Apply database migrations"
-poetry run Dshop/manage.py migrate
+poetry run manage.py migrate
 
 # force running in background but not as a daemon - disabled in supervisord.conf
-supervisord &
+# supervisord &
 # Start server
 echo "Starting server"
 WORKERS=${1:-4}

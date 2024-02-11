@@ -1,7 +1,7 @@
 import os
 
 try:  # prevents sorting with isort
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Dshop.Dshop.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Dshop.settings")
 
     from django.core.wsgi import get_wsgi_application
 except KeyboardInterrupt:

@@ -22,7 +22,13 @@ ADD Dshop/pyproject.toml pyproject.toml
 # size optimisation
 RUN poetry install && poetry cache clear pypi --all
 ENV PATH=$PATH:/www/.venv/:/www/.venv/bin
+ENV PATH=$PATH:/www/Dshop:/www/Dshop/apps:/www/Dshop/Dshop:/www
+# This is critical, otherwise apps not found
+ENV PYTHONPATH=$PYTHONPATH:$PATH
 ADD . /www
+WORKDIR /www/Dshop
+# important!
+RUN ln -s /www/.venv .venv
 CMD [ "sh", "docker-entrypoint.sh" ]
 
 
