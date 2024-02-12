@@ -93,6 +93,29 @@ python manage.py loaddata fixtures_products.json
 Open web browser and navigate to localhost address:  http://127.0.0.1:8000/ 
 
 ---
+#### Payment system integration
+Stripe was used to implement the payment system.
+
+Steps according to which the implementation was performed:
+https://testdriven.io/blog/django-stripe-tutorial/
+
+**To create an account at Stripe, follow the instructions below:**
+1. Register for a Stripe account: https://dashboard.stripe.com/register
+2. Navigate to the Dashboard.Ensure that the account is in the Test mode. 
+3. Click on "Developers"
+4. Click on "API keys"
+5. Copy API keys to .env file:
+
+   `STRIPE_PUBLISHABLE_KEY = '<your test publishable key here>'`
+
+   `STRIPE_SECRET_KEY = '<your test secret key here>'`
+6. Specify an "Account name" within your "Account settings" at https://dashboard.stripe.com/settings/account 
+7. Create a product (Click "Products" and then "Add Product")
+8. Add a product name, enter a price, and select "One time"
+9. Click "Save product"
+10. For testing purposes you can use the cards listed at this link https://stripe.com/docs/testing#cards
+
+---
 
 ### In case of problems with starting the project:
 1. Check the env-template file and update the local .env file if necessary
