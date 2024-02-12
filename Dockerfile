@@ -27,33 +27,8 @@ ENV PATH=$PATH:/www/Dshop:/www/Dshop/apps:/www/Dshop/Dshop:/www
 ENV PYTHONPATH=$PYTHONPATH:$PATH
 ADD . /www
 WORKDIR /www/Dshop
-# important!
+# important! - poetry on my machine is creating venv in project so remove. 
+RUN rm -rf /www/.venv
 RUN ln -s /www/.venv .venv
+# /importamt
 CMD [ "sh", "../docker-entrypoint.sh" ]
-
-
-# RUN pip install --upgrade pip
-# # new version pipenv 2021.11.5.post0 is broken - pipenv run fails, django not found
-# # (latest stable: 2021.5.29)
-# RUN pip install pipenv==2021.5.29
-
-# ENV PATH=$PATH:/www/.venv/:/www/.venv/bin
-# # this should avoid rebuilding pipenv each time. Hopefully.
-# ADD ./Pipfile /www/Pipfile
-# ADD ./Pipfile.lock /www/Pipfile.lock
-# ENV PIPENV_VENV_IN_PROJECT=true
-# # clear after install
-# RUN pipenv install && rm -rf /root/.cache
-# # /this should avoid rebuilding pipenv each time. Hopefully.
-# ADD supervisord.conf /etc/supervisor/supervisord.conf
-# ADD supervisor_celery.conf /etc/supervisor/conf.d/celery.conf
-# ADD . /www
-# CMD [ "sh", "docker-entrypoint.sh" ]
-
-# ARG BRANCH="not_set"
-# ARG COMMIT=""
-# LABEL branch=${BRANCH}
-# LABEL commit=${COMMIT}
-
-# ENV COMMIT_SHA=${COMMIT}
-# ENV COMMIT_BRANCH=${BRANCH}
