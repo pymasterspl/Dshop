@@ -38,3 +38,5 @@ POSTGRES_PORT=5432
 STRIPE_PUBLISHABLE_KEY=stripe_publishable_key
 STRIPE_SECRET_KEY=stripe_secret_key
 STRIPE_ENDPOINT_SECRET=stripe_endpoint_secret
+
+STRIPE_API_KEY=api-key

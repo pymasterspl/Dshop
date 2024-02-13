@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Category, Product, ProductImage, CeneoCategory, ProductAttribute
+from .models import (Category, Product, ProductImage, 
+                     CeneoCategory, ProductAttribute, DeliveryMethod, Order)
 
 
 @admin.register(Category)
@@ -32,3 +33,20 @@ class CeneoCategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     ordering = ('name',)
     
+
+
+@admin.register(DeliveryMethod)
+class DeliveryMethodAdmin(admin.ModelAdmin):
+    list_display = ('id','name','price')
+    search_fields = ('name','price')
+    ordering = ('name','price')
+    
+
+@admin.register(Order)
+class OrderMethodAdmin(admin.ModelAdmin):
+    list_display = ('user','delivery',
+                  'created_at','cart_details',
+                  'cart_total','delivery_name',
+                  'delivery_price','total_sum')
+   
+       

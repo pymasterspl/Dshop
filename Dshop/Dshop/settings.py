@@ -46,7 +46,7 @@ PROJECT_APPS = [
     'apps.users',
     'apps.products_catalogue',
     'apps.payments.apps.PaymentsConfig',
-    'dj_shop_cart'
+    'dj_shop_cart', 
 ]
 
 SITE_ID = 1
@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_spectacular',
     'django_filters',
+
 ] + PROJECT_APPS
 
 MIDDLEWARE = [
@@ -181,6 +182,8 @@ LOGIN_URL = 'login'
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 STRIPE_ENDPOINT_SECRET = config('STRIPE_ENDPOINT_SECRET')
+
+STRIPE_API_KEY = config('STRIPE_API_KEY')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

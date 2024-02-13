@@ -1,4 +1,6 @@
-from dj_shop_cart.cart import CartItem
+import json
+
+from dj_shop_cart.cart import  CartItem
 from django.db import models
 from django.db.models import DecimalField
 from django.utils.text import slugify
@@ -7,7 +9,9 @@ from datetime import timedelta
 from decimal import Decimal
 from django.urls import reverse
 from tinymce import models as tinymce_models
-
+from dj_shop_cart.cart import Cart
+from apps.users.models import CustomUser
+from django.contrib.auth.models import User
 
 class CatalogueItemModel(models.Model):
     name = models.CharField(max_length=200)
@@ -41,9 +45,8 @@ class CeneoCategory(models.Model):
 
 class Category(CatalogueItemModel):
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
-    ceneo_category = models.ForeignKey(
-        CeneoCategory, blank=True, null=True, on_delete=models.SET_NULL
-    )
+    ceneo_category = models.ForeignKey(CeneoCategory, blank=True, null=True,
+                on_delete=models.SET_NULL)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -158,3 +161,56 @@ class ProductAttribute(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     key = models.CharField(max_length=255)
     value = models.CharField(max_length=255)
+
+
+class DeliveryMethod(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    delivery = models.ForeignKey(DeliveryMethod, on_delete=models.DO_NOTHING)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    cart_details = models.JSONField(default=dict, editable=False)
+    cart_total = models.DecimalField(max_digits=10, decimal_places=2, editable=False, default=None)
+    delivery_name = models.CharField(max_length=255, editable=False)
+    delivery_price = models.DecimalField(max_digits=5, decimal_places=2, editable=False)
+    total_sum = models.DecimalField(max_digits=10, decimal_places=2, editable=False)
+
+    def save(self, *args, **kwargs):
+        request = kwargs.pop('request', None)  
+        request_user = getattr(request, 'user', None)
+        cart = Cart.new(request)
+    
+        cart_items = []
+        cart_item = {}
+        for item in cart:
+            cart_item = { 
+                'Product ID': str(item.product.pk),
+                'Product': str(item.product),
+                'Product-description': str(item.product.short_description),
+                'Price': float(item.price),
+                'Quantity': int(item.quantity),
+                'Subtotal': float(item.subtotal),
+                }
+        cart_items.append(cart_item)
+        
+        self.cart_details = json.dumps(cart_items)
+        self.delivery_name = self.delivery.name
+        self.delivery_price = self.delivery.price
+        self.cart_total = cart.total
+        self.total_sum = cart.total + self.delivery.price
+        self.user = request_user
+        super().save(*args, **kwargs)
+
+
+    @classmethod
+    def create_cart(cls, request, *args, **kwargs):
+        instance = cls(*args, **kwargs)
+        instance.save(request=request)
+
+        return instance

@@ -1,8 +1,10 @@
-from .models import Product
-from .serializers import ProductSerializer
-from .filters import ProductFilter
-from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
+
+from rest_framework import viewsets
+
+from .models import Product, Order
+from .serializers import ProductSerializer, OrderSerializer
+from .filters import ProductFilter
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -10,3 +12,12 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = ProductFilter
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+   
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
+       
+
+    
