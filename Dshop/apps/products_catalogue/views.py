@@ -7,16 +7,25 @@ from django.views.generic import ListView, DetailView, DeleteView
 from lxml import etree
 from dj_shop_cart.cart import Cart
 
-
+from .filters import ProductFilter
 from .models import Product, Category
 
 
 class ProductListView(ListView):
     model = Product
     template_name = 'products_catalogue/products_list.html'
+    queryset = Product.objects.filter(is_active=True)
+    paginate_by = 24
 
     def get_queryset(self):
-        return Product.objects.filter(is_active=True)
+        queryset = super().get_queryset()
+        self.filterset = ProductFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.filterset.form
+        return context
 
 
 class ProductDetailView(DetailView):
