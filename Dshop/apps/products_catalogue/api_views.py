@@ -1,11 +1,13 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.views import APIView
+from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from dj_shop_cart.cart import get_cart_class
-from .models import Product
-from .serializers import CartReadSerializer, ProductSerializer, CartWriteSerializer
+from .models import Order, Product
+from .serializers import (CartReadSerializer, ProductSerializer, 
+                          CartWriteSerializer, OrderSerializer)
 from .filters import ProductFilter
 
 
@@ -30,3 +32,11 @@ class CartAPIView(APIView):
         cart = get_cart_class().new(request)
         serializer = self.serializer_class(cart)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class OrderAPIView(ListCreateAPIView):
+
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
+
+    

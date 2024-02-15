@@ -2,7 +2,7 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404
 from dj_shop_cart.cart import get_cart_class
 from rest_framework import serializers
-from .models import Product
+from .models import Product, Order
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -65,3 +65,21 @@ class CartWriteSerializer(serializers.Serializer):
                 )
             product_pks.add(product_pk)
         return items
+    
+
+class OrderSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Order
+        fields = ['delivery',
+                  'created_at','cart_details',
+                  'cart_total','delivery_name',
+                  'delivery_price','total_sum']
+       
+
+    def create(self, validated_data):
+        request = self.context.get('request')
+        instance = Order.create_cart(request, **validated_data)
+        return instance
+    
+
