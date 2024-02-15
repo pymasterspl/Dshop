@@ -1,4 +1,4 @@
-FROM python:3.11.2-bullseye
+FROM python:3.12.2-bullseye
 
 # forces stderr and stdin to terminal
 ENV PYTHONUNBUFFERED 1 
