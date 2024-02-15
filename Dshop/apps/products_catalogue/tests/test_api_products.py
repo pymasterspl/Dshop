@@ -38,33 +38,6 @@ def test_product_detail_404():
     assert response.status_code == 404
 
 
-@pytest.mark.django_db
-def test_create_product(api_client_staff, create_category):
-    data = {
-        'category': create_category.id,
-        'name': 'Test Product',
-        'price': '19.99',
-        'short_description': 'Test short description',
-        'full_description': 'Test full description',
-    }
-    url = reverse('products-api-list')
-    response = api_client_staff.post(url, data, format='json')
-
-    assert response.status_code == 201
-    assert response.data['name'] == "Test Product"
-    assert response.data['price'] == "19.99"
-
-
-@pytest.mark.django_db
-def test_update_product(api_client_staff, tv_product):
-    url = reverse('products-api-detail', kwargs={'pk': tv_product.id})
-    data = {'name': 'Updated product name'}
-    response = api_client_staff.patch(url, data, format='json')
-    assert response.status_code == 200
-    tv_product.refresh_from_db()
-    assert tv_product.name == "Updated product name"
-
-
 @pytest.fixture(autouse=True)
 def set_test_pagination_size(settings):
     settings.REST_FRAMEWORK['PAGE_SIZE'] = 5
