@@ -18,9 +18,9 @@ def assert_active_object(data):
 
 
 @pytest.mark.django_db
-def test_get_list_one(api_client, tv_product, inactive_product):
+def test_get_list_one(set_test_pagination_size, tv_product, inactive_product):
     url = reverse('products-api-list')
-    response = api_client.get(url)
+    response = APIClient().get(url)
     assert response.status_code == 200
     results = response.data.get('results', [])
     assert len(results) == 1
@@ -38,20 +38,28 @@ def test_product_detail_404():
     assert response.status_code == 404
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def set_test_pagination_size(settings):
-    settings.REST_FRAMEWORK['PAGE_SIZE'] = 5
-
+    # alternative settings.REST_FRAMEWORK['PAGE_SIZE'] = 5
+    original = settings.REST_FRAMEWORK
+    import copy
+    rest = copy.deepcopy(settings.REST_FRAMEWORK)
+    rest['PAGE_SIZE'] = 5
+    settings.REST_FRAMEWORK = rest
+    yield
+    settings.REST_FRAMEWORK = original
+    
 
 @pytest.mark.django_db
-def test_product_list_empty():
+def test_product_list_empty(set_test_pagination_size):
     response = APIClient().get(reverse("products-api-list"))
-    print(response.data)
     assert response.status_code == 200
     assert response.data['results'] == []
     assert response.data['count'] == 0
     assert response.data['previous'] is None
     assert response.data['next'] is None
+
+
 
 @pytest.mark.django_db
 def test_product_detail(tv_product):
@@ -60,24 +68,66 @@ def test_product_detail(tv_product):
     assert response.status_code == 200
 
 
+
 @pytest.mark.django_db
-def test_product_list_pagination_ten_products_page_too_far(tv_product):
+def test_product_list_pagination_ten_products_page_too_far(set_test_pagination_size, tv_product):
     response = APIClient().get(f"{reverse('products-api-list')}?page=100")
     assert response.status_code == 404
 
+
+@pytest.mark.parametrize("page_suffix", ["", "?page=1"])
 @pytest.mark.django_db
-def test_product_list_pagination_ten_products_page_1(ten_tv_products):
-    response = APIClient().get(reverse("products-api-list"))
-    assert len(response.data['results']) == 5
+def test_product_list_pagination_ten_products_page_1(set_test_pagination_size, page_suffix, ten_tv_products):#, ten_tv_products):
+    response = APIClient().get(reverse("products-api-list") + page_suffix)
+    results = response.data['results']
+    assert len(results) == 5
+    assert results[0]['id'] == ten_tv_products[0].id
+    assert results[4]['id'] == ten_tv_products[4].id
     assert response.data['count'] == 10
     assert response.data['next'] == "http://testserver/api/products/?page=2"
     assert response.data['previous'] is None
     
 
 @pytest.mark.django_db
-def test_product_list_pagination_ten_products_page_2(ten_tv_products):
+def test_product_list_pagination_ten_products_page_2(set_test_pagination_size, ten_tv_products):
     response = APIClient().get(f"{reverse('products-api-list')}?page=2")
-    assert len(response.data['results']) == 5
+    results = response.data['results']
+    assert response.status_code == 200
+    assert len(results) == 5
+    assert results[0]['id'] == ten_tv_products[5].id
+    assert results[4]['id'] == ten_tv_products[9].id
     assert response.data['count'] == 10
     assert response.data['next'] is None
     assert response.data['previous'] == "http://testserver/api/products/"
+
+
+@pytest.mark.django_db
+def test_product_list_pagination_forty_three_products_page_4(set_test_pagination_size, forty_three_tv_products):
+    response = APIClient().get(f"{reverse('products-api-list')}?page=4")
+    results = response.data['results']
+    assert response.status_code == 200
+    assert len(results) == 5
+    assert results[0]['id'] == forty_three_tv_products[15].id
+    assert results[4]['id'] == forty_three_tv_products[19].id
+    assert response.data['count'] == 43
+    assert response.data['next'] == "http://testserver/api/products/?page=5"
+    assert response.data['previous'] == "http://testserver/api/products/?page=3"
+
+
+@pytest.mark.django_db
+def test_product_list_pagination_forty_three_products_page_9(set_test_pagination_size, forty_three_tv_products):
+    response = APIClient().get(f"{reverse('products-api-list')}?page=9")
+    results = response.data['results']
+    assert response.status_code == 200
+    assert len(results) == 3
+    assert results[0]['id'] == forty_three_tv_products[40].id
+    assert results[2]['id'] == forty_three_tv_products[42].id
+    assert response.data['count'] == 43
+    assert response.data['next'] is None
+    assert response.data['previous'] == "http://testserver/api/products/?page=8"
+
+
+@pytest.mark.django_db
+def test_delete_unallowed_method(tv_product):
+    response = APIClient().delete(reverse('products-api-detail', kwargs={'pk': tv_product.pk}))
+    assert response.status_code == 405
