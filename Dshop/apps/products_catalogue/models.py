@@ -173,7 +173,7 @@ class DeliveryMethod(models.Model):
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, default=None, null=True)
     delivery = models.ForeignKey(DeliveryMethod, on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     cart_details = models.JSONField(default=dict, editable=False)
@@ -184,7 +184,6 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         request = kwargs.pop('request', None)  
-        request_user = getattr(request, 'user', None)
         cart = Cart.new(request)
     
         cart_items = []
@@ -205,13 +204,14 @@ class Order(models.Model):
         self.delivery_price = self.delivery.price
         self.cart_total = cart.total
         self.total_sum = cart.total + self.delivery.price
-        self.user = request_user
         super().save(*args, **kwargs)
 
 
     @classmethod
     def create_cart(cls, request, *args, **kwargs):
         instance = cls(*args, **kwargs)
+        request_user = getattr(request, 'user', None)
+        instance.user = request_user
         instance.save(request=request)
 
         return instance

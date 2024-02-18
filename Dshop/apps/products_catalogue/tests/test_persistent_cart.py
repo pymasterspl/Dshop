@@ -6,6 +6,21 @@ from pytest import mark
 from dj_shop_cart.cart import get_cart_class
 
 
+@pytest.fixture
+def fixture_cart(tv_product, edifier_product, fake_cart_detail_view_request):
+    Cart = get_cart_class() 
+    cart = Cart.new(fake_cart_detail_view_request)
+    cart.add(tv_product, quantity=2)
+    cart.add(edifier_product, quantity=3)
+    return cart
+
+
+@pytest.mark.django_db
+def test_fixture_cart(fixture_cart):
+    Cart = get_cart_class() 
+    assert isinstance(fixture_cart, Cart)
+
+
 @mark.dj_shop_cart
 @pytest.mark.django_db
 def test_products_cart(tv_product, fake_cart_detail_view_request):
