@@ -1,12 +1,11 @@
 {
     "dev": {
         "django_settings": "Dshop.Dshop.settings",
-        "profile_name": "pymasters-zappa",
         "project_name": "dshop",
         "log_level": "ERROR",
         "s3_bucket": "zappa-vjjecpt38",
         "slim_handler": "true",
-        "aws_environment_variables": {
+        "environment_variables": {
             "IS_AWS_LAMBDA": "true"
         },
         "vpc_config": {
