@@ -17,16 +17,16 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 
 class CartAPIView(APIView):
+    serializer_class = CartReadSerializer
     def post(self, request):
-        serializer = CartWriteSerializer(data=request.data, context={'request': request})
-        if serializer.is_valid():
-            cart = serializer.save()
-            read_serializer = CartReadSerializer(cart)
-            return Response(read_serializer.data, status=status.HTTP_201_CREATED)
+        write_serializer = CartWriteSerializer(data=request.data, context={'request': request})
+        if write_serializer.is_valid():
+            cart = write_serializer.save()
+            return Response(self.serializer_class(cart).data, status=status.HTTP_201_CREATED)
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(write_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def get(self, request):
         cart = get_cart_class().new(request)
-        serializer = CartReadSerializer(cart)
+        serializer = self.serializer_class(cart)
         return Response(serializer.data, status=status.HTTP_200_OK)
