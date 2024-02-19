@@ -4,7 +4,6 @@
         "profile_name": "pymasters-zappa",
         "project_name": "dshop",
         "log_level": "ERROR",
-        "runtime": "python3.11",
         "s3_bucket": "zappa-vjjecpt38",
         "slim_handler": "true",
         "aws_environment_variables": {

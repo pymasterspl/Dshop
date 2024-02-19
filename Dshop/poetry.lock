@@ -1708,16 +1708,6 @@ socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
-name = "uwsgi"
-version = "2.0.24"
-description = "The uWSGI server"
-optional = false
-python-versions = "*"
-files = [
-    {file = "uwsgi-2.0.24.tar.gz", hash = "sha256:77b6dd5cd633f4ae87ee393f7701f617736815499407376e78f3d16467523afe"},
-]
-
-[[package]]
 name = "werkzeug"
 version = "3.0.1"
 description = "The comprehensive WSGI web application library."
@@ -1852,4 +1842,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "871bf4321ea39d025edcddb283bd52b23539cd31006d794b986c8274edfcd41a"
+content-hash = "634a787ecb8f1562175eba52be4ac34d946b454385e5c919342ebc11d7fe712c"
