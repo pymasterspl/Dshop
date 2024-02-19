@@ -14,9 +14,6 @@ def fixture_order(tv_product, fixture_cart, fixture_delivery_method):
     client = APIClient()
     user = User.objects.create_user(username='testuser2', password='testpassword')
     client.force_authenticate(user)
-    data = {
-        'items': [ {'product_pk': tv_product.pk, 'quantity': 10} ] 
-    }
     delivery = fixture_delivery_method
     cart = fixture_cart
     order = Order()
@@ -52,9 +49,6 @@ def test_create_order( tv_product, fixture_cart, fixture_delivery_method):
     client = APIClient()
     user = User.objects.create_user(username='testuser2', password='testpassword')
     client.force_authenticate(user)
-    data = {
-        'items': [ {'product_pk': tv_product.pk, 'quantity': 10} ] 
-    }
     delivery = fixture_delivery_method
     cart = fixture_cart
     order = Order()
