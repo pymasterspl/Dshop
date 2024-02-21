@@ -1,6 +1,7 @@
 FROM public.ecr.aws/lambda/python:3.12
 # required for postrgresql
-RUN dnf update -y && dnf install -y libpq-devel
+RUN dnf update -y && dnf install -y libpq-devel  python3-pillow
+
 
 # required by zappa
 ENV ZAPPA_RUNNING_IN_DOCKER=True
@@ -9,6 +10,7 @@ WORKDIR ${LAMBDA_TASK_ROOT}
 
 RUN pip install --upgrade pip
 RUN pip install poetry setuptools gevent
+RUN pip install -U Pillow
 # optimisation, this prevents rebuilding whole container on every change.
 ADD Dshop/poetry.lock poetry.lock
 ADD Dshop/pyproject.toml pyproject.toml 
