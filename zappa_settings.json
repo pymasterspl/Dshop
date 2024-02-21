@@ -5,6 +5,7 @@
         "log_level": "ERROR",
         "s3_bucket": "zappa-vjjecpt38",
         "slim_handler": "true",
+        "profile_name": "pymasters-zappa",
         "environment_variables": {
             "IS_AWS_LAMBDA": "true"
         },

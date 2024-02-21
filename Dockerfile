@@ -1,4 +1,7 @@
 FROM public.ecr.aws/lambda/python:3.12
+# required for postrgresql
+RUN dnf update -y && dnf install -y libpq-devel
+
 # required by zappa
 ENV ZAPPA_RUNNING_IN_DOCKER=True
 
