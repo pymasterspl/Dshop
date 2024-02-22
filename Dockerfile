@@ -1,16 +1,20 @@
-FROM public.ecr.aws/lambda/python:3.12
-# required for postrgresql
-RUN dnf update -y && dnf install -y libpq-devel  python3-pillow
+FROM python:3.12.2-bullseye
 
+# required for postrgresql
+RUN apt update && apt install -y libpq-dev  python3-pillow
 
 # required by zappa
 ENV ZAPPA_RUNNING_IN_DOCKER=True
+ARG LAMBDA_TASK_ROOT="/var/task/"
 
 WORKDIR ${LAMBDA_TASK_ROOT}
 
 RUN pip install --upgrade pip
+RUN pip install awslambdaric --target ${LAMBDA_TASK_ROOT}
+
 RUN pip install poetry setuptools gevent
 RUN pip install -U Pillow
+
 # optimisation, this prevents rebuilding whole container on every change.
 ADD Dshop/poetry.lock poetry.lock
 ADD Dshop/pyproject.toml pyproject.toml 
@@ -32,5 +36,7 @@ RUN ZAPPA_HANDLER_PATH=$( \
     && echo $ZAPPA_HANDLER_PATH \
     && cp $ZAPPA_HANDLER_PATH ${LAMBDA_TASK_ROOT}
 
+# Set runtime interface client as default command for the container runtime
+ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]
 
 CMD [ "handler.lambda_handler" ]
