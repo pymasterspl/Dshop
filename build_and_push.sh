@@ -9,7 +9,6 @@ fi
 
 region="eu-west-1"
 
-# Kibana - Fraud.net
 image="dshop"
 
 fullname="${account}.dkr.ecr.${region}.amazonaws.com/${image}:latest"
