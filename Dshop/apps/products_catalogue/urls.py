@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from .views import CeneoProductListView, ProductListView, \
+from .views import CeneoProductListView, \
     ProductDetailView, AddToCartView, CartDetailView, CategoryListView, CategoryDetailView, DeleteOneCartItemView, \
     DeleteCartItemView
 
