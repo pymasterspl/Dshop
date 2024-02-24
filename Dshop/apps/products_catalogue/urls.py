@@ -8,7 +8,6 @@ from .views import CeneoProductListView, ProductListView, \
 
 
 urlpatterns = [
-    path('products_list/', ProductListView.as_view(), name='products-list'),
     path('ceneo/', CeneoProductListView.as_view(), name='product-list'),
     path("products/<slug>-<int:id>/", ProductDetailView.as_view(), name='product-detail'),
     path("products/cart/add/<slug>/<int:id>/<str:quantity>/", AddToCartView.as_view(), name='add_to_cart'),
