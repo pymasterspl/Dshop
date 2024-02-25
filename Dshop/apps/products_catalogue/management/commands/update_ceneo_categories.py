@@ -13,7 +13,8 @@ class Command(BaseCommand):
     help = 'Update Ceneo categories in the database.'
 
     def handle(self, *args, **kwargs):
-        self.stdout.write('Fetching Ceneo data...')
+        from lxml import etree
+
         xml_data = self.fetch_ceneo_data()
         root = etree.fromstring(xml_data)
         categories = self.parse_categories(root)
