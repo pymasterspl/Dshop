@@ -87,7 +87,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = "Dshop.urls"
+ROOT_URLCONF = "Dshop.Dshop.urls"
 
 TEMPLATES = [
     {
@@ -140,7 +140,7 @@ DATABASES = {
 if IS_AWS_LAMBDA:
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg",
+            "ENGINE": "django.db.backends.postgresql",
             "NAME": "zappa_dev",
             "USER": "postgres",
             "PASSWORD": "this_is_not_a_good_password",
