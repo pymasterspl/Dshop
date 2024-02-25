@@ -42,7 +42,8 @@ if IS_AWS_LAMBDA:
 # SECURITY WARNING: don't run with debug turned on in production!
 
 if IS_AWS_LAMBDA:
-    ALLOWED_HOSTS = [".execute-api.eu-west-1.amazonaws.com"]
+    ALLOWED_HOSTS = ["dshop.pymasters.pl"]
+    # ALLOWED_HOSTS = ["*"]
 else:
     ALLOWED_HOSTS = json.loads(config('ALLOWED_HOSTS'))
 

@@ -5,6 +5,9 @@
         "log_level": "ERROR",
         "s3_bucket": "zappa-vjjecpt38",
         "profile_name": "pymasters-zappa",
+        "aws_region": "eu-west-1",
+        "domain": "dshop.pymasters.pl",
+        "certificate_arn": "arn:aws:acm:us-east-1:471112567173:certificate/bf9c19fa-b843-4797-93c0-b7f1996da7cc",
         "environment_variables": {
             "IS_AWS_LAMBDA": "true"
         },
