@@ -1,3 +1,5 @@
+import time
+
 from django.contrib.auth.models import User
 import pytest
 from rest_framework.test import APIClient
@@ -22,6 +24,7 @@ def products():
             price=price,
             short_description="short desc inactive",
             full_description="full_description inactive",
-            is_active=True
+            is_active=True,
+            availability=3
         )
-
+        time.sleep(0.2)
