@@ -44,7 +44,7 @@ def test_filter_by_price_desc(client, products):
 
 
 @pytest.mark.django_db
-def test_filter_by_name(client, products):
+def test_filter_order_by_name(client, products):
     url = reverse("products-list")
     response = client.get(f"{url}?order_by=name")
     products = response.context['object_list']
@@ -53,7 +53,7 @@ def test_filter_by_name(client, products):
 
 
 @pytest.mark.django_db
-def test_filter_by_name_desc(client, products):
+def test_filter_order_by_name_desc(client, products):
     url = reverse("products-list")
     response = client.get(f"{url}?order_by=-name")
     products = response.context['object_list']
