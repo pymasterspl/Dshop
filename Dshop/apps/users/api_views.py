@@ -99,7 +99,7 @@ class UserDataChangeView(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, vie
         return UserDataReadSerializer
 
     def get_object(self):
-        return CustomUser.objects.get(user=self.request.user)
+        return CustomUser.objects.get_or_create(user=self.request.user)[0]
 
     def update(self, request, *args, **kwargs):
         request.data['user'] = self.request.user.id
