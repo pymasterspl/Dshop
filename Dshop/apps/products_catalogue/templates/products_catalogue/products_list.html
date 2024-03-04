@@ -14,9 +14,47 @@
 
 <div class="container">
     <h1 class="mt-5">DShop collection</h1>
+        <div class=" mb-4">
+            <form method="GET" class="form-inline justify-content-center">
+                <div class="container">
+                    <div class="form-row">
+                        <div class="d-inline-block p-lg-1">
+                            {{ form.name.label }}:
+                            {{ form.name}}
+                        </div>
+                        <div class="d-inline-block mt-2 p-lg-1">
+                            {{ form.category_name.label }}:
+                            {{ form.category_name }}
+                        </div>
+                        <div class="d-inline-block mt-2 p-lg-1">
+                            {{ form.availability.label }}:
+                            {{ form.availability }}
+                        </div>
+                    </div>
+                    <div class="form-row mt-2">
+                        <div class="d-inline-block p-lg-1">
+                            {{ form.price__gt.label }}:
+                            {{ form.price__gt }}
+                        </div>
+                         <div class="d-inline-block p-lg-1">
+                            {{ form.price__lt.label }}:
+                            {{ form.price__lt }}
+                        </div>
+                        <div class="d-inline-block p-lg-1">
+                            {{ form.order_by.label }}:
+                            {{ form.order_by }}
+                        </div>
+                        <div class="d-inline-block flex-md-row justify-content-between align-items-md-center gap-2 ">
+                            <button type="submit" class="m-lg-3 btn btn-primary">Szukaj</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
     <div class="row mt-4">
         {% for object in object_list %}
-
         <div class="col-md-3 mb-4">
             <div class="card">
                 <div class="card-body">
