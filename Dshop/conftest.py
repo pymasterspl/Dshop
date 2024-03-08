@@ -1,3 +1,4 @@
+import datetime
 import pytest
 from dj_shop_cart.cart import get_cart_class
 from django.urls import reverse
@@ -78,19 +79,22 @@ def ten_tv_products():
         is_active=True
     )
     tv_data = [
-        {'name': 'TV AMOLED 32"', 'price': 599.00, 'full_description': 'High-quality 32-inch AMOLED TV.', 'category': category},
-        {'name': 'Smart TV 40"', 'price': 899.00, 'full_description': '40-inch Smart TV with advanced features.', 'category': category},
-        {'name': '4K Ultra HD TV 55"', 'price': 1299.00, 'full_description': '55-inch 4K Ultra HD TV for stunning visuals.', 'category': category},
-        {'name': 'Curved TV 65"', 'price': 1999.00, 'full_description': 'Immersive 65-inch curved TV experience.', 'category': category},
-        {'name': 'OLED TV 50"', 'price': 1699.00, 'full_description': '50-inch OLED TV with vibrant colors.', 'category': category},
-        {'name': 'QLED TV 75"', 'price': 2999.00, 'full_description': '75-inch QLED TV for a cinematic viewing experience.', 'category': category},
-        {'name': 'Android TV 43"', 'price': 799.00, 'full_description': '43-inch Android TV with a wide range of apps.', 'category': category},
-        {'name': 'HD LED TV 24"', 'price': 299.00, 'full_description': '24-inch HD LED TV for compact spaces.', 'category': category},
-        {'name': 'Outdoor TV 55"', 'price': 2499.00, 'full_description': '55-inch Outdoor TV for outdoor entertainment.', 'category': category},
-        {'name': 'Gaming TV 50"', 'price': 1799.00, 'full_description': '50-inch Gaming TV with low input lag.', 'category': category},
+        {'name': 'TV AMOLED 32"', 'price': 599.00, 'full_description': 'High-quality 32-inch AMOLED TV.', 'category': category, 'availability': 1},
+        {'name': 'Smart TV 40"', 'price': 899.00, 'full_description': '40-inch Smart TV with advanced features.', 'category': category, 'availability': 3},
+        {'name': '4K Ultra HD TV 55"', 'price': 1299.00, 'full_description': '55-inch 4K Ultra HD TV for stunning visuals.', 'category': category, 'availability': 7},
+        {'name': 'Curved TV 65"', 'price': 1999.00, 'full_description': 'Immersive 65-inch curved TV experience.', 'category': category, 'availability': 14},
+        {'name': 'OLED TV 50"', 'price': 1699.00, 'full_description': '50-inch OLED TV with vibrant colors.', 'category': category, 'availability': 90},
+        {'name': 'QLED TV 75"', 'price': 2999.00, 'full_description': '75-inch QLED TV for a cinematic viewing experience.', 'category': category, 'availability': 99},
+        {'name': 'Android TV 43"', 'price': 799.00, 'full_description': '43-inch Android TV with a wide range of apps.', 'category': category, 'availability': 110},
+        {'name': 'HD LED TV 24"', 'price': 299.00, 'full_description': '24-inch HD LED TV for compact spaces.', 'category': category, 'availability': 99},
+        {'name': 'Outdoor TV 55"', 'price': 2499.00, 'full_description': '55-inch Outdoor TV for outdoor entertainment.', 'category': category, 'availability': 99},
+        {'name': 'Gaming TV 50"', 'price': 1799.00, 'full_description': '50-inch Gaming TV with low input lag.', 'category': category, 'availability': 99},
     ]
-    return [Product.objects.create(**data) for data in tv_data]
-
+    result = []
+    for idx, tv in enumerate(tv_data):
+        tv['created_at'] = datetime.datetime.now() - datetime.timedelta(days=idx)
+        result.append(Product.objects.create(**tv))
+    return result
 @fixture
 @pytest.mark.django_db
 def forty_three_tv_products():
