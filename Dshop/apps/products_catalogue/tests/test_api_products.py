@@ -2,6 +2,71 @@ from rest_framework.test import APIClient
 import pytest
 from django.urls import reverse
 from django.conf import settings
+from apps.products_catalogue.models import Category, Product, ProductImage
+# pylama:ignore=W0404, W0611
+from apps.users.conftest import login_url, login_data, user_instance, user_instance_token
+from PIL import Image
+from django.core.files.uploadedfile import SimpleUploadedFile
+import tempfile
+import os
+
+
+
+@pytest.fixture
+def create_active_product():
+    category = Category.objects.create(name='Test Category', is_active=True)
+    return Product.objects.create(
+        name="main product",
+        category=category,
+        price=11,
+        short_description="short desc",
+        full_description="full_description",
+        is_active=True
+    )
+
+
+@pytest.fixture
+def create_inactive_product():
+    category = Category.objects.create(name='Test Category 2', is_active=True)
+    return Product.objects.create(
+        name="main product inactive",
+        category=category,
+        price=150,
+        short_description="short desc inactive",
+        full_description="full_description inactive",
+        is_active=False
+    )
+
+
+@pytest.fixture
+def authenticated_api_client(api_client, user_instance_token):
+    api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
+    return api_client
+
+
+
+@pytest.fixture
+def create_product_with_images(create_category):
+    product = Product.objects.create(
+        name="Product with images",
+        category=create_category,
+        price=29.99,
+        short_description="Product short description",
+        full_description="Product full description",
+        is_active=True
+    )
+
+    with tempfile.TemporaryDirectory() as temp_dir:
+        image_path1 = os.path.join(temp_dir, 'image1.jpg')
+        Image.new('RGB', (100, 100)).save(image_path1)
+        image1 = SimpleUploadedFile('image1.jpg', open(image_path1, 'rb').read(), content_type='image/jpeg')
+        ProductImage.objects.create(product=product, image=image1, is_featured=True)
+
+        image_path2 = os.path.join(temp_dir, 'image2.jpg')
+        Image.new('RGB', (150, 150)).save(image_path2)
+        image2 = SimpleUploadedFile('image2.jpg', open(image_path2, 'rb').read(), content_type='image/jpeg')
+        ProductImage.objects.create(product=product, image=image2, is_featured=False)
+    return product
 
 
 def assert_active_object(data):
@@ -13,9 +78,32 @@ def assert_active_object(data):
         "short_description": 'Test short description',
         "full_description": 'Test full description',
         "parent_product": None,
+        "images": []
     }
     for key, value in data.items():
         assert fields_values[key] == value
+
+
+def assert_product_with_images(data):
+    assert 'images' in data
+    assert len(data['images']) == 2
+    expected_image_data1 = {
+        "image": data['images'][0]['image'],
+    }
+    expected_image_data2 = {
+        "image": data['images'][1]['image'],
+    }
+    assert expected_image_data1 in data['images']
+    assert expected_image_data2 in data['images']
+
+
+@pytest.mark.django_db
+def test_product_detail_with_images(api_client_authed, create_product_with_images):
+    url = reverse('products-api-detail', kwargs={'pk': create_product_with_images.id})
+    response = api_client_authed.get(url)
+
+    assert response.status_code == 200
+    assert_product_with_images(response.data)
 
 
 @pytest.mark.django_db
