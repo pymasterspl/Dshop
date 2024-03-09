@@ -1,6 +1,7 @@
 from rest_framework.test import APIClient
 import pytest
 from django.urls import reverse
+from django.conf import settings
 
 
 def assert_active_object(data):
@@ -39,16 +40,13 @@ def test_product_detail_404():
 
 
 @pytest.fixture
-def set_test_pagination_size(settings):
-    # alternative settings.REST_FRAMEWORK['PAGE_SIZE'] = 5
-    original = settings.REST_FRAMEWORK
-    import copy
-    rest = copy.deepcopy(settings.REST_FRAMEWORK)
-    rest['PAGE_SIZE'] = 5
-    settings.REST_FRAMEWORK = rest
-    yield
-    settings.REST_FRAMEWORK = original
-    
+def set_test_pagination_size(settings, autouse=True):
+    settings.REST_FRAMEWORK['PAGE_SIZE'] = 5
+
+
+def test_pagination_size_in_tests():
+    assert settings.REST_FRAMEWORK['PAGE_SIZE'] == 5
+    # pagination size changed here: Dshop/Dshop/settings_tests.py
 
 @pytest.mark.django_db
 def test_product_list_empty(set_test_pagination_size):
