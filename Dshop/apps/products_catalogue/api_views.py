@@ -5,8 +5,6 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework import status
 from dj_shop_cart.cart import get_cart_class
-from rest_framework.permissions import AllowAny
-
 from .models import Product
 from .serializers import CartReadSerializer, ProductSerializer, CartWriteSerializer
 from .filters import ProductFilter
