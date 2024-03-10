@@ -14,5 +14,5 @@ global:
   platform_version: null
   profile: pymasters-zappa
   repository: null
-  sc: git
+  sc: zip
   workspace_type: Application
