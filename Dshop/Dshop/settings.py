@@ -136,17 +136,17 @@ DATABASES = {
 # }
 
 # AWS postgres
-if IS_AWS_LAMBDA:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": "zappa_dev",
-            "USER": "postgres",
-            "PASSWORD": "this_is_not_a_good_password",
-            "HOST": "zappa-dev.cf8iw6846e7t.eu-west-1.rds.amazonaws.com",
-            "PORT": "5432",
-        }
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "zappa_dev",
+        "USER": "postgres",
+        "PASSWORD": "this_is_not_a_good_password",
+        "HOST": "zappa-dev1.cf8iw6846e7t.eu-west-1.rds.amazonaws.com",
+        "PORT": "5432",
     }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
