@@ -18,5 +18,5 @@ def products():
             full_description="full_description inactive",
             is_active=True,
             availability=3,
-            created_at = created_at
+            created_at=created_at
         )
