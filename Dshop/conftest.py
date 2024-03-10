@@ -2,7 +2,6 @@ import datetime
 import pytest
 from dj_shop_cart.cart import get_cart_class
 from django.urls import reverse
-from pytest import fixture
 from apps.products_catalogue.models import Category, Product
 from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
@@ -41,7 +40,7 @@ def api_client_admin():
 def create_category():
     return Category.objects.create(name='Test Category', is_active=True)
 
-@fixture
+@pytest.fixture
 @pytest.mark.django_db
 def tv_product():
     category = Category.objects.create(
@@ -58,7 +57,7 @@ def tv_product():
     return product
 
 
-@pytest.fixture
+@pytest.pytest.fixture
 def inactive_product():
     category = Category.objects.create(name='Test Category 2', is_active=True)
     return Product.objects.create(
@@ -71,7 +70,7 @@ def inactive_product():
     )
 
 
-@fixture
+@pytest.fixture
 @pytest.mark.django_db
 def ten_tv_products():
     category = Category.objects.create(
@@ -95,7 +94,7 @@ def ten_tv_products():
         tv['created_at'] = datetime.datetime.now() - datetime.timedelta(days=idx)
         result.append(Product.objects.create(**tv))
     return result
-@fixture
+@pytest.fixture
 @pytest.mark.django_db
 def forty_three_tv_products():
     category, _ = Category.objects.get_or_create(
@@ -150,7 +149,7 @@ def forty_three_tv_products():
     return [Product.objects.create(**data) for data in tv_data]
 
 
-@fixture
+@pytest.fixture
 @pytest.mark.django_db
 def edifier_product():
     category = Category.objects.create(
@@ -166,7 +165,7 @@ def edifier_product():
     return product
 
 
-@fixture
+@pytest.fixture
 def fake_cart_detail_view_request(client):
     url = reverse(
         "cart_detail"
@@ -177,7 +176,7 @@ def fake_cart_detail_view_request(client):
     return fake_request
 
 
-@fixture
+@pytest.fixture
 def fake_add_to_cart_view_request(client, tv_product):
     url = reverse(
         'add_to_cart',
