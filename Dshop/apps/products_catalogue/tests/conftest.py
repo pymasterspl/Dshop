@@ -7,14 +7,6 @@ from apps.products_catalogue.models import Category, Product
 
 
 @pytest.fixture
-def api_client():
-    client = APIClient()
-    user = User.objects.create_user(username='testuser', password='testpassword')
-    client.force_authenticate(user)
-    return client
-
-
-@pytest.fixture
 def products():
     category = Category.objects.create(name='Test Category', is_active=True)
     for price in range(1, 11):
