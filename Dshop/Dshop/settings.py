@@ -134,7 +134,7 @@ DATABASES = {
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "zappa_dev",
         "USER": "postgres",
         "PASSWORD": "this_is_not_a_good_password",
