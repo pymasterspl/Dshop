@@ -2,13 +2,11 @@ branch-defaults:
   elasticbeanstalk:
     environment: dshop-dev
     group_suffix: null
-environment-defaults:
-  dshop-dev:
-    branch: elasticbeanstalk
-    repository:  git@github.com:akademiait/Dshop.git
+
 global:
   application_name: Dshop
-  branch: null
+  branch: elasticbeanstalk
+  repository:  git@github.com:akademiait/Dshop.git
   default_ec2_keyname: null
   default_platform: Python 3.11 running on 64bit Amazon Linux 2023
   default_region: eu-west-1
@@ -17,6 +15,5 @@ global:
   platform_name: null
   platform_version: null
   profile: pymasters-zappa
-  repository: null
   sc: git
   workspace_type: Application
