@@ -3,8 +3,6 @@ import pytest
 from django.urls import reverse
 from django.conf import settings
 from apps.products_catalogue.models import Category, Product, ProductImage
-# pylama:ignore=W0404, W0611
-from apps.users.conftest import login_url, login_data, user_instance, user_instance_token
 from PIL import Image
 from django.core.files.uploadedfile import SimpleUploadedFile
 import tempfile
@@ -91,16 +89,15 @@ def assert_product_with_images(data):
 
 
 @pytest.mark.django_db
-def test_product_detail_with_images(api_client_authenticated, create_product_with_images):
+def test_product_detail_with_images(create_product_with_images):
     url = reverse('products-api-detail', kwargs={'pk': create_product_with_images.id})
-    response = api_client_authenticated.get(url)
-
+    response = APIClient().get(url)
     assert response.status_code == 200
     assert_product_with_images(response.data)
 
 
 @pytest.mark.django_db
-def test_get_list_one(set_test_pagination_size, tv_product, inactive_product):
+def test_get_list_one(tv_product, inactive_product):
     url = reverse('products-api-list')
     response = APIClient().get(url)
     assert response.status_code == 200
@@ -120,17 +117,13 @@ def test_product_detail_404():
     assert response.status_code == 404
 
 
-@pytest.fixture
-def set_test_pagination_size(settings, autouse=True):
-    settings.REST_FRAMEWORK['PAGE_SIZE'] = 5
-
-
 def test_pagination_size_in_tests():
     assert settings.REST_FRAMEWORK['PAGE_SIZE'] == 5
     # pagination size changed here: Dshop/Dshop/settings_tests.py
 
+
 @pytest.mark.django_db
-def test_product_list_empty(set_test_pagination_size):
+def test_product_list_empty():
     response = APIClient().get(reverse("products-api-list"))
     assert response.status_code == 200
     assert response.data['results'] == []
@@ -139,24 +132,25 @@ def test_product_list_empty(set_test_pagination_size):
     assert response.data['next'] is None
 
 
-
 @pytest.mark.django_db
 def test_product_detail(tv_product):
     url = reverse('products-api-detail', kwargs={'pk': tv_product.id})
     response = APIClient().get(url)
     assert response.status_code == 200
+    assert response.data
+    assert_active_object(response.data)
 
 
 
 @pytest.mark.django_db
-def test_product_list_pagination_ten_products_page_too_far(set_test_pagination_size, tv_product):
+def test_product_list_pagination_ten_products_page_too_far(tv_product):
     response = APIClient().get(f"{reverse('products-api-list')}?page=100")
     assert response.status_code == 404
 
 
 @pytest.mark.parametrize("page_suffix", ["", "?page=1"])
 @pytest.mark.django_db
-def test_product_list_pagination_ten_products_page_1(set_test_pagination_size, page_suffix, ten_tv_products):#, ten_tv_products):
+def test_product_list_pagination_ten_products_page_1(page_suffix, ten_tv_products):
     response = APIClient().get(reverse("products-api-list") + page_suffix)
     results = response.data['results']
     assert len(results) == 5
@@ -168,7 +162,7 @@ def test_product_list_pagination_ten_products_page_1(set_test_pagination_size, p
     
 
 @pytest.mark.django_db
-def test_product_list_pagination_ten_products_page_2(set_test_pagination_size, ten_tv_products):
+def test_product_list_pagination_ten_products_page_2(ten_tv_products):
     response = APIClient().get(f"{reverse('products-api-list')}?page=2")
     results = response.data['results']
     assert response.status_code == 200
@@ -181,7 +175,7 @@ def test_product_list_pagination_ten_products_page_2(set_test_pagination_size, t
 
 
 @pytest.mark.django_db
-def test_product_list_pagination_forty_three_products_page_4(set_test_pagination_size, forty_three_tv_products):
+def test_product_list_pagination_forty_three_products_page_4(forty_three_tv_products):
     response = APIClient().get(f"{reverse('products-api-list')}?page=4")
     results = response.data['results']
     assert response.status_code == 200
@@ -194,7 +188,7 @@ def test_product_list_pagination_forty_three_products_page_4(set_test_pagination
 
 
 @pytest.mark.django_db
-def test_product_list_pagination_forty_three_products_page_9(set_test_pagination_size, forty_three_tv_products):
+def test_product_list_pagination_forty_three_products_page_9(forty_three_tv_products):
     response = APIClient().get(f"{reverse('products-api-list')}?page=9")
     results = response.data['results']
     assert response.status_code == 200
