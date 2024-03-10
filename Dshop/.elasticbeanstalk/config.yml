@@ -2,6 +2,10 @@ branch-defaults:
   elasticbeanstalk:
     environment: dshop-dev
     group_suffix: null
+environment-defaults:
+  dshop-dev:
+    branch: elasticbeanstalk
+    repository:  git@github.com:akademiait/Dshop.git
 global:
   application_name: Dshop
   branch: null
@@ -14,5 +18,5 @@ global:
   platform_version: null
   profile: pymasters-zappa
   repository: null
-  sc: zip
+  sc: git
   workspace_type: Application
