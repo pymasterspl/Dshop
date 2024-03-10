@@ -2,7 +2,7 @@ from rest_framework.test import APIClient
 import pytest
 from django.urls import reverse
 from django.conf import settings
-from apps.products_catalogue.models import Category, Product, ProductImage
+from apps.products_catalogue.models import ProductImage
 from PIL import Image
 from django.core.files.uploadedfile import SimpleUploadedFile
 import tempfile

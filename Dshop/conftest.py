@@ -57,7 +57,7 @@ def tv_product():
     return product
 
 
-@pytest.pytest.fixture
+@pytest.fixture
 def inactive_product():
     category = Category.objects.create(name='Test Category 2', is_active=True)
     return Product.objects.create(

@@ -1,7 +1,5 @@
 import datetime
-from django.contrib.auth.models import User
 import pytest
-from rest_framework.test import APIClient
 from apps.products_catalogue.models import Category, Product
 
 
