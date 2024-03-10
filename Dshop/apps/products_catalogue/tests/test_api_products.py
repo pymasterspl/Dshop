@@ -9,55 +9,19 @@ import tempfile
 import os
 
 
-
 @pytest.fixture
-def create_active_product():
-    category = Category.objects.create(name='Test Category', is_active=True)
-    return Product.objects.create(
-        name="main product",
-        category=category,
-        price=11,
-        short_description="short desc",
-        full_description="full_description",
-        is_active=True
-    )
-
-
-@pytest.fixture
-def create_inactive_product():
-    category = Category.objects.create(name='Test Category 2', is_active=True)
-    return Product.objects.create(
-        name="main product inactive",
-        category=category,
-        price=150,
-        short_description="short desc inactive",
-        full_description="full_description inactive",
-        is_active=False
-    )
-
-
-@pytest.fixture
-def create_product_with_images(create_category):
-    product = Product.objects.create(
-        name="Product with images",
-        category=create_category,
-        price=29.99,
-        short_description="Product short description",
-        full_description="Product full description",
-        is_active=True
-    )
-
+def create_product_with_images(tv_product):
     with tempfile.TemporaryDirectory() as temp_dir:
         image_path1 = os.path.join(temp_dir, 'image1.jpg')
         Image.new('RGB', (100, 100)).save(image_path1)
         image1 = SimpleUploadedFile('image1.jpg', open(image_path1, 'rb').read(), content_type='image/jpeg')
-        ProductImage.objects.create(product=product, image=image1, is_featured=True)
+        ProductImage.objects.create(product=tv_product, image=image1, is_featured=True)
 
         image_path2 = os.path.join(temp_dir, 'image2.jpg')
         Image.new('RGB', (150, 150)).save(image_path2)
         image2 = SimpleUploadedFile('image2.jpg', open(image_path2, 'rb').read(), content_type='image/jpeg')
-        ProductImage.objects.create(product=product, image=image2, is_featured=False)
-    return product
+        ProductImage.objects.create(product=tv_product, image=image2, is_featured=False)
+    return tv_product
 
 
 def assert_active_object(data):
