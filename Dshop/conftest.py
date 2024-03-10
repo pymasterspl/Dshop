@@ -17,7 +17,7 @@ def api_client():
     return APIClient()
 
 @pytest.fixture
-def api_client_authed():
+def api_client_authenticated():
     client = APIClient()
     user = User.objects.create_user(username='testuser', password='testpassword')
     client.force_authenticate(user)

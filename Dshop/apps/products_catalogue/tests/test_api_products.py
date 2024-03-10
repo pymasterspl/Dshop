@@ -39,13 +39,6 @@ def create_inactive_product():
 
 
 @pytest.fixture
-def authenticated_api_client(api_client, user_instance_token):
-    api_client.credentials(HTTP_AUTHORIZATION=f'Token {user_instance_token.key}')
-    return api_client
-
-
-
-@pytest.fixture
 def create_product_with_images(create_category):
     product = Product.objects.create(
         name="Product with images",
@@ -98,9 +91,9 @@ def assert_product_with_images(data):
 
 
 @pytest.mark.django_db
-def test_product_detail_with_images(api_client_authed, create_product_with_images):
+def test_product_detail_with_images(api_client_authenticated, create_product_with_images):
     url = reverse('products-api-detail', kwargs={'pk': create_product_with_images.id})
-    response = api_client_authed.get(url)
+    response = api_client_authenticated.get(url)
 
     assert response.status_code == 200
     assert_product_with_images(response.data)
