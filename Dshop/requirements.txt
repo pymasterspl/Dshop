@@ -15,7 +15,6 @@ django-storages==1.14.2
 django-tinymce==3.6.1
 djangorestframework==3.14.0
 drf-spectacular==0.26.5
--e git+ssh://git@github.com/akademiait/Dshop.git@86b7ddfa7784aef86d0d1961e785883f5a50dcf2#egg=dshop&subdirectory=Dshop
 durationpy==0.6
 freezegun==1.2.2
 gevent==23.9.1
@@ -37,7 +36,7 @@ Pillow==10.1.0
 placebo==0.9.0
 platformdirs==4.2.0
 pluggy==1.3.0
-psycopg==3.1.18
+psycopg[binary]
 pytest==7.4.3
 pytest-django==4.7.0
 python-dateutil==2.8.2
@@ -62,7 +61,7 @@ troposphere==4.6.0
 typing_extensions==4.8.0
 tzdata==2024.1
 uritemplate==4.1.1
-urllib3==2.1.0
+urllib3
 Werkzeug==3.0.1
 zappa==0.58.0
 zope.event==5.0
