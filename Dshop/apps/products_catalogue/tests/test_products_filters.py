@@ -91,19 +91,19 @@ def test_filter_category(client, products):
 @pytest.mark.django_db
 def test_filter_by_min_price(client, products):
     url = reverse("products-list")
-    response = client.get(f"{url}?prince__gt=5")
+    response = client.get(f"{url}?price__gt=5")
     products = response.context['object_list']
-    for value in range(5, 10):
-        assert products[value].price == Decimal(value + 1)
+    for value, product in enumerate(products, start=6):
+        assert product.price == value
 
 
 @pytest.mark.django_db
 def test_filter_by_max_price(client, products):
     url = reverse("products-list")
-    response = client.get(f"{url}?prince__lt=5")
+    response = client.get(f"{url}?price__lt=5")
     products = response.context['object_list']
-    for idx, value in enumerate(range(5)):
-        assert products[idx].price == Decimal(value + 1)
+    for value, product in enumerate(products, start=1):
+        assert product.price == value
 
 
 @pytest.mark.django_db
