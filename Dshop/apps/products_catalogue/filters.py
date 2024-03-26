@@ -40,7 +40,7 @@ class ProductFilter(filters.FilterSet):
         value = int(value)
         if value in (1, 3, 7, 14):
             return queryset.filter(availability__lte=value)
-        return queryset.filter(**{name: value})
+        return queryset.filter(availability=value)
 
     def __init__(self, *args, **kwargs):
         super(ProductFilter, self).__init__(*args, **kwargs)
