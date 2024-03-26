@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from rest_framework import status
 from dj_shop_cart.cart import get_cart_class
 from .models import Order, Product
@@ -19,7 +20,9 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 
 class CartAPIView(APIView):
+    permission_classes = (AllowAny ,)
     serializer_class = CartReadSerializer
+    
     def post(self, request):
         write_serializer = CartWriteSerializer(data=request.data, context={'request': request})
         if write_serializer.is_valid():
