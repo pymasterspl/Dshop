@@ -2,12 +2,21 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404
 from dj_shop_cart.cart import get_cart_class
 from rest_framework import serializers
-from .models import Product, Order
+from .models import Product, Order, ProductImage
 
+
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ['image']
+
+        
 class ProductSerializer(serializers.ModelSerializer):
+    images = ProductImageSerializer(many=True, read_only=True)
+
     class Meta:
         model = Product
-        fields = ['id', 'category', 'name', 'price', 'short_description', 'full_description', 'parent_product']
+        fields = ['id', 'category', 'name', 'price', 'short_description', 'full_description', 'parent_product', 'images']
         read_only_fields = ['id']
 
 

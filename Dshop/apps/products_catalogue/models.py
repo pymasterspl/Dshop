@@ -66,6 +66,15 @@ class Category(CatalogueItemModel):
 
 
 class Product(CatalogueItemModel):
+    AVAILABILITY_CHOICES = [
+        (1, 'Dostępny, sklep wyśle produkt w ciągu 24 godzin'),
+        (3, 'Sklep wyśle produkt do 3 dni'),
+        (7, 'Sklep wyśle produkt w ciągu tygodnia'),
+        (14, 'Sklep wyśle produkt do 14 dni'),
+        (90, 'Towar na zamówienie'),
+        (99, 'Brak informacji o dostępności - status „sprawdź w sklepie”'),
+        (110, 'Przedsprzedaż'),
+    ]
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     short_description = tinymce_models.HTMLField()
@@ -73,15 +82,7 @@ class Product(CatalogueItemModel):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     availability = models.PositiveSmallIntegerField(
-        choices=[
-            (1, 'Dostępny, sklep wyśle produkt w ciągu 24 godzin'),
-            (3, 'Sklep wyśle produkt do 3 dni'),
-            (7, 'Sklep wyśle produkt w ciągu tygodnia'),
-            (14, 'Sklep wyśle produkt do 14 dni'),
-            (90, 'Towar na zamówienie'),
-            (99, 'Brak informacji o dostępności - status „sprawdź w sklepie”'),
-            (110, 'Przedsprzedaż'),
-        ],
+        choices=AVAILABILITY_CHOICES,
         default=99,
     )
     parent_product = models.ForeignKey(
@@ -138,7 +139,7 @@ class Product(CatalogueItemModel):
 
     def is_available(self):
         return self.availability
-
+  
 
 class ProductImage(models.Model):
     product = models.ForeignKey(

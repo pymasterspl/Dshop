@@ -2,15 +2,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from .views import CeneoProductListView, ProductListView, \
-    ProductDetailView, AddToCartView, CartDetailView, CategoryListView, CategoryDetailView, DeleteOneCartItemView, \
-    DeleteCartItemView
-
+from .views import CeneoProductListView, \
+    ProductDetailView, AddToCartView, CartDetailView, CategoryListView, CategoryDetailView, \
+    DeleteOneCartItemView, \
+    DeleteCartItemView, ProductListView
 
 urlpatterns = [
-    path('products_list/', ProductListView.as_view(), name='products-list'),
-    path('ceneo/', CeneoProductListView.as_view(), name='product-list'),
-    path("products/<slug>-<int:id>/", ProductDetailView.as_view(), name='product-detail'),
+    path('', ProductListView.as_view(), name='products-list'),
+    path('products/ceneo/', CeneoProductListView.as_view(), name='product-list'),    path("products/<slug>-<int:id>/", ProductDetailView.as_view(), name='product-detail'),
     path("products/cart/add/<slug>/<int:id>/<str:quantity>/", AddToCartView.as_view(), name='add_to_cart'),
     path("products/cart/delete_one_cart_item/<slug>/<str:item_id>/<str:quantity>/", DeleteOneCartItemView.as_view(), name='delete_one_cart_item'),
     path("products/cart/delete_cart_item/<slug>/<str:id>/", DeleteCartItemView.as_view(), name='delete_cart_item'),
