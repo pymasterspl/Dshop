@@ -12,12 +12,12 @@ from .serializers import (CartReadSerializer, ProductSerializer,
 from .filters import ProductFilter
 
 
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.filter(is_active=True, parent_product=None)
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = ProductFilter
-
+    permission_classes = (AllowAny, )
 
 class CartAPIView(APIView):
     permission_classes = (AllowAny ,)
